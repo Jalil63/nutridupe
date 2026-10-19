@@ -136,7 +136,7 @@ export function DupeCard({
                 </a>
               </Button>
               <p className="mt-1.5 text-center text-[11px] leading-tight text-muted-foreground">
-                We earn a commission from purchases made through this link.
+                *Earns commission.
               </p>
             </div>
           )}
