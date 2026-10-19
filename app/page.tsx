@@ -1,4 +1,4 @@
-import { getCategories, getBenchmarks, formatCurrency } from '@/lib/data';
+import { getCategories, getBenchmarks } from '@/lib/data';
 import { HomeSearch } from '@/components/home/home-search';
 import { CategoryPills } from '@/components/home/category-pills';
 import { BenchmarkCard } from '@/components/home/benchmark-card';
@@ -7,10 +7,19 @@ import { ShieldCheck, FlaskConical, DollarSign, TrendingDown } from 'lucide-reac
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  const [categories, benchmarks] = await Promise.all([
-    getCategories(),
-    getBenchmarks(),
-  ]);
+  let categories = [];
+  let benchmarks = [];
+
+  try {
+    const [fetchedCategories, fetchedBenchmarks] = await Promise.all([
+      getCategories(),
+      getBenchmarks(),
+    ]);
+    categories = fetchedCategories || [];
+    benchmarks = fetchedBenchmarks || [];
+  } catch (error) {
+    console.warn('Database not fully ready, rendering page safely with fallback data:', error);
+  }
 
   return (
     <div className="flex flex-col">
@@ -37,14 +46,16 @@ export default async function HomePage() {
       </section>
 
       {/* Category Pills */}
-      <section className="border-b border-border bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-            Browse by Category
-          </h2>
-          <CategoryPills categories={categories} />
-        </div>
-      </section>
+      {categories.length > 0 && (
+        <section className="border-b border-border bg-background">
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              Browse by Category
+            </h2>
+            <CategoryPills categories={categories} />
+          </div>
+        </section>
+      )}
 
       {/* Stats Bar */}
       <section className="border-b border-border bg-secondary/40">
@@ -57,23 +68,25 @@ export default async function HomePage() {
       </section>
 
       {/* Benchmark Products */}
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="mb-8 flex items-end justify-between">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Featured Comparisons
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              Click a premium product below to see its cGMP-certified dupes side-by-side.
-            </p>
+      {benchmarks.length > 0 && (
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Featured Comparisons
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Click a premium product below to see its cGMP-certified dupes side-by-side.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {benchmarks.map((product) => (
-            <BenchmarkCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {benchmarks.map((product) => (
+              <BenchmarkCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Ad Slot */}
       <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
