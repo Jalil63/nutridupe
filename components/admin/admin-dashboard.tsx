@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useCallback } from 'react';
 import { ShieldCheck, ShoppingBag, ExternalLink, Plus, Pencil, Trash2, X, FlaskConical, DollarSign, Package, Building2, Star, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,7 +34,6 @@ export function AdminDashboard({
     : '0';
 
   const handleProductSaved = useCallback(async () => {
-  const handleProductSaved = useCallback(async () => {
     const { data: productsData } = await supabase
       .from('products')
       .select('*')
@@ -60,6 +57,7 @@ export function AdminDashboard({
     await supabase.from('products').delete().eq('id', id);
     setProducts((prev) => prev.filter((p) => p.id !== id));
   };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Header */}
