@@ -36,7 +36,7 @@ export function AdminDashboard({
     : '0';
 
   const handleProductSaved = useCallback(async () => {
-    const handleProductSaved = useCallback(async () => {
+  const handleProductSaved = useCallback(async () => {
     const { data: productsData } = await supabase
       .from('products')
       .select('*')
@@ -45,6 +45,15 @@ export function AdminDashboard({
     const { data: categoriesData } = await supabase.from('categories').select('*');
     const catMap = new Map(categoriesData?.map((c) => [c.id, c]) || []);
 
+    if (productsData) {
+      setProducts(
+        productsData.map((p) => ({
+          ...p,
+          category: catMap.get(p.category_id) || null,
+        }))
+      );
+    }
+  }, []);
     if (productsData) {
       setProducts(
         productsData.map((p) => ({
