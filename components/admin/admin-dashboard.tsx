@@ -54,20 +54,12 @@ export function AdminDashboard({
       );
     }
   }, []);
-    if (productsData) {
-      setProducts(
-        productsData.map((p) => ({
-          ...p,
-          category: catMap.get(p.category_id) || null,
-        }))
-      );
-    }
-  }, []);
+
+  const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this product? This action cannot be undone.')) return;
     await supabase.from('products').delete().eq('id', id);
     setProducts((prev) => prev.filter((p) => p.id !== id));
   };
-
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Header */}
