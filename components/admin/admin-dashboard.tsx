@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useCallback } from 'react';
 import { ShieldCheck, ShoppingBag, ExternalLink, Plus, Pencil, Trash2, X, FlaskConical, DollarSign, Package, Building2, Star, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
