@@ -193,10 +193,10 @@ function ProductTable({
                   {p.type}
                 </Badge>
               </td>
-              <td className="px-4 py-3">{formatCurrency(p.price)}</td>
-              <td className="px-4 py-3 font-medium">{formatCurrency(p.price_per_serving)}</td>
+              <td className="px-4 py-3">{formatCurrency(p.price ?? 0)}</td>
+              <td className="px-4 py-3 font-medium">{formatCurrency(p.price_per_serving ?? 0)}</td>
               <td className="px-4 py-3">
-                {p.match_percentage !== null ? `${p.match_percentage.toFixed(0)}%` : '—'}
+                {p.match_percentage != null ? `${Number(p.match_percentage).toFixed(0)}%` : '—'}
               </td>
               <td className="px-4 py-3">
                 {p.affiliate_active ? (
@@ -224,7 +224,6 @@ function ProductTable({
     </div>
   );
 }
-
 function ProductEditDialog({
   product,
   categories,
