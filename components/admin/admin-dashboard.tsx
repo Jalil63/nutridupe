@@ -36,14 +36,24 @@ export function AdminDashboard({
     : '0';
 
   const handleProductSaved = useCallback(async () => {
-    const { data } = await supabase
+    const handleProductSaved = useCallback(async () => {
+    const { data: productsData } = await supabase
       .from('products')
-      .select('*, category:categories(*)')
+      .select('*')
       .order('created_at', { ascending: false });
-    if (data) setProducts(data);
-  }, []);
 
-  const handleDelete = async (id: string) => {
+    const { data: categoriesData } = await supabase.from('categories').select('*');
+    const catMap = new Map(categoriesData?.map((c) => [c.id, c]) || []);
+
+    if (productsData) {
+      setProducts(
+        productsData.map((p) => ({
+          ...p,
+          category: catMap.get(p.category_id) || null,
+        }))
+      );
+    }
+  }, []);
     if (!confirm('Are you sure you want to delete this product? This action cannot be undone.')) return;
     await supabase.from('products').delete().eq('id', id);
     setProducts((prev) => prev.filter((p) => p.id !== id));
