@@ -71,14 +71,19 @@ export function Footer() {
           </div>
         </div>
 
-        {/* FDA Disclaimer */}
+        {/* Disclaimers Section */}
         <div className="mt-10 border-t border-border pt-6">
-          <div className="rounded-lg bg-muted p-4">
+          <div className="rounded-lg bg-muted p-4 space-y-3">
             <p className="text-xs leading-relaxed text-muted-foreground">
               <strong className="font-semibold text-foreground">FDA Disclaimer:</strong>{' '}
               These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. NutriDupe is an independent research and comparison platform and does not provide medical advice. Always consult a qualified healthcare professional before starting any supplement regimen.
             </p>
+            <p className="text-xs leading-relaxed text-muted-foreground pt-3 border-t border-border/50">
+              <strong className="font-semibold text-foreground">Price & Savings Disclaimer:</strong>{' '}
+              Benchmark comparison prices and cost-per-serving metrics are calculated using baseline MSRP. Live prices on third-party retailers (such as Amazon or official brand storefronts) may vary based on active Subscribe & Save discounts, seller promotions, or local taxes.
+            </p>
           </div>
+        </div>
           <p className="mt-4 text-center text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} NutriDupe Research Platform. All rights reserved.
           </p>
