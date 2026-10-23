@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Header from '@/components/Header'; // adjust component name/path if your header is named differently (e.g., Navbar)
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -52,7 +53,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-slate-50 text-gray-900">{children}</body>
+      <body className="antialiased bg-slate-50 text-gray-900">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
