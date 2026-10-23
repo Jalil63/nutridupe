@@ -10,12 +10,17 @@ export function middleware(request: NextRequest) {
 
   // Protect all other /admin routes
   if (pathname.startsWith('/admin')) {
-    const supabaseAuthCookie = request.cookies
-      .getAll()
-      .find((cookie) => cookie.name.includes('auth-token') || cookie.name.startsWith('sb-'));
+    // Check for Supabase session cookies
+    const allCookies = request.cookies.getAll();
+    const hasAuthCookie = allCookies.some(
+      (cookie) =>
+        cookie.name.includes('auth-token') ||
+        cookie.name.startsWith('sb-') ||
+        cookie.name.includes('supabase')
+    );
 
-    // If not logged in, redirect to the Admin Login page
-    if (!supabaseAuthCookie) {
+    // If no cookie is present, redirect to admin login
+    if (!hasAuthCookie) {
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }
