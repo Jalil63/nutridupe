@@ -35,7 +35,10 @@ export default function AdminLogin() {
         setError(error.message);
         setLoading(false);
       } else if (data.session) {
-        // Direct browser navigation forces cookies to refresh for middleware access
+        // Set a fallback auth cookie for middleware recognition
+        document.cookie = `sb-access-token=${data.session.access_token}; path=/; max-age=${data.session.expires_in}; SameSite=Lax; Secure`;
+        
+        // Redirect to admin dashboard
         window.location.href = '/admin';
       }
     } catch (err: any) {
