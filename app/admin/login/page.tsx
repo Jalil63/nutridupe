@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 
 export default function AdminLogin() {
@@ -9,7 +8,6 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,17 +25,22 @@ export default function AdminLogin() {
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) {
-      setError(error.message);
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+      } else if (data.session) {
+        // Direct browser navigation forces cookies to refresh for middleware access
+        window.location.href = '/admin';
+      }
+    } catch (err: any) {
+      setError(err.message || 'An unexpected error occurred.');
       setLoading(false);
-    } else if (data.session) {
-      router.push('/admin');
-      router.refresh();
     }
   };
 
@@ -69,7 +72,7 @@ export default function AdminLogin() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-900 bg-white"
               placeholder="admin@nutridupe.com"
             />
           </div>
@@ -83,7 +86,7 @@ export default function AdminLogin() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 text-gray-900 bg-white"
             />
           </div>
 
