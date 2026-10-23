@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header'; // adjust component name/path if your header is named differently (e.g., Navbar)
+import Link from 'next/link';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -54,7 +54,50 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-50 text-gray-900">
-        <Header />
+        {/* Navigation Bar Header */}
+        <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                🍃
+              </div>
+              <div>
+                <span className="font-bold text-gray-900 text-lg leading-tight block">NutriDupe</span>
+                <span className="text-[10px] text-gray-400 font-semibold tracking-wider uppercase block -mt-1">
+                  RESEARCH PLATFORM
+                </span>
+              </div>
+            </Link>
+
+            {/* Public Links */}
+            <nav className="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-600">
+              <Link href="/" className="hover:text-emerald-700 transition">Home</Link>
+              <Link href="/compare" className="hover:text-emerald-700 transition">Compare</Link>
+              <Link href="/categories" className="hover:text-emerald-700 transition">Categories</Link>
+              <Link href="/about" className="hover:text-emerald-700 transition">About</Link>
+              <Link href="/guides" className="hover:text-emerald-700 transition">Research Guides</Link>
+              <Link href="/methodology" className="hover:text-emerald-700 transition">Methodology</Link>
+            </nav>
+
+            {/* Right Action Buttons */}
+            <div className="flex items-center space-x-3">
+              <Link
+                href="/admin"
+                className="px-3.5 py-1.5 border border-gray-300 rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 transition flex items-center gap-1.5"
+              >
+                🛡️ Admin
+              </Link>
+              <Link
+                href="/compare"
+                className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1.5"
+              >
+                🔍 Find Dupes
+              </Link>
+            </div>
+          </div>
+        </header>
+
         {children}
       </body>
     </html>
