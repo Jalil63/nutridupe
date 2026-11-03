@@ -3,47 +3,9 @@ import Link from 'next/link';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: {
-    default: 'NutriDupe — Compare & Find Affordable Supplement Alternatives',
-    template: '%s | NutriDupe Research Platform',
-  },
+  title: 'NutriDupe — Compare & Find Affordable Supplement Alternatives',
   description:
     'Discover high-quality, scientifically comparable supplement alternatives (dupes) to premium brands. Compare formula match percentages, price per serving, and ingredient profiles.',
-  keywords: [
-    'supplement dupes',
-    'affordable vitamin alternatives',
-    'Thorne duplicates',
-    'supplement ingredient comparison',
-    'NutriDupe research',
-  ],
-  authors: [{ name: 'NutriDupe Research Team' }],
-  creator: 'NutriDupe',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://nutridupe.com',
-    title: 'NutriDupe — Supplement Alternatives & Formula Comparison',
-    description:
-      'Compare premium supplement formulas against affordable alternatives with match percentages and cost-per-serving breakdowns.',
-    siteName: 'NutriDupe',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'NutriDupe — Find Affordable Supplement Alternatives',
-    description:
-      'Compare supplement formulas, match percentages, and prices per serving.',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
 };
 
 export default function RootLayout({
@@ -53,52 +15,70 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-slate-50 text-gray-900">
-        {/* Navigation Bar Header */}
-        <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-emerald-700 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                🍃
+      <body className="antialiased bg-slate-50 text-gray-900 min-h-screen flex flex-col">
+        {/* Main Content Area */}
+        <div className="flex-grow">{children}</div>
+
+        {/* Global Footer */}
+        <footer className="bg-gray-900 text-gray-400 text-xs py-12 border-t border-gray-800 mt-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {/* Brand Summary */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-white font-bold text-base">
+                  <span>🍃</span> NutriDupe
+                </div>
+                <p className="text-gray-400 text-xs leading-relaxed">
+                  Independent supplement comparison platform providing active ingredient analysis, match scoring, and value breakdowns.
+                </p>
               </div>
+
+              {/* Quick Navigation */}
               <div>
-                <span className="font-bold text-gray-900 text-lg leading-tight block">NutriDupe</span>
-                <span className="text-[10px] text-gray-400 font-semibold tracking-wider uppercase block -mt-1">
-                  RESEARCH PLATFORM
-                </span>
+                <h4 className="text-white font-semibold mb-3">Platform</h4>
+                <ul className="space-y-2">
+                  <li><Link href="/" className="hover:text-white transition">Home</Link></li>
+                  <li><Link href="/compare" className="hover:text-white transition">All Comparisons</Link></li>
+                  <li><Link href="/categories" className="hover:text-white transition">Categories</Link></li>
+                  <li><Link href="/guides" className="hover:text-white transition">Research Guides</Link></li>
+                  <li><Link href="/methodology" className="hover:text-white transition">Methodology</Link></li>
+                </ul>
               </div>
-            </Link>
 
-            {/* Public Links */}
-            <nav className="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-600">
-              <Link href="/" className="hover:text-emerald-700 transition">Home</Link>
-              <Link href="/compare" className="hover:text-emerald-700 transition">Compare</Link>
-              <Link href="/categories" className="hover:text-emerald-700 transition">Categories</Link>
-              <Link href="/about" className="hover:text-emerald-700 transition">About</Link>
-              <Link href="/guides" className="hover:text-emerald-700 transition">Research Guides</Link>
-              <Link href="/methodology" className="hover:text-emerald-700 transition">Methodology</Link>
-            </nav>
+              {/* Legal & Compliance */}
+              <div>
+                <h4 className="text-white font-semibold mb-3">Legal & Disclaimers</h4>
+                <ul className="space-y-2">
+                  <li><Link href="/terms" className="hover:text-white transition">Terms of Service</Link></li>
+                  <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
+                  <li><Link href="/affiliate-disclosure" className="hover:text-white transition">Affiliate Disclosure</Link></li>
+                </ul>
+              </div>
 
-            {/* Right Action Buttons */}
-            <div className="flex items-center space-x-3">
-              <Link
-                href="/admin"
-                className="px-3.5 py-1.5 border border-gray-300 rounded-lg text-xs font-semibold text-gray-700 hover:bg-gray-50 transition flex items-center gap-1.5"
-              >
-                🛡️ Admin
-              </Link>
-              <Link
-                href="/compare"
-                className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1.5"
-              >
-                🔍 Find Dupes
-              </Link>
+              {/* Admin Portal Link */}
+              <div>
+                <h4 className="text-white font-semibold mb-3">System</h4>
+                <Link
+                  href="/admin"
+                  className="inline-block px-3 py-1.5 border border-gray-700 rounded text-gray-300 hover:border-gray-500 hover:text-white transition text-xs font-medium"
+                >
+                  🛡️ Admin Portal
+                </Link>
+              </div>
+            </div>
+
+            {/* Mandatory FDA & Affiliate Disclaimers */}
+            <div className="border-t border-gray-800 pt-6 text-[11px] text-gray-500 space-y-3 leading-relaxed">
+              <p>
+                <strong>FDA Disclaimer:</strong> Statements made on this website have not been evaluated by the Food and Drug Administration. Products discussed are not intended to diagnose, treat, cure, or prevent any disease. Always consult with a qualified healthcare professional before starting any supplement regimen.
+              </p>
+              <p>
+                <strong>Affiliate Disclosure:</strong> NutriDupe is an independent research platform. We may earn a commission from purchases made through links on this site at no additional cost to you.
+              </p>
+              <p>© {new Date().getFullYear()} NutriDupe. All rights reserved.</p>
             </div>
           </div>
-        </header>
-
-        {children}
+        </footer>
       </body>
     </html>
   );
