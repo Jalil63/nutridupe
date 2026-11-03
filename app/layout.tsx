@@ -77,7 +77,7 @@ export default function RootLayout({
         {/* Main Content Area */}
         <main className="flex-grow">{children}</main>
 
-        {/* Global Footer with Contact Link Included */}
+        {/* Global Footer with Mailto Contact Link */}
         <footer className="bg-gray-900 text-gray-400 text-xs py-12 border-t border-gray-800 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -110,7 +110,11 @@ export default function RootLayout({
                 <ul className="space-y-2">
                   <li><Link href="/terms" className="hover:text-white transition">Terms of Service</Link></li>
                   <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
-                  <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
+                  <li>
+                    <a href="mailto:hello@nutridupe.com" className="hover:text-white transition">
+                      Contact Us
+                    </a>
+                  </li>
                 </ul>
               </div>
 
