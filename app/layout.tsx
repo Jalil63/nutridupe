@@ -33,15 +33,15 @@ export default function RootLayout({
                 </p>
               </div>
 
-              {/* Quick Navigation */}
+              {/* Quick Navigation — Folder-Matched Routes */}
               <div>
                 <h4 className="text-white font-semibold mb-3">Platform</h4>
                 <ul className="space-y-2">
                   <li><Link href="/" className="hover:text-white transition">Home</Link></li>
                   <li><Link href="/compare" className="hover:text-white transition">All Comparisons</Link></li>
                   <li><Link href="/categories" className="hover:text-white transition">Categories</Link></li>
-                  <li><Link href="/guides" className="hover:text-white transition">Research Guides</Link></li>
-                  <li><Link href="/methodology" className="hover:text-white transition">Methodology</Link></li>
+                  <li><Link href="/blog" className="hover:text-white transition">Research Guides & Blog</Link></li>
+                  <li><Link href="/research-methodology" className="hover:text-white transition">Methodology</Link></li>
                 </ul>
               </div>
 
@@ -51,11 +51,10 @@ export default function RootLayout({
                 <ul className="space-y-2">
                   <li><Link href="/terms" className="hover:text-white transition">Terms of Service</Link></li>
                   <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
-                  <li><Link href="/affiliate-disclosure" className="hover:text-white transition">Affiliate Disclosure</Link></li>
                 </ul>
               </div>
 
-              {/* Admin Portal Link */}
+              {/* System Link */}
               <div>
                 <h4 className="text-white font-semibold mb-3">System</h4>
                 <Link
@@ -67,7 +66,7 @@ export default function RootLayout({
               </div>
             </div>
 
-            {/* Mandatory FDA & Affiliate Disclaimers */}
+            {/* Mandatory FDA & Legal Disclaimers */}
             <div className="border-t border-gray-800 pt-6 text-[11px] text-gray-500 space-y-3 leading-relaxed">
               <p>
                 <strong>FDA Disclaimer:</strong> Statements made on this website have not been evaluated by the Food and Drug Administration. Products discussed are not intended to diagnose, treat, cure, or prevent any disease. Always consult with a qualified healthcare professional before starting any supplement regimen.
