@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Header } from '@/components/Header';
+import { Header } from '../components/Header';
 import Link from 'next/link';
 import './globals.css';
 
@@ -20,7 +20,7 @@ export default function RootLayout({
         {/* Top Navigation Header */}
         <Header />
 
-        {/* Main Content */}
+        {/* Main Content Area */}
         <main className="flex-grow">{children}</main>
 
         {/* Global Footer */}
