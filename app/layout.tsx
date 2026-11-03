@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Header } from '@/components/Header';
 import Link from 'next/link';
 import './globals.css';
 
@@ -16,8 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-50 text-gray-900 min-h-screen flex flex-col">
-        {/* Main Content Area */}
-        <div className="flex-grow">{children}</div>
+        {/* Top Navigation Header */}
+        <Header />
+
+        {/* Main Content */}
+        <main className="flex-grow">{children}</main>
 
         {/* Global Footer */}
         <footer className="bg-gray-900 text-gray-400 text-xs py-12 border-t border-gray-800 mt-16">
@@ -33,19 +37,20 @@ export default function RootLayout({
                 </p>
               </div>
 
-              {/* Quick Navigation — Folder-Matched Routes */}
+              {/* Platform Links */}
               <div>
                 <h4 className="text-white font-semibold mb-3">Platform</h4>
                 <ul className="space-y-2">
                   <li><Link href="/" className="hover:text-white transition">Home</Link></li>
                   <li><Link href="/compare" className="hover:text-white transition">All Comparisons</Link></li>
                   <li><Link href="/categories" className="hover:text-white transition">Categories</Link></li>
-                  <li><Link href="/blog" className="hover:text-white transition">Research Guides & Blog</Link></li>
+                  <li><Link href="/about" className="hover:text-white transition">About</Link></li>
+                  <li><Link href="/blog" className="hover:text-white transition">Research Guides</Link></li>
                   <li><Link href="/research-methodology" className="hover:text-white transition">Methodology</Link></li>
                 </ul>
               </div>
 
-              {/* Legal & Compliance */}
+              {/* Legal Links */}
               <div>
                 <h4 className="text-white font-semibold mb-3">Legal & Disclaimers</h4>
                 <ul className="space-y-2">
