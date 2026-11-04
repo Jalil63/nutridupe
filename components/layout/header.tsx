@@ -10,19 +10,32 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/85 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-sm">
-            {/* True Leaf SVG */}
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M11 20A10 10 0 0 1 4 13V6a2 2 0 0 1 2-2h7a10 10 0 0 1 7 7v7a2 2 0 0 1-2 2h-5z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 13l9-9" />
+        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-85">
+          {/* Green Rounded Square with Leaf Icon */}
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1b8a5a] text-white shadow-sm">
+            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.5 4.5c-3.5 0-6.5 1.5-8.5 4.5-2 3-2.5 6.5-2 8.5 0.2 0.8 0.8 1.4 1.6 1.6 2 0.5 5.5 0 8.5-2 3-2 4.5-5 4.5-8.5 0-2.5-1-4.1-4.1-4.1zm-7.2 11.2c-2.4-2.4-2.8-5.8-1.5-7.6 1.8-1.3 5.2-0.9 7.6 1.5 2.1 2.1 2.6 5.1 1.6 6.8-0.2 0.3-0.5 0.6-0.8 0.8-1.7 1-4.7 0.5-6.9-1.5z" />
+              <path d="M8.5 15.5C7 14 6 11.5 6 9c0 0-2 1-3 3s-1 4 0 5.5 3 2 5.5 2c0 0-0.5-2-0-4z" />
             </svg>
           </div>
+
+          {/* Brand Name with Leaf on the 'i' and Subtitle */}
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-gray-900 leading-none">NutriDupe</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mt-0.5">
+            <div className="flex items-center text-xl font-bold tracking-tight text-[#111827] leading-none">
+              Nutr
+              <span className="relative inline-block mx-[1px]">
+                {/* Custom Leaf replacing the dot on 'i' */}
+                <svg className="absolute -top-3.5 -left-1.5 h-3.5 w-3.5 text-[#1b8a5a]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.5 2 2 6.5 2 12c0 5.5 4.5 10 10 10 5.5 0 10-4.5 10-10C22 6.5 17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8 0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.4-3.6 8-8 8z"/>
+                  <path d="M12 6c-3.3 0-6 2.7-6 6 0 3.3 2.7 6 6 6s6-2.7 6-6c0-3.3-2.7-6-6-6zm0 10c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
+                </svg>
+                i
+              </span>
+              Dupe
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#6b7280] mt-1">
               Research Platform
             </span>
           </div>
