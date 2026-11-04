@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" role="img" aria-labelledby="title desc">
+  <title id="title">NutriDupe — Research Platform</title>
+  <desc id="desc">Green leaf emblem beside the NutriDupe wordmark, with a small green leaf replacing the dot above the letter i and the tagline Research Platform.</desc>
+  <rect width="1200" height="260" fill="#FFFFFF"/>
+
+  <!-- Green emblem -->
+  <rect x="42" y="48" width="160" height="160" rx="27" fill="#43866C"/>
+  <path d="M91 171V103c0-18 13-31 31-31h18c22 0 38 15 38 37v62c0 17-12 29-29 29h-58" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M108 157c2-29 23-51 63-55-2 39-23 63-57 65" fill="#FFFFFF"/>
+  <path d="M116 158c11-17 27-31 47-43" fill="none" stroke="#43866C" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Wordmark -->
+  <text x="238" y="145" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="700" letter-spacing="-3" fill="#142333">NutriDupe</text>
+  <!-- Small leaf accent positioned over the i; adjust x if you change the font -->
+  <rect x="416" y="70" width="27" height="15" fill="#FFFFFF"/>
+  <path d="M419 77c-2-19 9-31 29-37 1 20-8 34-27 40" fill="#238A50"/>
+  <path d="M422 77c6-12 13-21 22-29" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Tagline -->
+  <text x="241" y="198" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="500" letter-spacing="7.2" fill="#68737D">RESEARCH PLATFORM</text>
+</svg>
