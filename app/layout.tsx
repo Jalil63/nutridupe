@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Header } from '@/components/Header';
 import Link from 'next/link';
 import './globals.css';
 
@@ -16,63 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-50 text-gray-900 min-h-screen flex flex-col">
-        {/* Top Navigation Header */}
-        <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg">
-          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-            {/* Original Leaf Logo */}
-            <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-sm">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z M12 6v12 M15 9l-3-3-3 3" />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold tracking-tight text-gray-900 leading-none">NutriDupe</span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mt-0.5">
-                  Research Platform
-                </span>
-              </div>
-            </Link>
-
-            {/* Navigation Links */}
-            <nav className="hidden items-center gap-6 md:flex">
-              <Link href="/" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">
-                Home
-              </Link>
-              <Link href="/compare" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">
-                Compare
-              </Link>
-              <Link href="/categories" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">
-                Categories
-              </Link>
-              <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">
-                About
-              </Link>
-              <Link href="/blog" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">
-                Research Guides
-              </Link>
-              <Link href="/research-methodology" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">
-                Methodology
-              </Link>
-            </nav>
-
-            {/* Action Buttons */}
-            <div className="hidden items-center gap-3 md:flex">
-              <Link
-                href="/admin"
-                className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition"
-              >
-                🛡️ Admin
-              </Link>
-              <Link
-                href="/compare"
-                className="px-4 py-2 text-xs font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-md shadow-sm transition"
-              >
-                🔍 Find Dupes
-              </Link>
-            </div>
-          </div>
-        </header>
+        {/* Top Header Component */}
+        <Header />
 
         {/* Main Content Area */}
         <main className="flex-grow">{children}</main>
@@ -86,7 +32,7 @@ export default function RootLayout({
                 <div className="flex items-center gap-2 text-white font-bold text-base">
                   <div className="flex h-6 w-6 items-center justify-center rounded bg-emerald-600 text-white">
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z M12 6v12 M15 9l-3-3-3 3" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21a9 9 0 0 1-9-9c0-4.97 4.03-9 9-9s9 4.03 9 9a9 9 0 0 1-9 9zm0 0v-9m0 0H9m3 0h3" />
                     </svg>
                   </div>
                   NutriDupe
