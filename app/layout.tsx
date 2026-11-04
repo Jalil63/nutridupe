@@ -16,14 +16,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-50 text-gray-900 min-h-screen flex flex-col">
-        {/* Top Navigation Header with Classic Leaf Logo */}
+        {/* Top Navigation Header */}
         <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg">
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-            {/* Classic Leaf Logo */}
+            {/* Original Leaf Logo */}
             <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-sm">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21a9 9 0 0 1-9-9c0-4.97 4.03-9 9-9s9 4.03 9 9a9 9 0 0 1-9 9zm0 0v-9m0 0H9m3 0h3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z M12 6v12 M15 9l-3-3-3 3" />
                 </svg>
               </div>
               <div className="flex flex-col">
@@ -77,7 +77,7 @@ export default function RootLayout({
         {/* Main Content Area */}
         <main className="flex-grow">{children}</main>
 
-        {/* Global Footer with Classic Leaf Logo */}
+        {/* Global Footer */}
         <footer className="bg-gray-900 text-gray-400 text-xs py-12 border-t border-gray-800 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -86,7 +86,7 @@ export default function RootLayout({
                 <div className="flex items-center gap-2 text-white font-bold text-base">
                   <div className="flex h-6 w-6 items-center justify-center rounded bg-emerald-600 text-white">
                     <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21a9 9 0 0 1-9-9c0-4.97 4.03-9 9-9s9 4.03 9 9a9 9 0 0 1-9 9zm0 0v-9m0 0H9m3 0h3" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z M12 6v12 M15 9l-3-3-3 3" />
                     </svg>
                   </div>
                   NutriDupe
