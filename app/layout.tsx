@@ -16,22 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-50 text-gray-900 min-h-screen flex flex-col">
-        {/* Top Header with True Leaf Logo */}
+        {/* Top Header with Uploaded Logo */}
         <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-lg">
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-            <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-sm">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18V6" />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold tracking-tight text-gray-900 leading-none">NutriDupe</span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mt-0.5">
-                  Research Platform
-                </span>
-              </div>
+            <Link href="/" className="flex items-center transition-opacity hover:opacity-85">
+              <img src="/logo.svg" alt="NutriDupe" className="h-9 w-auto" />
             </Link>
 
             <nav className="hidden items-center gap-6 md:flex">
@@ -63,21 +52,15 @@ export default function RootLayout({
         {/* Main Content Area */}
         <main className="flex-grow">{children}</main>
 
-        {/* Global Footer with True Leaf Logo & Contact Link */}
+        {/* Global Footer */}
         <footer className="bg-gray-900 text-gray-400 text-xs py-12 border-t border-gray-800 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {/* Brand Summary */}
               <div className="space-y-3">
-                <div className="flex items-center gap-2 text-white font-bold text-base">
-                  <div className="flex h-6 w-6 items-center justify-center rounded bg-emerald-600 text-white">
-                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18V6" />
-                    </svg>
-                  </div>
-                  NutriDupe
-                </div>
+                <Link href="/" className="inline-block">
+                  <img src="/logo.svg" alt="NutriDupe" className="h-7 w-auto brightness-0 invert opacity-90" />
+                </Link>
                 <p className="text-gray-400 text-xs leading-relaxed">
                   Independent supplement comparison platform providing active ingredient analysis, match scoring, and value breakdowns.
                 </p>
