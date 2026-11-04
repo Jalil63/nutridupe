@@ -12,17 +12,17 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-sm">
-            {/* Classic Leaf SVG */}
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 20A10 10 0 0 1 4 13V6a2 2 0 0 1 2-2h7a10 10 0 0 1 7 7v7a2 2 0 0 1-2 2h-5z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 13l9-9" />
+        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            {/* True Leaf SVG */}
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M11 20A10 10 0 0 1 4 13V6a2 2 0 0 1 2-2h7a10 10 0 0 1 7 7v7a2 2 0 0 1-2 2h-5z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 13l9-9" />
             </svg>
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-gray-900 leading-none">NutriDupe</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mt-0.5">
+            <span className="text-lg font-bold tracking-tight">NutriDupe</span>
+            <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
               Research Platform
             </span>
           </div>
