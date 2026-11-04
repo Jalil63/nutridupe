@@ -14,8 +14,10 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-sm">
+            {/* Classic Leaf SVG */}
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21a9 9 0 0 1-9-9c0-4.97 4.03-9 9-9s9 4.03 9 9a9 9 0 0 1-9 9zm0 0v-9m0 0H9m3 0h3" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 20A10 10 0 0 1 4 13V6a2 2 0 0 1 2-2h7a10 10 0 0 1 7 7v7a2 2 0 0 1-2 2h-5z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 13l9-9" />
             </svg>
           </div>
           <div className="flex flex-col">
