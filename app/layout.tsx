@@ -66,7 +66,7 @@ export default function RootLayout({
                   <img 
                     src="/nutridupe-logo.svg" 
                     alt="NutriDupe" 
-                    className="h-7 w-auto brightness-0 invert opacity-90" 
+                    className="h-8 w-auto" 
                   />
                 </Link>
                 <p className="text-gray-400 text-xs leading-relaxed">
