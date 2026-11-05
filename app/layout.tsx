@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-50 text-gray-900 min-h-screen flex flex-col">
-        {/* Top Header */}
+       {/* Top Header */}
         <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-lg">
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             {/* Logo */}
@@ -54,29 +54,28 @@ export default function RootLayout({
               </Link>
             </div>
 
-            {/* Full-Width Mobile Menu Toggle */}
-            <details className="static md:hidden group">
+            {/* Native Mobile Menu Toggle */}
+            <details className="md:hidden">
               <summary className="flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-100 cursor-pointer list-none focus:outline-none">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
               </summary>
-              <div className="absolute top-16 left-0 right-0 w-full bg-white border-b border-gray-200 shadow-xl py-4 px-6 flex flex-col gap-3 z-50">
-                <Link href="/" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1.5 border-b border-gray-50">Home</Link>
-                <Link href="/compare" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1.5 border-b border-gray-50">Compare</Link>
-                <Link href="/categories" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1.5 border-b border-gray-50">Categories</Link>
-                <Link href="/about" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1.5 border-b border-gray-50">About</Link>
-                <Link href="/blog" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1.5 border-b border-gray-50">Research Guides</Link>
-                <Link href="/research-methodology" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1.5">Methodology</Link>
-                <div className="pt-2 flex flex-col gap-2">
-                  <Link href="/admin" className="text-xs font-medium text-center py-2.5 bg-gray-100 rounded-md text-gray-700">🛡️ Admin Portal</Link>
-                  <Link href="/compare" className="text-xs font-medium text-center py-2.5 bg-emerald-600 text-white rounded-md shadow-sm">🔍 Find Dupes</Link>
+              <div className="fixed left-0 right-0 top-16 w-full bg-white border-b border-gray-200 shadow-2xl p-5 flex flex-col gap-3 z-50 animate-in fade-in slide-in-from-top-2">
+                <Link href="/" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Home</Link>
+                <Link href="/compare" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Compare</Link>
+                <Link href="/categories" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Categories</Link>
+                <Link href="/about" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">About</Link>
+                <Link href="/blog" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Research Guides</Link>
+                <Link href="/research-methodology" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2">Methodology</Link>
+                <div className="pt-3 flex flex-col gap-2">
+                  <Link href="/admin" className="text-xs font-medium text-center py-2.5 bg-gray-100 rounded-lg text-gray-700">🛡️ Admin Portal</Link>
+                  <Link href="/compare" className="text-xs font-semibold text-center py-2.5 bg-emerald-600 text-white rounded-lg shadow-sm">🔍 Find Dupes</Link>
                 </div>
               </div>
             </details>
           </div>
         </header>
-
         {/* Main Content Area */}
         <main className="flex-grow">{children}</main>
 
