@@ -16,17 +16,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-50 text-gray-900 min-h-screen flex flex-col">
-        {/* Top Header with nutridupe-logo.svg */}
-        <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-lg">
+        {/* Top Header with Responsive Mobile Menu */}
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-lg">
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            {/* Logo */}
             <Link href="/" className="flex items-center transition-opacity hover:opacity-85">
               <img 
                 src="/nutridupe-logo.svg" 
                 alt="NutriDupe Research Platform" 
-                className="h-9 w-auto" 
+                className="h-8 sm:h-9 w-auto" 
               />
             </Link>
 
+            {/* Desktop Navigation Links */}
             <nav className="hidden items-center gap-6 md:flex">
               <Link href="/" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Home</Link>
               <Link href="/compare" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Compare</Link>
@@ -36,6 +38,7 @@ export default function RootLayout({
               <Link href="/research-methodology" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Methodology</Link>
             </nav>
 
+            {/* Desktop Right Actions */}
             <div className="hidden items-center gap-3 md:flex">
               <Link
                 href="/admin"
@@ -50,6 +53,27 @@ export default function RootLayout({
                 🔍 Find Dupes
               </Link>
             </div>
+
+            {/* Mobile Menu Toggle (Using native HTML details for lightweight zero-JS reliability) */}
+            <details className="relative md:hidden group">
+              <summary className="flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-gray-100 cursor-pointer list-none focus:outline-none">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </summary>
+              <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-xl py-3 px-4 flex flex-col gap-3 z-50">
+                <Link href="/" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1">Home</Link>
+                <Link href="/compare" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1">Compare</Link>
+                <Link href="/categories" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1">Categories</Link>
+                <Link href="/about" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1">About</Link>
+                <Link href="/blog" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1">Research Guides</Link>
+                <Link href="/research-methodology" className="text-sm font-medium text-gray-700 hover:text-emerald-600 py-1">Methodology</Link>
+                <div className="border-t border-gray-100 pt-3 flex flex-col gap-2">
+                  <Link href="/admin" className="text-xs font-medium text-center py-2 bg-gray-100 rounded-md text-gray-700">🛡️ Admin Portal</Link>
+                  <Link href="/compare" className="text-xs font-medium text-center py-2 bg-emerald-600 text-white rounded-md shadow-sm">🔍 Find Dupes</Link>
+                </div>
+              </div>
+            </details>
           </div>
         </header>
 
@@ -66,7 +90,7 @@ export default function RootLayout({
                   <img 
                     src="/nutridupe-logo.svg" 
                     alt="NutriDupe" 
-                    className="h-8 w-auto" 
+                    className="h-7 w-auto" 
                   />
                 </Link>
                 <p className="text-gray-400 text-xs leading-relaxed">
