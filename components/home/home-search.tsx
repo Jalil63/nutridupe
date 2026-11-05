@@ -19,7 +19,7 @@ export function HomeSearch() {
 
   return (
     <form onSubmit={handleSearch} className="mx-auto max-w-2xl">
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -27,7 +27,7 @@ export function HomeSearch() {
             placeholder="Search supplements or active ingredients..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="h-14 border-border bg-background pl-12 pr-10 text-base shadow-sm focus-visible:ring-primary"
+            className="h-14 border-border bg-background pl-12 pr-10 text-base shadow-sm focus-visible:ring-primary w-full"
             autoFocus
           />
           {query && (
@@ -40,7 +40,7 @@ export function HomeSearch() {
             </button>
           )}
         </div>
-        <Button type="submit" size="lg" className="h-14 px-8 text-base">
+        <Button type="submit" size="lg" className="h-14 px-8 text-base w-full sm:w-auto">
           Search
         </Button>
       </div>
