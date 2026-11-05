@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+width="1200"
+height="392"
+viewBox="0 0 1200 392">
+
+<defs>
+<linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#168B4B"/>
+<stop offset="100%" stop-color="#087B43"/>
+</linearGradient>
+
+<linearGradient id="navy" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#192D3C"/>
+<stop offset="100%" stop-color="#102332"/>
+</linearGradient>
+</defs>
+
+<!-- White background -->
+<rect width="1200" height="392" fill="#FFFFFF"/>
+
+<!-- Left green rounded square -->
+<rect x="74" y="74"
+width="231" height="227"
+rx="50"
+fill="url(#green)"/>
+
+<!-- White leaf emblem -->
+<path d="
+M134 224
+C134 174 165 143 253 126
+C253 190 226 224 181 230
+C160 232 145 227 134 224 Z"
+fill="#FFFFFF"/>
+
+<!-- Leaf vein -->
+<path d="
+M137 224
+C157 193 190 169 220 160"
+fill="none"
+stroke="#168B4B"
+stroke-width="5"
+stroke-linecap="round"/>
+
+<!-- Wordmark: Nutr -->
+<text x="354" y="225"
+fill="url(#navy)"
+font-family="Arial Rounded MT Bold, Arial, sans-serif"
+font-size="158"
+font-weight="700"
+textLength="315"
+lengthAdjust="spacingAndGlyphs">Nutr</text>
+
+<!-- Lowercase i stem: no dot -->
+<rect x="677" y="140"
+width="24" height="85"
+rx="5"
+fill="url(#navy)"/>
+
+<!-- Green leaf replacing the i dot -->
+<path d="
+M659 130
+C643 99 661 80 701 74
+C704 108 688 128 659 132 Z"
+fill="#168B4B"/>
+
+<!-- White leaf vein -->
+<path d="
+M660 126
+C670 108 682 96 695 86"
+fill="none"
+stroke="#FFFFFF"
+stroke-width="2.5"
+stroke-linecap="round"/>
+
+<!-- Wordmark: Dupe -->
+<text x="718" y="225"
+fill="url(#navy)"
+font-family="Arial Rounded MT Bold, Arial, sans-serif"
+font-size="158"
+font-weight="700"
+textLength="410"
+lengthAdjust="spacingAndGlyphs">Dupe</text>
+
+<!-- Tagline -->
+<text x="356" y="301"
+fill="#687680"
+font-family="Arial, Helvetica, sans-serif"
+font-size="51"
+font-weight="600"
+letter-spacing="10"
+textLength="772"
+lengthAdjust="spacingAndGlyphs">RESEARCH PLATFORM</text>
+
+</svg>
