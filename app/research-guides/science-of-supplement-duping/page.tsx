@@ -2,180 +2,125 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function SupplementDupingGuide() {
-return (
-
-
-
-Research & Clinical Analysis
-
-
-The Science of Supplement Duping: How to Spot Clinical Equivalents and Stop Overpaying
-
-
-When you strip away celebrity endorsements, proprietary blend labels, and custom packaging, every dietary supplement reduces down to simple chemistry. Here is our practical, data-backed guide to finding true 1:1 clinical alternatives that match therapeutic doses without the markup.
-
-
-
-  <section className="space-y-10 text-slate-700 leading-relaxed">
-    {/* Section 1: Benchmark Matrix */}
-    <div>
-      <h2 className="text-2xl font-bold text-slate-900 mb-3">
-        1. The 4-Point Benchmark Matrix
-      </h2>
-      <p className="mb-4 text-slate-600">
-        Evaluating a lower-cost supplement isn&apos;t about picking the cheapest tub on the shelf. It requires checking four specific markers against the original formulation:
-      </p>
-      <div className="overflow-x-auto my-6">
-        <table className="w-full border-collapse border border-slate-200 text-sm">
-          <thead>
-            <tr className="bg-slate-100 text-slate-900">
-              <th className="border border-slate-200 p-3 text-left font-bold">Parameter</th>
-              <th className="border border-slate-200 p-3 text-left font-bold">Brand Name Target</th>
-              <th className="border border-slate-200 p-3 text-left font-bold">NutriDupe Requirement</th>
-              <th className="border border-slate-200 p-3 text-left font-bold">Biological Impact</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-200">
-            <tr>
-              <td className="p-3 font-semibold text-slate-900">Compound Form</td>
-              <td className="p-3">Chelated or specific organic salt (e.g., Magnesium Glycinate)</td>
-              <td className="p-3">Exact chemical match (avoiding cheap oxides or carbonates)</td>
-              <td className="p-3">Determines gut absorption speed and prevents stomach distress.</td>
-            </tr>
-            <tr className="bg-slate-50">
-              <td className="p-3 font-semibold text-slate-900">Active Dosage</td>
-              <td className="p-3">Fully disclosed milligram count matching clinical studies</td>
-              <td className="p-3">100% equivalent therapeutic dose per serving</td>
-              <td className="p-3">Ensures blood levels reach studied biological thresholds.</td>
-            </tr>
-            <tr>
-              <td className="p-3 font-semibold text-slate-900">Manufacturing</td>
-              <td className="p-3">cGMP certified processing facility</td>
-              <td className="p-3">Verified cGMP compliance (21 CFR Part 111)</td>
-              <td className="p-3">Prevents heavy metal contamination and mislabeling.</td>
-            </tr>
-            <tr className="bg-slate-50">
-              <td className="p-3 font-semibold text-slate-900">Purity Auditing</td>
-              <td className="p-3">Third-party lab batch test (COA)</td>
-              <td className="p-3">Independent testing (NSF, USP, or Informed Choice)</td>
-              <td className="p-3">Verifies label accuracy across every single batch.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    {/* Section 2: Chemical Forms & Bioavailability */}
-    <div>
-      <h2 className="text-2xl font-bold text-slate-900 mb-3">
-        2. Chemical Structure Dictates Real Absorption
-      </h2>
-      <p className="mb-4">
-        The biggest trick in supplement marketing is listing an element (like &quot;Magnesium&quot; or &quot;Zinc&quot;) in bold print while using its cheapest, least bioavailable form in the fine print. 
-      </p>
-      <p className="mb-4">
-        For example, Magnesium Oxide has an elemental magnesium concentration of around 60%, but human intestinal absorption is estimated at under 4% <span className="text-emerald-700 font-semibold">[1]</span>. In contrast, organic chelates like Magnesium Glycinate or Citrate utilize amino acid transporters, yielding dramatically higher systemic bioavailability without causing osmotic diarrhea <span className="text-emerald-700 font-semibold">[2]</span>.
-      </p>
-      <div className="bg-slate-50 border-l-4 border-emerald-600 p-4 rounded-r-lg my-4">
-        <p className="text-sm text-slate-700">
-          <strong>Takeaway:</strong> Never swap a chelated compound for an oxide or carbonate form just to save a few dollars. A true clinical dupe matches the exact molecular binding structure.
-        </p>
-      </div>
-    </div>
-
-    {/* Section 3: Proprietary Blends */}
-    <div>
-      <h2 className="text-2xl font-bold text-slate-900 mb-3">
-        3. Breaking Open &quot;Proprietary Blends&quot;
-      </h2>
-      <p className="mb-4">
-        Under FDA regulations (21 CFR 101.36), manufacturers can group ingredients under a &quot;Proprietary Matrix&quot; and list only the total weight of the cluster, ordering individual components by weight from highest to lowest.
-      </p>
-      <p className="mb-4">
-        This creates an opening for &quot;label dressing&quot;—adding 1 mg of an expensive extract like Rhodiola Rosea or Ashwagandha alongside 4,999 mg of cheap alfalfa powder. You get the marketing claim on the front of the tub, but none of the clinically validated dosage studied in peer-reviewed trials <span className="text-emerald-700 font-semibold">[3]</span>.
-      </p>
-    </div>
-
-    {/* Section 4: Case Study */}
-    <div>
-      <h2 className="text-2xl font-bold text-slate-900 mb-3">
-        4. Case Study: Premium Greens Powders vs. Transparent Alternatives
-      </h2>
-      <p className="mb-4">
-        Daily greens powders often retail between $79 and $99 per 30-day supply. Auditing their active compound profiles reveals how easy it is to reconstruct an equivalent protocol:
-      </p>
-      
-      <div className="bg-slate-900 text-slate-100 p-6 rounded-xl font-mono text-xs sm:text-sm overflow-x-auto my-6 shadow-md">
-        <div className="mb-2 text-emerald-400 font-bold border-b border-slate-800 pb-2">
-          INGREDIENT BREAKDOWN COMPARISON
+  return (
+    <article className="max-w-4xl mx-auto px-4 py-12 text-slate-800">
+      <header className="mb-10 border-b pb-8">
+        <div className="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">
+          Research & Clinical Analysis
         </div>
-        <div className="space-y-2">
-          <p><span className="text-slate-400">Brand Name Standard:</span> ~$85/month | Proprietary Complex | ~75 Ingredients</p>
-          <p><span className="text-slate-400">Clinical Dupe Route:</span> ~$30/month | Fully Disclosed Dose | Core Bioavailable Actives</p>
-          <div className="pt-2 border-t border-slate-800 text-emerald-300">
-            OVERALL SAVINGS: ~64% per year ($660+ retained in your pocket)
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-4">
+          The Science of Supplement Duping: How to Spot Clinical Equivalents and Stop Overpaying
+        </h1>
+        <p className="text-slate-600 text-lg leading-relaxed">
+          Supplement &quot;duping&quot; isn&apos;t about buying cheap knockoffs—it&apos;s the systematic process of matching active chemical forms, bioavailable chelates, precise milligram dosages, and independent third-party lab verifications (NSF/USP) to get 1:1 clinical outcomes at fair market value.
+        </p>
+      </header>
+
+      <section className="space-y-10 text-slate-700 leading-relaxed">
+        {/* Section 1 */}
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            1. The 4 Non-Negotiable Quality Benchmarks
+          </h2>
+          <p className="mb-4">
+            Before switching from a premium brand to an alternative formulation, run the product through these four analytical checks:
+          </p>
+          <div className="overflow-x-auto my-6">
+            <table className="w-full border-collapse border border-slate-200 text-sm">
+              <thead>
+                <tr className="bg-slate-100 text-slate-900">
+                  <th className="border border-slate-200 p-3 text-left">Benchmark Parameter</th>
+                  <th className="border border-slate-200 p-3 text-left">Premium Brand Claim</th>
+                  <th className="border border-slate-200 p-3 text-left">NutriDupe Equivalent Standard</th>
+                  <th className="border border-slate-200 p-3 text-left">Biological & Efficacy Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-slate-200 p-3 font-semibold">Active Chemical Form</td>
+                  <td className="border border-slate-200 p-3">Organic chelate or isolated compound (e.g., Magnesium Glycinate)</td>
+                  <td className="border border-slate-200 p-3">Identical chemical structure (avoiding inorganic oxides)</td>
+                  <td className="border border-slate-200 p-3">Determines gut absorption rates and prevents GI distress.</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="border border-slate-200 p-3 font-semibold">Clinical Dosing</td>
+                  <td className="border border-slate-200 p-3">Disclosed milligram strength per serving</td>
+                  <td className="border border-slate-200 p-3">1:1 match against study-backed human trial levels</td>
+                  <td className="border border-slate-200 p-3">Ensures therapeutic threshold is reached per dose.</td>
+                </tr>
+                <tr>
+                  <td className="border border-slate-200 p-3 font-semibold">cGMP Compliance</td>
+                  <td className="border border-slate-200 p-3">cGMP certified facility status</td>
+                  <td className="border border-slate-200 p-3">FDA-registered & cGMP audited facility</td>
+                  <td className="border border-slate-200 p-3">Prevents heavy metal and micro-organism contamination.</td>
+                </tr>
+                <tr className="bg-slate-50">
+                  <td className="border border-slate-200 p-3 font-semibold">Independent Purity Audit</td>
+                  <td className="border border-slate-200 p-3">Third-party lab tested (COA verified)</td>
+                  <td className="border border-slate-200 p-3">NSF, USP, or Informed Choice certification</td>
+                  <td className="border border-slate-200 p-3">Guarantees bottle label accuracy match batch to batch.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
-    </div>
 
-    {/* Section 5: Verification Checklist */}
-    <div>
-      <h2 className="text-2xl font-bold text-slate-900 mb-3">
-        5. The 5-Step Dupe Checklist
-      </h2>
-      <ol className="list-decimal pl-6 space-y-3 font-medium text-slate-800">
-        <li>
-          <span className="font-bold text-slate-900">Check the Exact Salt:</span> Confirm the active compound form matches word-for-word.
-        </li>
-        <li>
-          <span className="font-bold text-slate-900">Calculate Price Per Active Gram:</span> Ignore tub size; divide total cost by total active mg.
-        </li>
-        <li>
-          <span className="font-bold text-slate-900">Demand Zero Hidden Blends:</span> Avoid any product that conceals individual milligram numbers for therapeutic actives.
-        </li>
-        <li>
-          <span className="font-bold text-slate-900">Look for cGMP Seals:</span> Ensure the manufacturing plant follows 21 CFR Part 111 rules.
-        </li>
-        <li>
-          <span className="font-bold text-slate-900">Check Independent Testing:</span> Look for NSF Certified for Sport, USP, or accessible Certificates of Analysis (COA).
-        </li>
-      </ol>
-    </div>
+        {/* Section 2 */}
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            2. Proprietary Blends vs. Fully Disclosed Labels
+          </h2>
+          <p className="mb-3">
+            One common industry practice is hiding ingredients behind a total &quot;Proprietary Blend&quot; weight. A product might advertise 20 high-value botanicals in a 5,000 mg matrix, but conceal individual amounts. In practice, cheap bulk powders often take up 95% of the formula, while active compounds are present in minimal trace amounts (&quot;fairy dusting&quot;).
+          </p>
+          <p>
+            When choosing a clinical alternative, only rely on transparent supplement facts panels that list exact milligram amounts for every active component.
+          </p>
+        </div>
 
-    {/* Call to Action Box */}
-    <div className="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl my-8">
-      <h3 className="text-xl font-bold text-emerald-950 mb-2">
-        Audit Your Supplement Stack Today
-      </h3>
-      <p className="text-emerald-900 text-sm sm:text-base mb-4 leading-relaxed">
-        Ready to find verified 1:1 clinical alternatives for your current daily regimen? Use our database engine to compare formulations, check bioavailable ratings, and calculate instant savings.
-      </p>
-      <Link 
-        href="/compare"
-        className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-6 py-3 rounded-xl transition-colors shadow-sm text-sm"
-      >
-        Launch Comparison Engine &rarr;
-      </Link>
-    </div>
+        {/* Section 3: Peer-reviewed citations */}
+        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+          <h2 className="text-xl font-bold text-slate-900 mb-3">
+            Scientific Evidence & Peer-Reviewed References
+          </h2>
+          <ul className="space-y-3 text-sm text-slate-600">
+            <li className="flex gap-2">
+              <span className="font-bold text-emerald-700">[1]</span>
+              <span>
+                <strong>Magnesium Bioavailability:</strong> Walker et al. (2003). <em>&quot;Mg citrate found more bioavailable than other Mg preparations in a randomized, double-blind study.&quot;</em> Magnesium Research, 16(3), 183-191. (PubMed ID: 14596323)
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="font-bold text-emerald-700">[2]</span>
+              <span>
+                <strong>Zinc Absorption Pathways:</strong> Barrie et al. (1987). <em>&quot;Comparative absorption of zinc picolinate, zinc citrate and zinc gluconate in humans.&quot;</em> Agents and Actions, 21(1-2), 223-228. (PubMed ID: 3630857)
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="font-bold text-emerald-700">[3]</span>
+              <span>
+                <strong>Third-Party Quality Verification:</strong> U.S. Pharmacopeia (USP) Dietary Supplement Verification Standards (USP-NF 2024).
+              </span>
+            </li>
+          </ul>
+        </div>
 
-    {/* Peer-Reviewed Scientific References */}
-    <div className="border-t border-slate-200 pt-6 text-xs text-slate-500 space-y-2">
-      <h4 className="font-bold text-slate-700 uppercase tracking-wider text-xs mb-3">
-        Scientific References &amp; Clinical Citations
-      </h4>
-      <p>
-        [1] Firoz, M., &amp; Graber, M. (2001). Bioavailability of US commercial magnesium preparations. <em>Magnesium Research</em>, 14(4), 257-262. [PubMed PMID: 11794633]
-      </p>
-      <p>
-        [2] Walker, A. F., et al. (2003). Mg citrate found more bioavailable than other Mg preparations in a randomized, double-blind study. <em>Magnesium Research</em>, 16(3), 183-191. [PubMed PMID: 14596323]
-      </p>
-      <p>
-        [3] U.S. Food and Drug Administration (FDA). Code of Federal Regulations Title 21: Food and Drugs, Part 101 - Food Labeling (21 CFR 101.36 - Nutrition labeling of dietary supplements).
-      </p>
-      <p>
-        [4] United States Pharmacopeial Convention (USP). Dietary Supplement Verification Program Standards &amp; Quality Control Benchmarks.
-      </p>
-    </div>
-  </section>
-</article>
+        {/* Call to action */}
+        <div className="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl mt-8">
+          <h3 className="text-xl font-bold text-emerald-900 mb-2">
+            Compare Your Supplement Stack
+          </h3>
+          <p className="text-emerald-800 mb-4">
+            Search your current daily supplements in our comparison database to check active ingredient matches, bioavailability scores, and price-per-serving breakdowns.
+          </p>
+          <Link 
+            href="/compare" 
+            className="inline-block bg-emerald-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-emerald-700 transition-colors"
+          >
+            Launch Comparison Engine &rarr;
+          </Link>
+        </div>
+      </section>
+    </article>
+  );
+}
