@@ -1,38 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 90" width="100%" height="100%">
   <!-- Icon Mark: Leaf inside rounded square -->
-  <rect x="10" y="10" width="80" height="80" rx="22" fill="#0F766E" />
-  <path d="M 32 68 C 32 40, 50 28, 68 28 C 68 56, 50 68, 32 68 Z" fill="#FFFFFF" />
-  <path d="M 32 68 Q 50 50 68 28" stroke="#0F766E" stroke-width="3" fill="none" stroke-linecap="round" />
+  <rect x="8" y="8" width="74" height="74" rx="18" fill="#0F766E" />
+  <path d="M 28 60 C 28 36, 43 25, 58 25 C 58 49, 43 60, 28 60 Z" fill="#FFFFFF" />
+  <path d="M 28 60 Q 43 44, 58 25" stroke="#0F766E" stroke-width="2.5" fill="none" stroke-linecap="round" />
 
-  <!-- Wordmark: NutriDupe -->
-  <g fill="#0F172A">
-    <!-- N -->
-    <path d="M 108 34 L 108 70 L 118 70 L 118 48 L 136 70 L 146 70 L 146 34 L 136 34 L 136 56 L 118 34 Z" />
-    <!-- u -->
-    <path d="M 154 48 L 154 70 L 164 70 L 164 64 C 167 68 172 71 178 71 C 187 71 192 65 192 55 L 192 48 L 182 48 L 182 55 C 182 61 179 63 174 63 C 169 63 164 59 164 53 L 164 48 Z" />
-    <!-- t -->
-    <path d="M 202 40 L 202 48 L 197 48 L 197 55 L 202 55 L 202 65 C 202 69 205 71 210 71 C 213 71 215 70 217 69 L 215 62 C 214 63 212 63 211 63 C 209 63 208 62 208 60 L 208 55 L 216 55 L 216 48 L 208 48 L 208 40 Z" />
-    <!-- r (Redesigned with a distinct, prominent shoulder curve) -->
-    <path d="M 223 48 L 223 70 L 232 70 L 232 56 C 232 51 235 48 241 48 C 243 48 245 48 247 49 L 245 57 C 243 56 241 56 239 56 C 235 56 232 59 232 64 L 232 70 L 242 70 L 242 48 Z" />
-    <!-- i (Stem) -->
-    <path d="M 250 48 L 250 70 L 259 70 L 259 48 Z" />
-  </g>
-
-  <!-- Green Leaf Accent over 'i' -->
-  <path d="M 254 41 C 254 32, 262 27, 270 27 C 270 36, 262 41, 254 41 Z" fill="#10B981" />
-
-  <!-- Dupe -->
-  <g fill="#0F172A">
-    <!-- D -->
-    <path d="M 274 34 L 274 70 L 290 70 C 302 70 309 62 309 52 C 309 42 302 34 290 34 Z M 284 42 L 289 42 C 296 42 300 46 300 52 C 300 58 296 62 289 62 L 284 62 Z" />
-    <!-- u -->
-    <path d="M 314 48 L 314 70 L 324 70 L 324 64 C 327 68 332 71 338 71 C 347 71 352 65 352 55 L 352 48 L 342 48 L 342 55 C 342 61 339 63 334 63 C 329 63 324 59 324 53 L 324 48 Z" />
-    <!-- p -->
-    <path d="M 358 48 L 358 79 L 367 79 L 367 64 C 370 68 375 71 381 71 C 390 71 397 63 397 53 C 397 43 390 35 381 35 C 375 35 370 38 367 42 L 367 48 Z M 367 53 C 367 47 372 43 377 43 C 383 43 388 47 388 53 C 388 59 383 63 377 63 C 372 63 367 59 367 53 Z" />
-    <!-- e -->
-    <path d="M 403 53 C 403 64 410 71 420 71 C 426 71 430 68 433 64 L 426 59 C 424 61 422 63 419 63 C 414 63 411 59 411 55 L 434 55 C 434 54 434 52 434 51 C 434 41 427 35 418 35 C 409 35 403 42 403 53 Z M 411 50 C 411 46 414 42 418 42 C 422 42 425 46 425 50 Z" />
+  <!-- Wordmark Group (NutriDupe Original Typography & Tight Spacing) -->
+  <g transform="translate(95, 58)" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-weight="800" font-size="38" fill="#0F172A">
+    <!-- Nutri -->
+    <text x="0" y="0">Nutri</text>
+    
+    <!-- Leaf Accent precisely positioned over the 'i' in Nutri -->
+    <path d="M 73 -30 C 73 -38, 80 -43, 88 -43 C 88 -35, 80 -30, 73 -30 Z" fill="#10B981" />
+    
+    <!-- Dupe (placed right next to Nutri) -->
+    <text x="96" y="0" font-weight="800">Dupe</text>
   </g>
 
   <!-- Tagline: RESEARCH PLATFORM -->
-  <text x="108" y="88" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="3.5" fill="#64748B">RESEARCH PLATFORM</text>
+  <text x="95" y="76" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="10" font-weight="700" letter-spacing="3.2" fill="#64748B">RESEARCH PLATFORM</text>
 </svg>
