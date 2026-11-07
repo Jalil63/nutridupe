@@ -20,11 +20,11 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-lg">
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             {/* Logo */}
-            <Link href="/" className="flex items-center transition-opacity hover:opacity-85">
+            <Link href="/" className="flex items-center transition-opacity hover:opacity-85 py-1">
               <img 
                 src="/nutridupe-logo.svg" 
                 alt="NutriDupe Research Platform" 
-                className="h-8 sm:h-9 w-auto" 
+                className="h-8 sm:h-9 w-auto object-contain overflow-visible"
               />
             </Link>
 
@@ -85,11 +85,11 @@ export default function RootLayout({
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {/* Brand Summary */}
               <div className="space-y-3">
-                <Link href="/" className="inline-block">
+                <Link href="/" className="inline-block py-1">
                   <img 
                     src="/nutridupe-logo.svg" 
                     alt="NutriDupe" 
-                    className="h-7 w-auto" 
+                    className="h-8 w-auto object-contain overflow-visible"
                   />
                 </Link>
                 <p className="text-gray-400 text-xs leading-relaxed">
