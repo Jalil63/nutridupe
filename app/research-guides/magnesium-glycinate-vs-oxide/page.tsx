@@ -20,10 +20,10 @@ export default function MagnesiumGuide() {
         <div>
           <h2 className="text-2xl font-bold text-slate-900 mb-3">1. The Bioavailability Delta</h2>
           <p>
-            Magnesium oxide is the most common form of magnesium found in low-cost drug store supplements. While it boasts a high percentage of elemental magnesium by weight (~60%), its solubility in the gastrointestinal tract is exceptionally poor.
+            Magnesium oxide is the most common form of magnesium found in low-cost supplements. While it boasts high elemental magnesium by weight (~60%), its solubility in the gastrointestinal tract is exceptionally poor.
           </p>
           <p className="mt-3">
-            In contrast, <strong>Magnesium Glycinate</strong> (magnesium bound to two molecules of the amino acid glycine) utilizes organic amino acid transport pathways, resulting in significantly higher biological utilization and minimal laxative side effects.
+            In contrast, <strong>Magnesium Glycinate</strong> (magnesium bound to two glycine amino acid molecules) utilizes organic amino acid transport pathways, resulting in significantly higher biological utilization without laxative side effects.
           </p>
         </div>
 
@@ -31,7 +31,7 @@ export default function MagnesiumGuide() {
           <h3 className="text-lg font-bold text-slate-900 mb-2">Key Comparison Summary</h3>
           <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600">
             <li><strong>Magnesium Oxide:</strong> ~4% absorption rate; frequent GI distress; cheap filler material.</li>
-            <li><strong>Magnesium Glycinate:</strong> High absorption; stomach-friendly; ideal for sleep and muscle recovery support.</li>
+            <li><strong>Magnesium Glycinate:</strong> High systemic absorption; stomach-friendly; optimal for muscle recovery and sleep support.</li>
           </ul>
         </div>
 
