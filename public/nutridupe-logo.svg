@@ -6,10 +6,13 @@
 
   <!-- Wordmark Group -->
   <g transform="translate(95, 58)" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-weight="800" font-size="38" fill="#0F172A">
-    <!-- Nutri -->
-    <text x="0" y="0">Nutri</text>
+    <!-- Nutr (without the i) -->
+    <text x="0" y="0">Nutr</text>
     
-    <!-- Clean Green Leaf Accent acting as the dot over the 'i' -->
+    <!-- Custom Stem for 'i' (drawn without a font dot) -->
+    <path d="M 73 0 L 73 -22 L 81 -22 L 81 0 Z" />
+    
+    <!-- Clean Green Leaf Accent acting as the sole dot over the 'i' -->
     <path d="M 73 -30 C 73 -38, 80 -43, 88 -43 C 88 -35, 80 -30, 73 -30 Z" fill="#10B981" />
     
     <!-- Dupe -->
