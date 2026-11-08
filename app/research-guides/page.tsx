@@ -16,7 +16,7 @@ export default function ResearchGuidesIndex() {
         </p>
       </header>
 
-      {/* Featured Article Card */}
+      {/* 1. Featured Article: The New Pillar Article */}
       <div className="mb-12">
         <Link 
           href="/research-guides/science-of-supplement-duping"
@@ -48,11 +48,36 @@ export default function ResearchGuidesIndex() {
         </Link>
       </div>
 
-      {/* Secondary Cards */}
+      {/* 2, 3, 4. More Research Guides Grid */}
       <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 text-center">
-        More Research Guides
+        More Research Guides & Audits
       </h2>
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-3 gap-6">
+        
+        {/* Article 2 */}
+        <Link
+          href="/research-guides/athletic-greens-ag1-alternatives"
+          className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+              <span className="font-semibold text-emerald-700">Scientific Audit</span>
+              <span>•</span>
+              <span>7 Min Read</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
+              Athletic Greens AG1: Scientific Analysis & Top cGMP Alternatives (2026 Audit)
+            </h3>
+            <p className="text-slate-600 text-sm mb-4">
+              Our active-ingredient audit of AG1 reveals cGMP alternatives delivering equivalent profiles at half the cost.
+            </p>
+          </div>
+          <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            Read Guide &rarr;
+          </span>
+        </Link>
+
+        {/* Article 3 */}
         <Link
           href="/research-guides/magnesium-glycinate-vs-oxide"
           className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -67,7 +92,7 @@ export default function ResearchGuidesIndex() {
               Magnesium Glycinate vs. Oxide: Bioavailability Breakdown & Cost Comparison
             </h3>
             <p className="text-slate-600 text-sm mb-4">
-              Why magnesium oxide absorbs at just 4% while chelated glycinate reaches over 80%. We break down the chemistry and cost implications.
+              Why magnesium oxide absorbs at just 4% while chelated glycinate reaches over 80%.
             </p>
           </div>
           <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -75,25 +100,29 @@ export default function ResearchGuidesIndex() {
           </span>
         </Link>
 
-        {/* Disabled Card to eliminate the remaining 404 */}
-        <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 opacity-75 flex flex-col justify-between">
+        {/* Article 4 */}
+        <Link
+          href="/research-guides/ksm-66-ashwagandha"
+          className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
+        >
           <div>
-            <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
-              <span className="font-semibold">Ingredient Deep Dive</span>
+            <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+              <span className="font-semibold text-emerald-700">Ingredient Deep Dive</span>
               <span>•</span>
-              <span>Coming Soon</span>
+              <span>6 Min Read</span>
             </div>
-            <h3 className="text-lg font-bold text-slate-700 mb-2">
-              KSM-66 Ashwagandha: Sourcing Standards & cGMP Equivalents
+            <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
+              KSM-66 Ashwagandha: Sourcing Standards and cGMP Equivalents
             </h3>
-            <p className="text-slate-500 text-sm mb-4">
-              Comparing KSM-66 root-only extraction against generic full-spectrum powders to identify verified alternatives.
+            <p className="text-slate-600 text-sm mb-4">
+              Comparing KSM-66 root-only extraction against generic powders to identify verified alternatives.
             </p>
           </div>
-          <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">
-            Audit in Progress
+          <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            Read Guide &rarr;
           </span>
-        </div>
+        </Link>
+
       </div>
     </div>
   );
