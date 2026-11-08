@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-slate-50 text-gray-900 min-h-screen flex flex-col">
-       {/* Top Header */}
+        {/* Top Header */}
         <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-lg">
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             {/* Logo */}
@@ -34,7 +34,7 @@ export default function RootLayout({
               <Link href="/compare" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Compare</Link>
               <Link href="/categories" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Categories</Link>
               <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">About</Link>
-              <Link href="/blog" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Research Guides</Link>
+              <Link href="/research-guides" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Research Guides</Link>
               <Link href="/research-methodology" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Methodology</Link>
             </nav>
 
@@ -66,7 +66,7 @@ export default function RootLayout({
                 <Link href="/compare" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Compare</Link>
                 <Link href="/categories" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Categories</Link>
                 <Link href="/about" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">About</Link>
-                <Link href="/blog" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Research Guides</Link>
+                <Link href="/research-guides" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Research Guides</Link>
                 <Link href="/research-methodology" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2">Methodology</Link>
                 <div className="pt-3 flex flex-col gap-2">
                   <Link href="/admin" className="text-xs font-medium text-center py-2.5 bg-gray-100 rounded-lg text-gray-700">🛡️ Admin Portal</Link>
@@ -76,6 +76,7 @@ export default function RootLayout({
             </details>
           </div>
         </header>
+
         {/* Main Content Area */}
         <main className="flex-grow">{children}</main>
 
@@ -105,7 +106,7 @@ export default function RootLayout({
                   <li><Link href="/compare" className="hover:text-white transition">All Comparisons</Link></li>
                   <li><Link href="/categories" className="hover:text-white transition">Categories</Link></li>
                   <li><Link href="/about" className="hover:text-white transition">About</Link></li>
-                  <li><Link href="/blog" className="hover:text-white transition">Research Guides</Link></li>
+                  <li><Link href="/research-guides" className="hover:text-white transition">Research Guides</Link></li>
                   <li><Link href="/research-methodology" className="hover:text-white transition">Methodology</Link></li>
                 </ul>
               </div>
