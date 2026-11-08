@@ -1,297 +1,149 @@
-'use client';
-
-import { useState, useMemo } from 'react';
-
-interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  type: 'benchmark' | 'dupe';
-  price: number;
-  pricePerServing: number;
-  matchPercentage?: number;
-  affiliateStatus: 'Active' | 'Inactive';
-  category: string;
-}
-
-// Sample product dataset matching your dashboard structure
-const initialProducts: Product[] = [
-  {
-    id: '1',
-    name: 'Thorne Basic Nutrients 2/Day',
-    brand: 'Thorne Research',
-    type: 'benchmark',
-    price: 32.00,
-    pricePerServing: 1.07,
-    affiliateStatus: 'Active',
-    category: 'Multivitamins',
-  },
-  {
-    id: '2',
-    name: 'NutriDupe Organic Greens & Superfoods',
-    brand: 'NutriDupe Labs',
-    type: 'dupe',
-    price: 29.99,
-    pricePerServing: 1.00,
-    matchPercentage: 94,
-    affiliateStatus: 'Active',
-    category: 'Superfoods',
-  },
-  {
-    id: '3',
-    name: 'NutriDupe Nighttime Recovery Brew',
-    brand: 'NutriDupe Labs',
-    type: 'dupe',
-    price: 39.99,
-    pricePerServing: 1.33,
-    matchPercentage: 93,
-    affiliateStatus: 'Active',
-    category: 'Sleep & Recovery',
-  },
-  {
-    id: '4',
-    name: 'NutriDupe Nootropic Focus Complex',
-    brand: 'NutriDupe Labs',
-    type: 'dupe',
-    price: 34.99,
-    pricePerServing: 1.17,
-    matchPercentage: 91,
-    affiliateStatus: 'Active',
-    category: 'Nootropics',
-  },
-];
+'import client';
+import React, { useState } from 'react';
+import Link from 'next/link';
 
 export default function AdminDashboard() {
-  const [products] = useState<Product[]>(initialProducts);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTab, setSelectedTab] = useState<'all' | 'benchmark' | 'dupe'>('all');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [activeTab, setActiveTab] = useState<'guides' | 'affiliates'>('guides');
+  
+  // State for adding a new guide easily via form
+  const [guides, setGuides] = useState([
+    { title: "The Science of Supplement Duping", category: "Methodology", slug: "/research-guides/science-of-supplement-duping", status: "Published" },
+    { title: "Magnesium Glycinate vs. Oxide", category: "Bioavailability", slug: "/research-guides/magnesium-glycinate-vs-oxide", status: "Published" },
+    { title: "KSM-66 Ashwagandha Standards", category: "Ingredient Deep Dive", slug: "/research-guides/ksm-66-ashwagandha", status: "Published" },
+    { title: "Athletic Greens AG1 Audit", category: "Scientific Audit", slug: "/research-guides/athletic-greens-ag1-alternatives", status: "Published" },
+  ]);
 
-  // Extract unique categories for filter dropdown
-  const categories = useMemo(() => {
-    return Array.from(new Set(products.map((p) => p.category)));
-  }, [products]);
-
-  // Tab count calculations
-  const counts = useMemo(() => {
-    return {
-      all: products.length,
-      benchmark: products.filter((p) => p.type === 'benchmark').length,
-      dupe: products.filter((p) => p.type === 'dupe').length,
-    };
-  }, [products]);
-
-  // Filtered dataset evaluation
-  const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      // Tab filter
-      if (selectedTab !== 'all' && product.type !== selectedTab) return false;
-
-      // Category filter
-      if (selectedCategory !== 'all' && product.category !== selectedCategory) return false;
-
-      // Affiliate status filter
-      if (selectedStatus !== 'all' && product.affiliateStatus.toLowerCase() !== selectedStatus) return false;
-
-      // Text search
-      if (searchTerm.trim() !== '') {
-        const query = searchTerm.toLowerCase();
-        const nameMatch = product.name.toLowerCase().includes(query);
-        const brandMatch = product.brand.toLowerCase().includes(query);
-        if (!nameMatch && !brandMatch) return false;
-      }
-
-      return true;
-    });
-  }, [products, selectedTab, selectedCategory, selectedStatus, searchTerm]);
-
-  const clearFilters = () => {
-    setSearchTerm('');
-    setSelectedTab('all');
-    setSelectedCategory('all');
-    setSelectedStatus('all');
-  };
+  const [affiliates, setAffiliates] = useState([
+    { product: "Magnesium Glycinate (Brand A)", partner: "Amazon Associates", link: "https://amazon.dp/example" },
+    { product: "KSM-66 Root Extract (Brand B)", partner: "Lemon Squeezy", link: "https://lemonsqueezy.com/example" },
+  ]);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6 bg-slate-50 min-h-screen">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div className="max-w-6xl mx-auto px-4 py-12 text-slate-800">
+      <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-6 border-b border-slate-200">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="text-sm text-gray-500">Manage products, affiliate links, and search catalog.</p>
+          <span className="inline-block bg-amber-50 text-amber-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2 border border-amber-200">
+            Secure Control Panel
+          </span>
+          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+            NutriDupe Admin Dashboard
+          </h1>
+          <p className="text-slate-600 text-sm mt-1">
+            Manage your published research guides, structural content, and affiliate partner links.
+          </p>
         </div>
-        <button className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-medium text-sm rounded-lg shadow transition">
-          + Add Product
+        <div className="mt-4 sm:mt-0 flex gap-3">
+          <Link 
+            href="/research-guides" 
+            className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-xl text-sm transition-colors"
+          >
+            View Live Guides &rarr;
+          </Link>
+        </div>
+      </header>
+
+      {/* Tab Navigation */}
+      <div className="flex gap-4 border-b border-slate-200 mb-8">
+        <button
+          onClick={() => setActiveTab('guides')}
+          className={`pb-3 font-semibold text-sm transition-colors border-b-2 ${
+            activeTab === 'guides' 
+              ? 'border-emerald-600 text-emerald-700' 
+              : 'border-transparent text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          Research Guides Management ({guides.length})
+        </button>
+        <button
+          onClick={() => setActiveTab('affiliates')}
+          className={`pb-3 font-semibold text-sm transition-colors border-b-2 ${
+            activeTab === 'affiliates' 
+              ? 'border-emerald-600 text-emerald-700' 
+              : 'border-transparent text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          Affiliate Link Manager ({affiliates.length})
         </button>
       </div>
 
-      {/* Metrics Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-          <p className="text-xs text-gray-500 font-medium">Total Products</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">{products.length}</p>
-        </div>
-        <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-          <p className="text-xs text-gray-500 font-medium">Active Affiliate Links</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">
-            {products.filter((p) => p.affiliateStatus === 'Active').length}
-          </p>
-        </div>
-        <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-          <p className="text-xs text-gray-500 font-medium">Avg. Match Percentage</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">92.3%</p>
-        </div>
-        <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-          <p className="text-xs text-gray-500 font-medium">Categories</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">{categories.length}</p>
-        </div>
-      </div>
-
-      {/* Controls Container */}
-      <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm space-y-4">
-        {/* Search & Select Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-          {/* Search Field */}
-          <div className="md:col-span-2">
-            <input
-              type="text"
-              placeholder="Search by product name or brand..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-3.5 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            />
+      {/* Tab 1: Research Guides */}
+      {activeTab === 'guides' && (
+        <div className="space-y-6">
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">Published Research Guides Index</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 text-slate-700 border-b border-slate-200">
+                    <th className="p-3">Guide Title</th>
+                    <th className="p-3">Category</th>
+                    <th className="p-3">Route Path</th>
+                    <th className="p-3">Status</th>
+                    <th className="p-3 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {guides.map((g, idx) => (
+                    <tr key={idx} className="border-b border-slate-100 hover:bg-slate-50/50">
+                      <td className="p-3 font-semibold text-slate-900">{g.title}</td>
+                      <td className="p-3 text-slate-600">{g.category}</td>
+                      <td className="p-3 text-emerald-700 font-mono text-xs">{g.slug}</td>
+                      <td className="p-3">
+                        <span className="bg-emerald-50 text-emerald-700 text-xs px-2.5 py-1 rounded-full font-medium border border-emerald-200">
+                          {g.status}
+                        </span>
+                      </td>
+                      <td className="p-3 text-right">
+                        <Link href={g.slug} className="text-emerald-600 hover:underline font-semibold text-xs mr-3">
+                          Preview
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-
-          {/* Category Select */}
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-3.5 py-2 border border-gray-200 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          >
-            <option value="all">All Categories</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-
-          {/* Status Select */}
-          <select
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-3.5 py-2 border border-gray-200 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          >
-            <option value="all">All Statuses</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
         </div>
+      )}
 
-        {/* Tabs & Active Filter Clearer */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-gray-100 pt-3">
-          <div className="flex gap-1.5">
-            <button
-              onClick={() => setSelectedTab('all')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                selectedTab === 'all'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              All Products ({counts.all})
-            </button>
-            <button
-              onClick={() => setSelectedTab('benchmark')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                selectedTab === 'benchmark'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              Benchmarks ({counts.benchmark})
-            </button>
-            <button
-              onClick={() => setSelectedTab('dupe')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                selectedTab === 'dupe'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              Dupes ({counts.dupe})
-            </button>
+      {/* Tab 2: Affiliate Links */}
+      {activeTab === 'affiliates' && (
+        <div className="space-y-6">
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">Active Affiliate & Monetization Links</h2>
+            <p className="text-sm text-slate-600 mb-6">
+              Track and configure destination URLs for comparison recommendations across your database.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 text-slate-700 border-b border-slate-200">
+                    <th className="p-3">Target Supplement</th>
+                    <th className="p-3">Partner Network</th>
+                    <th className="p-3">Destination URL</th>
+                    <th className="p-3 text-right">Quick Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {affiliates.map((a, idx) => (
+                    <tr key={idx} className="border-b border-slate-100 hover:bg-slate-50/50">
+                      <td className="p-3 font-semibold text-slate-900">{a.product}</td>
+                      <td className="p-3 text-slate-600">{a.partner}</td>
+                      <td className="p-3 text-emerald-700 font-mono text-xs truncate max-w-xs">{a.link}</td>
+                      <td className="p-3 text-right">
+                        <button className="text-emerald-600 hover:underline font-semibold text-xs">
+                          Edit Link
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-
-          {(searchTerm || selectedCategory !== 'all' || selectedStatus !== 'all' || selectedTab !== 'all') && (
-            <button
-              onClick={clearFilters}
-              className="text-xs text-emerald-700 font-medium hover:underline self-start sm:self-auto"
-            >
-              Clear filters
-            </button>
-          )}
         </div>
-      </div>
-
-      {/* Data Table */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-x-auto">
-        <table className="w-full text-left text-xs text-gray-700">
-          <thead className="bg-gray-50 border-b border-gray-100 font-semibold text-gray-600">
-            <tr>
-              <th className="p-3.5">Product</th>
-              <th className="p-3.5">Type</th>
-              <th className="p-3.5">Price ($)</th>
-              <th className="p-3.5">$/Serving</th>
-              <th className="p-3.5">Match</th>
-              <th className="p-3.5">Affiliate</th>
-              <th className="p-3.5 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((p) => (
-                <tr key={p.id} className="hover:bg-gray-50/80 transition">
-                  <td className="p-3.5">
-                    <div className="font-semibold text-gray-900 text-sm">{p.name}</div>
-                    <div className="text-gray-400 text-xs">{p.brand}</div>
-                  </td>
-                  <td className="p-3.5">
-                    <span
-                      className={`px-2 py-0.5 rounded-md font-semibold text-[10px] uppercase tracking-wider ${
-                        p.type === 'benchmark'
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : 'bg-gray-100 text-gray-700'
-                      }`}
-                    >
-                      {p.type}
-                    </span>
-                  </td>
-                  <td className="p-3.5 font-medium">{p.price.toFixed(2)}</td>
-                  <td className="p-3.5 font-medium">{p.pricePerServing.toFixed(2)}</td>
-                  <td className="p-3.5 font-medium">{p.matchPercentage ? `${p.matchPercentage}%` : '—'}</td>
-                  <td className="p-3.5">
-                    <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-medium">
-                      ● {p.affiliateStatus}
-                    </span>
-                  </td>
-                  <td className="p-3.5 text-right space-x-2">
-                    <button className="text-gray-500 hover:text-emerald-700 font-medium">Edit</button>
-                    <button className="text-red-500 hover:text-red-700 font-medium">Delete</button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={7} className="p-8 text-center text-gray-400">
-                  No products matched your search filters.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+      )}
     </div>
   );
 }
