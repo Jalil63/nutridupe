@@ -48,11 +48,11 @@ export default function ResearchGuidesIndex() {
         </Link>
       </div>
 
-      {/* Grid of 3 Secondary Articles */}
+      {/* Grid of Secondary Articles */}
       <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 text-center">
         More Research Guides & Audits
       </h2>
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         
         {/* Article 1: AG1 Audit */}
         <Link
@@ -66,10 +66,10 @@ export default function ResearchGuidesIndex() {
               <span>7 Min Read</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
-              Athletic Greens AG1: Scientific Analysis & Top cGMP Alternatives (2026 Audit)
+              Athletic Greens AG1: Scientific Analysis & Top cGMP Alternatives
             </h3>
             <p className="text-slate-600 text-sm mb-4">
-              Our active-ingredient audit of AG1 reveals cGMP alternatives delivering equivalent profiles at half the cost.
+              Our active-ingredient audit reveals cGMP alternatives delivering equivalent profiles at half the cost.
             </p>
           </div>
           <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -89,7 +89,7 @@ export default function ResearchGuidesIndex() {
               <span>5 Min Read</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
-              Magnesium Glycinate vs. Oxide: Bioavailability Breakdown & Cost Comparison
+              Magnesium Glycinate vs. Oxide: Bioavailability Breakdown
             </h3>
             <p className="text-slate-600 text-sm mb-4">
               Why magnesium oxide absorbs at just 4% while chelated glycinate reaches over 80%.
@@ -112,10 +112,33 @@ export default function ResearchGuidesIndex() {
               <span>6 Min Read</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
-              KSM-66 Ashwagandha: Sourcing Standards and cGMP Equivalents
+              KSM-66 Ashwagandha: Sourcing Standards & Equivalents
             </h3>
             <p className="text-slate-600 text-sm mb-4">
-              Comparing KSM-66 root-only extraction against generic powders to identify verified alternatives.
+              Comparing KSM-66 root extraction against generic powders to identify verified alternatives.
+            </p>
+          </div>
+          <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            Read Guide &rarr;
+          </span>
+        </Link>
+
+        {/* Article 4: Creatine Monohydrate vs HCL */}
+        <Link
+          href="/research-guides/creatine-monohydrate-vs-hcl"
+          className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+              <span className="font-semibold text-emerald-700">Scientific Audit</span>
+              <span>•</span>
+              <span>6 Min Read</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
+              Creatine Monohydrate vs. HCL: Bioavailability & Price Breakdown
+            </h3>
+            <p className="text-slate-600 text-sm mb-4">
+              Comparing solubility, saturation protocols, and price-per-gram delta between Monohydrate and HCL.
             </p>
           </div>
           <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
