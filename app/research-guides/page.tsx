@@ -52,7 +52,7 @@ export default function ResearchGuidesIndex() {
       <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 text-center">
         More Research Guides & Audits
       </h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         {/* Article 1: AG1 Audit */}
         <Link
@@ -123,7 +123,7 @@ export default function ResearchGuidesIndex() {
           </span>
         </Link>
 
-        {/* Article 4: Creatine Monohydrate vs HCL */}
+        {/* Article 4: Creatine */}
         <Link
           href="/research-guides/creatine-monohydrate-vs-hcl"
           className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -135,10 +135,56 @@ export default function ResearchGuidesIndex() {
               <span>6 Min Read</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
-              Creatine Monohydrate vs. HCL: Bioavailability & Price Breakdown
+              Creatine Monohydrate vs. HCL: Bioavailability Breakdown
             </h3>
             <p className="text-slate-600 text-sm mb-4">
               Comparing solubility, saturation protocols, and price-per-gram delta between Monohydrate and HCL.
+            </p>
+          </div>
+          <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            Read Guide &rarr;
+          </span>
+        </Link>
+
+        {/* Article 5: Omega-3 */}
+        <Link
+          href="/research-guides/omega-3-fish-oil-triglyceride-vs-ethyl-ester"
+          className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+              <span className="font-semibold text-emerald-700">Scientific Audit</span>
+              <span>•</span>
+              <span>7 Min Read</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
+              Omega-3 Fish Oil: Triglyceride vs. Ethyl Ester & IFOS Standards
+            </h3>
+            <p className="text-slate-600 text-sm mb-4">
+              Evaluating rTG bioavailability, oxidation TOTOX limits, and active EPA/DHA ratio auditing.
+            </p>
+          </div>
+          <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            Read Guide &rarr;
+          </span>
+        </Link>
+
+        {/* Article 6: Vitamin D3 + K2 */}
+        <Link
+          href="/research-guides/vitamin-d3-k2-synergy-and-carrier-oils"
+          className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+              <span className="font-semibold text-emerald-700">Scientific Audit</span>
+              <span>•</span>
+              <span>6 Min Read</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
+              Vitamin D3 + K2: Synergistic Ratios & Fat-Soluble Carriers
+            </h3>
+            <p className="text-slate-600 text-sm mb-4">
+              Auditing trans-MK-7 isomer ratios, arterial calcification prevention, and MCT carrier oil uptake.
             </p>
           </div>
           <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
