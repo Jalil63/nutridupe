@@ -75,7 +75,7 @@ export default function ResearchGuidesIndex() {
           </span>
         </Link>
 
-        {/* Coming Soon Card to prevent 404 on the 3rd slot */}
+        {/* Disabled Card to eliminate the remaining 404 */}
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 opacity-75 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
