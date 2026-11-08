@@ -16,7 +16,7 @@ export default function ResearchGuidesIndex() {
         </p>
       </header>
 
-      {/* 1. Featured Article: The New Pillar Article */}
+      {/* Featured Article */}
       <div className="mb-12">
         <Link 
           href="/research-guides/science-of-supplement-duping"
@@ -48,15 +48,15 @@ export default function ResearchGuidesIndex() {
         </Link>
       </div>
 
-      {/* 2, 3, 4. More Research Guides Grid */}
+      {/* Grid of 3 Secondary Articles */}
       <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 text-center">
         More Research Guides & Audits
       </h2>
       <div className="grid md:grid-cols-3 gap-6">
         
-        {/* Article 2 */}
+        {/* Article 1: AG1 Audit */}
         <Link
-          href="/research-guides/athletic-greens-ag1-alternatives"
+          href="/research-guides/athletic-greens-ag1-audit"
           className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
         >
           <div>
@@ -77,7 +77,7 @@ export default function ResearchGuidesIndex() {
           </span>
         </Link>
 
-        {/* Article 3 */}
+        {/* Article 2: Magnesium */}
         <Link
           href="/research-guides/magnesium-glycinate-vs-oxide"
           className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
@@ -100,7 +100,7 @@ export default function ResearchGuidesIndex() {
           </span>
         </Link>
 
-        {/* Article 4 */}
+        {/* Article 3: KSM-66 */}
         <Link
           href="/research-guides/ksm-66-ashwagandha"
           className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
