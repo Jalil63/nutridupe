@@ -1,68 +1,111 @@
-import { Metadata } from 'next';
-import ProductSchema from '@/components/ProductSchema';
+import type { Metadata } from 'next';
+import { getBenchmarkBySlug } from '@/lib/data';
+import { notFound } from 'next/navigation';
 
-interface Props {
-  params: { slug: string };
+interface PageProps {
+  params: {
+    slug: string;
+  };
 }
 
-// Dynamic SEO Title & Description for each comparison route
-export async function generateMetadata({ params }: Props): Metadata {
-  const formattedTitle = params.slug
-    .replace(/-/g, ' ')
-    .replace(/\b\w/g, (l) => l.toUpperCase());
+// Dynamic Metadata Generator for SEO & OpenGraph
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const benchmark = await getBenchmarkBySlug(slug);
+
+  if (!benchmark) {
+    return {
+      title: 'Comparison Not Found | NutriDupe',
+      description: 'The requested supplement comparison could not be found on NutriDupe.',
+    };
+  }
+
+  const topDupe = benchmark.dupes?.[0];
+  const title = `Top ${benchmark.name} Alternatives & Dupes (Up to ${topDupe ? topDupe.match_percentage : '90'}% Match)`;
+  const description = `Compare ingredients, dosage thresholds, and cost per serving for ${benchmark.name}. Find bio-equivalent alternatives starting at $${topDupe ? topDupe.price_per_serving : '0.00'}/serving.`;
 
   return {
-    title: `Best Dupe for ${formattedTitle}`,
-    description: `Detailed formula breakdown and match percentage analysis comparing ${formattedTitle} with top affordable alternatives.`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://www.nutridupe.com/compare/${slug}`,
+      type: 'article',
+      images: [
+        {
+          url: benchmark.image_url || '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: `${benchmark.name} Comparison Breakdown`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [benchmark.image_url || '/og-image.jpg'],
+    },
   };
 }
 
-export default function ComparisonPage({ params }: Props) {
-  // Sample data — would normally come from database/Supabase query
-  const comparisonData = {
-    benchmarkName: 'Basic Nutrients 2/Day',
-    benchmarkBrand: 'Thorne',
-    benchmarkPrice: 32.00,
-    dupeName: 'Organic Greens & Superfoods',
-    dupeBrand: 'NutriDupe Labs',
-    dupePrice: 29.99,
-    matchPercentage: 94,
-    category: 'Multivitamins',
-  };
+// Main Page Component
+export default async function ComparisonPage({ params }: PageProps) {
+  const { slug } = await params;
+  const benchmark = await getBenchmarkBySlug(slug);
+
+  if (!benchmark) {
+    notFound();
+  }
 
   return (
-    <main className="max-w-4xl mx-auto px-4 py-12 space-y-8">
-      {/* 1. JSON-LD Schema Insertion for AEO/SEO */}
-      <ProductSchema {...comparisonData} />
-
-      {/* 2. Direct Q&A Block for AI Engine Optimization */}
-      <section className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
-          What is the best affordable alternative to {comparisonData.benchmarkBrand} {comparisonData.benchmarkName}?
-        </h1>
-        <p className="text-gray-700 text-sm leading-relaxed">
-          The top-rated alternative is <strong>{comparisonData.dupeName}</strong> by {comparisonData.dupeBrand}. 
-          It offers a <strong>{comparisonData.matchPercentage}% formulation match</strong> at ${comparisonData.dupePrice.toFixed(2)}, 
-          providing comparable ingredient potencies at a lower price per serving.
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">{benchmark.name} Alternatives</h1>
+        <p className="text-gray-600 mt-2">
+          Compare active chemical forms, price per serving, and dosage match scores.
         </p>
-      </section>
+      </div>
 
-      {/* 3. Detailed Comparison Specs Table */}
-      <section className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Formula Comparison Breakdown</h2>
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div className="p-4 bg-gray-50 rounded-xl">
-            <p className="text-xs text-gray-500 font-semibold uppercase">Benchmark</p>
-            <p className="font-bold text-gray-900 text-base">{comparisonData.benchmarkName}</p>
-            <p className="text-gray-600">${comparisonData.benchmarkPrice.toFixed(2)}</p>
+      {/* Benchmark Summary Card */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+        <h2 className="text-xl font-semibold text-gray-800">{benchmark.name} Benchmark Baseline</h2>
+        <p className="text-sm text-gray-500 mt-1">
+          Price per serving: ${benchmark.price_per_serving ? Number(benchmark.price_per_serving).toFixed(2) : 'N/A'}
+        </p>
+      </div>
+
+      {/* Dupes Grid */}
+      <h2 className="text-2xl font-bold text-gray-900 mb-4">Top Formula Dupes</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {benchmark.dupes?.map((dupe) => (
+          <div key={dupe.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-bold px-2.5 py-1 rounded bg-emerald-100 text-emerald-800">
+                  {dupe.match_percentage}% Match
+                </span>
+                <span className="text-sm font-semibold text-gray-700">
+                  ${dupe.price_per_serving ? Number(dupe.price_per_serving).toFixed(2) : '0.00'}/serving
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">{dupe.name}</h3>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-gray-100">
+              <a
+                href={`/go/${dupe.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-block text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm py-2 px-4 rounded-lg transition"
+              >
+                View Deal & Details →
+              </a>
+            </div>
           </div>
-          <div className="p-4 bg-emerald-50/50 border border-emerald-100 rounded-xl">
-            <p className="text-xs text-emerald-800 font-semibold uppercase">NutriDupe Match ({comparisonData.matchPercentage}%)</p>
-            <p className="font-bold text-gray-900 text-base">{comparisonData.dupeName}</p>
-            <p className="text-emerald-700 font-semibold">${comparisonData.dupePrice.toFixed(2)}</p>
-          </div>
-        </div>
-      </section>
+        ))}
+      </div>
     </main>
   );
 }
