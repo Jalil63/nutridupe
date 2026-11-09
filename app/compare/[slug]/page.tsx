@@ -2,21 +2,24 @@ import type { Metadata } from 'next';
 import { getBenchmarkBySlug } from '@/lib/data';
 import { notFound } from 'next/navigation';
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
+type Props = {
+  params: Promise<{ slug: string }> | { slug: string };
+};
+
+// Helper to safely extract slug regardless of Next.js version
+async function getSlug(paramsProp: Props['params']): Promise<string> {
+  const resolved = await paramsProp;
+  return resolved.slug;
 }
 
-// Dynamic Metadata Generator for SEO & OpenGraph
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = await getSlug(params);
   const benchmark = await getBenchmarkBySlug(slug);
 
   if (!benchmark) {
     return {
       title: 'Comparison Not Found | NutriDupe',
-      description: 'The requested supplement comparison could not be found on NutriDupe.',
+      description: 'The requested supplement comparison could not be found.',
     };
   }
 
@@ -32,27 +35,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       url: `https://www.nutridupe.com/compare/${slug}`,
       type: 'article',
-      images: [
-        {
-          url: benchmark.image_url || '/og-image.jpg',
-          width: 1200,
-          height: 630,
-          alt: `${benchmark.name} Comparison Breakdown`,
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [benchmark.image_url || '/og-image.jpg'],
     },
   };
 }
 
-// Main Page Component
-export default async function ComparisonPage({ params }: PageProps) {
-  const { slug } = await params;
+export default async function ComparisonPage({ params }: Props) {
+  const slug = await getSlug(params);
   const benchmark = await getBenchmarkBySlug(slug);
 
   if (!benchmark) {
@@ -68,7 +61,6 @@ export default async function ComparisonPage({ params }: PageProps) {
         </p>
       </div>
 
-      {/* Benchmark Summary Card */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
         <h2 className="text-xl font-semibold text-gray-800">{benchmark.name} Benchmark Baseline</h2>
         <p className="text-sm text-gray-500 mt-1">
@@ -76,7 +68,6 @@ export default async function ComparisonPage({ params }: PageProps) {
         </p>
       </div>
 
-      {/* Dupes Grid */}
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Top Formula Dupes</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {benchmark.dupes?.map((dupe) => (
