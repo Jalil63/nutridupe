@@ -42,17 +42,11 @@ export default function RootLayout({
               <Link href="/research-methodology" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Methodology</Link>
             </nav>
 
-            {/* Desktop Right Actions */}
-            <div className="hidden items-center gap-3 md:flex">
-              <Link
-                href="/admin"
-                className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition"
-              >
-                🛡️ Admin
-              </Link>
+            {/* Desktop Right Action */}
+            <div className="hidden items-center md:flex">
               <Link
                 href="/compare"
-                className="px-4 py-2 text-xs font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-md shadow-sm transition"
+                className="px-4 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-md shadow-sm transition"
               >
                 🔍 Find Dupes
               </Link>
@@ -73,7 +67,6 @@ export default function RootLayout({
                 <Link href="/research-guides" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Research Guides</Link>
                 <Link href="/research-methodology" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2">Methodology</Link>
                 <div className="pt-3 flex flex-col gap-2">
-                  <Link href="/admin" className="text-xs font-medium text-center py-2.5 bg-gray-100 rounded-lg text-gray-700">🛡️ Admin Portal</Link>
                   <Link href="/compare" className="text-xs font-semibold text-center py-2.5 bg-emerald-600 text-white rounded-lg shadow-sm">🔍 Find Dupes</Link>
                 </div>
               </div>
