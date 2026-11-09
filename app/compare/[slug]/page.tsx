@@ -1,19 +1,27 @@
 import type { Metadata } from 'next';
-import { getBenchmarkBySlug } from '@/lib/data';
+import { getBenchmarkBySlug, getAllBenchmarks } from '@/lib/data';
 import { notFound } from 'next/navigation';
 
-type Props = {
-  params: Promise<{ slug: string }> | { slug: string };
-};
-
-// Helper to safely extract slug regardless of Next.js version
-async function getSlug(paramsProp: Props['params']): Promise<string> {
-  const resolved = await paramsProp;
-  return resolved.slug;
+interface PageProps {
+  params: {
+    slug: string;
+  };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = await getSlug(params);
+// Generate static paths at build time to prevent prerender errors
+export async function generateStaticParams() {
+  try {
+    const benchmarks = await getAllBenchmarks();
+    return (benchmarks || []).map((b) => ({
+      slug: b.slug,
+    }));
+  } catch (error) {
+    return [];
+  }
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = params;
   const benchmark = await getBenchmarkBySlug(slug);
 
   if (!benchmark) {
@@ -25,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const topDupe = benchmark.dupes?.[0];
   const title = `Top ${benchmark.name} Alternatives & Dupes (Up to ${topDupe ? topDupe.match_percentage : '90'}% Match)`;
-  const description = `Compare ingredients, dosage thresholds, and cost per serving for ${benchmark.name}. Find bio-equivalent alternatives starting at $${topDupe ? topDupe.price_per_serving : '0.00'}/serving.`;
+  const description = `Compare ingredients, dosage thresholds, and cost per serving for ${benchmark.name}.`;
 
   return {
     title,
@@ -36,16 +44,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://www.nutridupe.com/compare/${slug}`,
       type: 'article',
     },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
   };
 }
 
-export default async function ComparisonPage({ params }: Props) {
-  const slug = await getSlug(params);
+export default async function ComparisonPage({ params }: PageProps) {
+  const { slug } = params;
   const benchmark = await getBenchmarkBySlug(slug);
 
   if (!benchmark) {
