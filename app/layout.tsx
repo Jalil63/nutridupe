@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -21,10 +22,13 @@ export default function RootLayout({
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             {/* Logo */}
             <Link href="/" className="flex items-center transition-opacity hover:opacity-85 py-1">
-              <img 
+              <Image 
                 src="/nutridupe-logo.svg" 
                 alt="NutriDupe Research Platform" 
-                className="h-8 sm:h-9 w-auto object-contain overflow-visible"
+                width={160}
+                height={36}
+                priority
+                className="h-8 sm:h-9 w-auto object-contain"
               />
             </Link>
 
@@ -87,10 +91,12 @@ export default function RootLayout({
               {/* Brand Summary */}
               <div className="space-y-3">
                 <Link href="/" className="inline-block py-1">
-                  <img 
+                  <Image 
                     src="/nutridupe-logo.svg" 
                     alt="NutriDupe" 
-                    className="h-8 w-auto object-contain overflow-visible"
+                    width={140}
+                    height={32}
+                    className="h-8 w-auto object-contain"
                   />
                 </Link>
                 <p className="text-gray-400 text-xs leading-relaxed">
@@ -103,7 +109,7 @@ export default function RootLayout({
                 <h4 className="text-white font-semibold mb-3">Platform</h4>
                 <ul className="space-y-2">
                   <li><Link href="/" className="hover:text-white transition">Home</Link></li>
-                  <li><Link href="/compare" className="hover:text-white transition">All Comparisons</Link></li>
+                  <li><Link href="/compare" className="hover:text-white transition">Compare</Link></li>
                   <li><Link href="/categories" className="hover:text-white transition">Categories</Link></li>
                   <li><Link href="/about" className="hover:text-white transition">About</Link></li>
                   <li><Link href="/research-guides" className="hover:text-white transition">Research Guides</Link></li>
