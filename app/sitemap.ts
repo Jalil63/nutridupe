@@ -1,10 +1,13 @@
-import type { MetadataRoute } from 'next';
+import { MetadataRoute } from 'next';
 import { getAllBenchmarks } from '@/lib/data';
+
+// Force dynamic execution at build time
+export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.nutridupe.com';
 
-  const staticRoutes: MetadataRoute.Sitemap = [
+  const staticPages: MetadataRoute.Sitemap = [
     '',
     '/compare',
     '/categories',
@@ -13,23 +16,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/research-methodology',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
+    lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: route === '' ? 1.0 : 0.8,
   }));
 
   try {
     const benchmarks = await getAllBenchmarks();
-    const benchmarkRoutes: MetadataRoute.Sitemap = (benchmarks || []).map((b) => ({
+    const benchmarkPages: MetadataRoute.Sitemap = (benchmarks || []).map((b) => ({
       url: `${baseUrl}/compare/${b.slug}`,
-      lastModified: new Date().toISOString(),
+      lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
     }));
 
-    return [...staticRoutes, ...benchmarkRoutes];
+    return [...staticPages, ...benchmarkPages];
   } catch (error) {
-    // Fallback if DB is unreachable during build phase
-    return staticRoutes;
+    return staticPages;
   }
 }
