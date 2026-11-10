@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Header from '@/components/Header'; // Adjust path if your header component lives in @/components/layout/Header
+import Footer from '@/components/Footer'; // Adjust path if your footer component lives in @/components/layout/Footer
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -9,28 +11,6 @@ export const metadata: Metadata = {
   },
   description:
     'Discover high-quality, scientifically comparable supplement alternatives (dupes) to premium brands. Compare formula match percentages, price per serving, and bio-available ingredient profiles.',
-  keywords: [
-    'supplement dupes',
-    'Athletic Greens alternative',
-    'Thorne creatine dupe',
-    'supplement comparison engine',
-    'chelated magnesium comparison',
-    'bioavailability comparison',
-  ],
-  authors: [{ name: 'NutriDupe Editorial Team' }],
-  creator: 'NutriDupe Platform',
-  publisher: 'NutriDupe Platform',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -39,21 +19,12 @@ export const metadata: Metadata = {
     title: 'NutriDupe — Compare & Find Affordable Supplement Alternatives',
     description:
       'Independent supplement comparison platform providing active ingredient analysis, match scoring, and value breakdowns.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'NutriDupe Supplement Comparison Platform',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'NutriDupe — Compare & Find Affordable Supplement Alternatives',
     description:
       'Independent supplement comparison platform providing active ingredient analysis, match scoring, and value breakdowns.',
-    images: ['/og-image.jpg'],
   },
 };
 
@@ -64,7 +35,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased">
+        <Header />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }
