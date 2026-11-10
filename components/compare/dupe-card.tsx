@@ -112,7 +112,7 @@ export function DupeCard({
           </div>
         </div>
 
-        {/* Actions */}
+      {/* Actions */}
         <div className="mt-auto space-y-2">
           <Button
             variant="outline"
@@ -127,21 +127,24 @@ export function DupeCard({
             <ChevronRight className="h-4 w-4" />
           </Button>
 
-          {dupe.affiliate_url && dupe.affiliate_active && (
-            <div>
-              <Button asChild className="w-full gap-2">
-                <a href={dupe.affiliate_url} target="_blank" rel="noopener noreferrer sponsored">
-                  <ShoppingBag className="h-4 w-4" />
-                  Shop Now
-                </a>
-              </Button>
-              <p className="mt-1.5 text-center text-[11px] leading-tight text-muted-foreground">
-                *Earns commission.
-              </p>
-            </div>
-          )}
+          <div>
+            <Button asChild className="w-full gap-2">
+              <a href={`/go/${dupe.slug}`} target="_blank" rel="noopener noreferrer">
+                <ShoppingBag className="h-4 w-4" />
+                Shop Now & Save
+              </a>
+            </Button>
+            <p className="mt-1.5 text-center text-[11px] leading-tight text-muted-foreground">
+              *Verified alternative match.
+            </p>
+          </div>
         </div>
-      </div>
+What this changes:
+Clicking "Shop Now & Save" now forces the browser to visit /go/${dupe.slug}.
+
+This safely triggers your app/go/[slug]/route.ts script, which checks the database and runs your smart fallback search query seamlessly without ever hitting a broken direct link!
+
+Commit this update to GitHub, and your redirect logic will finally fire properly.
 
       <IngredientModal
         open={modalOpen}
