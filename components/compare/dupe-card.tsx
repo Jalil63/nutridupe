@@ -111,6 +111,7 @@ export function DupeCard({
             </div>
           </div>
         </div>
+
         {/* Actions */}
         <div className="mt-auto space-y-2">
           <Button
@@ -138,6 +139,8 @@ export function DupeCard({
             </p>
           </div>
         </div>
+      </div>
+
       <IngredientModal
         open={modalOpen}
         onOpenChange={setModalOpen}
