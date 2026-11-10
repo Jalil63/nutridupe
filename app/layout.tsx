@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header'; // Adjust path if your header component lives in @/components/layout/Header
-import Footer from '@/components/Footer'; // Adjust path if your footer component lives in @/components/layout/Footer
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 import './globals.css';
 
 export const metadata: Metadata = {
