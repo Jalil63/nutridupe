@@ -111,8 +111,7 @@ export function DupeCard({
             </div>
           </div>
         </div>
-
-      {/* Actions */}
+        {/* Actions */}
         <div className="mt-auto space-y-2">
           <Button
             variant="outline"
@@ -139,13 +138,6 @@ export function DupeCard({
             </p>
           </div>
         </div>
-What this changes:
-Clicking "Shop Now & Save" now forces the browser to visit /go/${dupe.slug}.
-
-This safely triggers your app/go/[slug]/route.ts script, which checks the database and runs your smart fallback search query seamlessly without ever hitting a broken direct link!
-
-Commit this update to GitHub, and your redirect logic will finally fire properly.
-
       <IngredientModal
         open={modalOpen}
         onOpenChange={setModalOpen}
