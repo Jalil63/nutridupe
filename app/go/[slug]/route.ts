@@ -8,31 +8,31 @@ export async function GET(
   const params = await props.params;
   const slug = params.slug;
 
-  // 1. Fetch product from Supabase
+  // Fetch product from Supabase
   const { data: product, error } = await supabase
     .from('products')
     .select('name, affiliate_url')
     .eq('slug', slug)
     .maybeSingle();
 
-  // If product not found in DB at all, safely fallback to homepage
   if (error || !product) {
     return NextResponse.redirect('https://www.nutridupe.com', { status: 307 });
   }
 
   const rawUrl = product.affiliate_url ? product.affiliate_url.trim() : '';
 
-  // 2. Strict check: Only redirect if it is a FULL, valid product URL
-  const isValidProductUrl =
-    rawUrl.startsWith('http://') || rawUrl.startsWith('https://');
-
-  if (isValidProductUrl && !rawUrl.includes('example.com')) {
-    return NextResponse.redirect(rawUrl, { status: 307 });
+  // 1. If there's a real, specific product URL in the DB (like an actual Amazon product /dp/ ASIN link), use it
+  if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+    // Make sure it's not a generic root domain placeholder
+    if (!rawUrl.endsWith('amazon.com') && !rawUrl.endsWith('amazon.com/')) {
+      return NextResponse.redirect(rawUrl, { status: 307 });
+    }
   }
 
-  // 3. Fallback: Clean Amazon Search query using exact product name
+  // 2. DIAGNOSTIC FALLBACK: Redirect to Google Search instead of Amazon search
+  // This bypasses Amazon's bot block entirely so we can see if the route itself works.
   const query = encodeURIComponent(product.name || slug.replace(/-/g, ' '));
-  const amazonSearchUrl = `https://www.amazon.com/s?k=${query}`;
+  const safeSearchUrl = `https://www.google.com/search?q=${query}+supplement`;
 
-  return NextResponse.redirect(amazonSearchUrl, { status: 307 });
+  return NextResponse.redirect(safeSearchUrl, { status: 307 });
 }
