@@ -18,14 +18,12 @@ export async function GET(
     return NextResponse.redirect('https://www.nutridupe.com', { status: 307 });
   }
 
-  // Use valid affiliate URL if set
+  // 1. If affiliate URL exists, redirect directly
   if (product.affiliate_url && product.affiliate_url.trim().startsWith('http')) {
     return NextResponse.redirect(product.affiliate_url.trim(), { status: 307 });
   }
 
-  // Dynamic fallback: Search Amazon for product name
+  // 2. Safe Fallback: Redirect to Amazon search query for product name
   const searchQuery = encodeURIComponent(product.name || 'supplement');
-  const fallbackSearchUrl = `https://www.amazon.com/s?k=${searchQuery}`;
-
-  return NextResponse.redirect(fallbackSearchUrl, { status: 307 });
+  return NextResponse.redirect(`https://www.amazon.com/s?k=${searchQuery}`, { status: 307 });
 }
