@@ -14,17 +14,16 @@ export async function GET(
     .eq('slug', slug)
     .maybeSingle();
 
-  // If no product found, return to homepage
   if (error || !product) {
     return NextResponse.redirect('https://www.nutridupe.com', { status: 307 });
   }
 
-  // 1. If an affiliate URL exists in DB, use it directly
+  // 1. If a valid affiliate URL exists in DB, use it
   if (product.affiliate_url && product.affiliate_url.trim().startsWith('http')) {
     return NextResponse.redirect(product.affiliate_url.trim(), { status: 307 });
   }
 
-  // 2. Safe Fallback: Redirect to an Amazon search for the product name
+  // 2. Safe Fallback: Search Amazon directly for product name
   const searchQuery = encodeURIComponent(product.name || 'supplement');
   const fallbackSearchUrl = `https://www.amazon.com/s?k=${searchQuery}`;
 
