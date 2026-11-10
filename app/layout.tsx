@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
-import * as HeaderModule from '@/components/layout/header';
-import * as FooterModule from '@/components/layout/footer';
+import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
 import './globals.css';
-
-// Flexibly handle whether header/footer use default or named exports
-const Header = HeaderModule.default || (HeaderModule as any).Header || HeaderModule;
-const Footer = FooterModule.default || (FooterModule as any).Footer || FooterModule;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.nutridupe.com'),
