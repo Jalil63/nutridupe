@@ -67,7 +67,7 @@ export default function RootLayout({
                 href="/compare"
                 className="px-4 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-md shadow-sm transition"
               >
-                🔍 Find Dupes
+                🔍 Compare Formulas
               </Link>
             </div>
 
