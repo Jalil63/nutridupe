@@ -63,7 +63,7 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-8 sm:px-6 lg:grid-cols-4 lg:px-8">
           <StatCard icon={ShieldCheck} label="cGMP Certified" value="100%" />
           <StatCard icon={FlaskConical} label="Third-Party Tested" value="NSF / USP" />
-          <StatCard icon={TrendingDown} label="Average Savings" value="up to 80%" />
+          <StatCard icon={TrendingDown} label="Active Dosing Match" value="Verified" />
           <StatCard icon={DollarSign} label="Cost per Serving" value="From $0.18" />
         </div>
       </section>
