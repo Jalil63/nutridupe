@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | NutriDupe',
   },
   description:
-    'Discover high-quality, scientifically comparable supplement alternatives (dupes) to premium brands. Compare formula match percentages, price per serving, and ingredient profiles.',
+    'NutriDupe is a research-driven supplement comparison and education platform helping health-conscious consumers evaluate formula transparency, active ingredient dosages, cGMP compliance, and third-party lab testing across leading wellness brands.',
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     siteName: 'NutriDupe',
     title: 'NutriDupe — Compare & Find Affordable Supplement Alternatives',
     description:
-      'Independent supplement comparison platform providing active ingredient analysis, match scoring, and value breakdowns.',
+      'Independent supplement comparison platform providing active ingredient analysis, match scoring, and value-per-serving breakdowns.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'NutriDupe — Compare & Find Affordable Supplement Alternatives',
     description:
-      'Independent supplement comparison platform providing active ingredient analysis, match scoring, and value breakdowns.',
+      'Independent supplement comparison platform providing active ingredient analysis, match scoring, and value-per-serving breakdowns.',
   },
 };
 
