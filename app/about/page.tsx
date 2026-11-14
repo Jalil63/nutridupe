@@ -10,7 +10,7 @@ export default function AboutPage() {
         </div>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">About NutriDupe</h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          We help you find cGMP-certified, clinically equivalent supplement alternatives to expensive brand-name products — without compromising on quality.
+          We help you evaluate cGMP-certified, third-party tested supplements through transparent active-ingredient comparisons and cost-per-serving analysis.
         </p>
       </div>
 
@@ -18,10 +18,7 @@ export default function AboutPage() {
         <section>
           <h2 className="text-xl font-bold">What is a "NutriDupe"?</h2>
           <p className="mt-2 text-muted-foreground">
-            A NutriDupe is explicitly defined as a cGMP-certified, clinically equivalent active-ingredient alternative
-            manufactured in FDA-registered facilities with third-party testing (NSF, USP). It is <strong>not</strong> a cheap
-            knock-off or unverified product from overseas marketplaces. Every alternative we recommend meets the same
-            rigorous manufacturing and testing standards as the premium brands they replace.
+            A NutriDupe benchmark represents a cGMP-certified, bioequivalent active-ingredient match manufactured in FDA-registered facilities with independent third-party testing (NSF, USP). Rather than unverified marketplace products, every benchmark we feature is evaluated against rigorous clinical dosing, purity, and formulation standards alongside leading wellness brands.
           </p>
         </section>
 
