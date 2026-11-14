@@ -31,13 +31,13 @@ export default async function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
               <ShieldCheck className="h-4 w-4" />
-              cGMP-Certified & Third-Party Tested Alternatives
+              cGMP-Certified & Third-Party Tested Benchmarks
             </div>
             <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              Find <span className="text-primary">clinically equivalent</span> supplement alternatives
+              Evaluate <span className="text-primary">formula transparency</span> & active ingredient equivalence
             </h1>
             <p className="mt-6 text-balance text-lg text-muted-foreground">
-              Compare premium brand-name supplements with cGMP-certified, FDA-registered, third-party tested alternatives — and save up to 80% without compromising on quality.
+              Compare premium brand-name wellness products with cGMP-certified, FDA-registered, third-party tested benchmarks — focusing on active dosages, purity standards, and cost-per-serving efficiency.
             </p>
             <div className="mt-8">
               <HomeSearch />
