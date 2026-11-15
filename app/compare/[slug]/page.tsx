@@ -131,3 +131,6 @@ export default async function ComparisonPage({ params }: PageProps) {
     </main>
   );
 }
+
+
+
