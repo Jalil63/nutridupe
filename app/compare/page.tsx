@@ -52,7 +52,7 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
       </div>
 
       {/* Direct Search Bar Form */}
-      <div className="mb-8">
+      <div id="search" className="mb-8 scroll-mt-24">
         <form method="GET" action="/compare" className="flex gap-2 max-w-2xl">
           <div className="relative flex-1">
             <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-400" />
