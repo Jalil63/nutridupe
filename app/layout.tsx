@@ -64,7 +64,7 @@ export default function RootLayout({
             {/* Desktop Right Action */}
             <div className="hidden items-center md:flex">
               <Link
-                href="/compare"
+                href="/compare#search"
                 className="px-4 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-md shadow-sm transition"
               >
                 🔍 Compare Formulas
@@ -86,7 +86,7 @@ export default function RootLayout({
                 <Link href="/research-guides" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Research Guides</Link>
                 <Link href="/research-methodology" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2">Methodology</Link>
                 <div className="pt-3 flex flex-col gap-2">
-                  <Link href="/compare" className="text-xs font-semibold text-center py-2.5 bg-emerald-600 text-white rounded-lg shadow-sm">🔍 Find Dupes</Link>
+                  <Link href="/compare#search" className="text-xs font-semibold text-center py-2.5 bg-emerald-600 text-white rounded-lg shadow-sm">🔍 Compare Formulas</Link>
                 </div>
               </div>
             </details>
