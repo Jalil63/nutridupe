@@ -123,3 +123,10 @@ export default async function ComparisonPage({ params }: { params: any }) {
                   Affiliate link — NutriDupe earns a commission on qualifying purchases.
                 </p>
               </div>
+            </div>
+          );
+        })}
+      </div>
+    </main>
+  );
+}
