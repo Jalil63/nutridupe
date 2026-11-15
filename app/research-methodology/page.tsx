@@ -28,16 +28,16 @@ export default function ResearchMethodologyPage() {
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <ShieldCheck className="h-5 w-5" />
           </div>
-          <h2 className="text-xl font-bold">What Defines a NutriDupe?</h2>
+          <h2 className="text-xl font-bold">What Defines a NutriDupe Benchmark?</h2>
         </div>
         <p className="mt-4 text-muted-foreground">
-          A NutriDupe is <strong className="text-foreground">NOT</strong> a cheap knock-off or unverified counterfeit. Every alternative listed must meet three non-negotiable standards:
+          A Reference Benchmark is <strong className="text-foreground">NOT</strong> a product for sale by NutriDupe. It is a non-purchasable target formulation specification established from clinical literature. Every alternative evaluated against it must meet rigorous quality baselines:
         </p>
         <div className="mt-5 space-y-3">
           <BaselineItem
             icon={ShieldCheck}
-            title="cGMP-Certified Facility"
-            description="Manufactured under current Good Manufacturing Practice regulations enforced by the FDA."
+            title="cGMP-Compliant Facility"
+            description="Manufactured under current Good Manufacturing Practice regulations."
           />
           <BaselineItem
             icon={Building2}
@@ -52,11 +52,27 @@ export default function ResearchMethodologyPage() {
         </div>
       </div>
 
+      {/* NEW: How We Set Benchmark Target Values (P0 Fix) */}
+      <section className="mb-12 rounded-xl border border-border bg-card p-6 sm:p-8">
+        <h2 className="text-xl font-bold tracking-tight mb-3">How We Set Benchmark Target Values</h2>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          A benchmark&apos;s target values are not arbitrary. For each active ingredient, the benchmark target is drawn from one of three published sources, in order of preference:
+        </p>
+        <ol className="mt-3 list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+          <li><strong>Labeled clinical dosing</strong> from peer-reviewed trials of the ingredient (e.g., 5 g/day creatine monohydrate; 300–600 mg/day KSM-66 ashwagandha).</li>
+          <li><strong>Established reference intake</strong> or upper-limit guidance from the NIH Office of Dietary Supplements or equivalent bodies.</li>
+          <li><strong>The premium product&apos;s own label claim</strong>, where no independent clinical threshold exists.</li>
+        </ol>
+        <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+          Where a premium product doses below the clinical threshold, the benchmark still targets the clinical threshold, and our analysis will show that the premium product falls short. Benchmark targets are fixed in advance and do not change based on commission rates.
+        </p>
+      </section>
+
       {/* 50/30/20 Formula Section */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold tracking-tight">The 50/30/20 Equivalence Formula</h2>
         <p className="mt-2 text-muted-foreground">
-          Every NutriDupe comparison score is calculated using a transparent, weighted formula that prioritizes what matters most for clinical equivalence.
+          Every product card displays an &quot;Active Match %&quot; (our user-facing label for the composite Equivalence Score), calculated using this transparent, weighted formula:
         </p>
 
         {/* Formula Card */}
@@ -83,19 +99,19 @@ export default function ResearchMethodologyPage() {
             weight="50%"
             icon={Beaker}
             title="Active Ingredient Overlap"
-            description="Evaluates raw active compound presence while excluding fillers, synthetic binders, and inactive excipients. We compare the complete list of active ingredients in the benchmark product against the dupe, calculating the percentage of shared actives by both count and clinical relevance."
+            description="Evaluates raw active compound presence while excluding fillers, synthetic binders, and inactive excipients. We compare the complete list of active ingredients against the benchmark spec, calculating the percentage of shared actives by count and clinical relevance."
           />
           <FormulaBreakdown
             weight="30%"
             icon={Scale}
             title="Dosage Precision"
-            description="Compares active milligrams per serving against the benchmark's label claims or established clinical study thresholds. A dupe with dosages within 10% of the benchmark receives full credit; wider deviations are penalized proportionally to ensure therapeutic equivalence."
+            description="Compares active milligrams per serving against clinical study thresholds. Formulations within 10% of the target receive full credit; wider deviations are penalized proportionally."
           />
           <FormulaBreakdown
             weight="20%"
             icon={FlaskConical}
             title="Bioavailability & Chemical Quality"
-            description="Grades compound absorption based on chemical form. Grade 5 is awarded for chelated or methylated forms (e.g., Magnesium Glycinate, Methylcobalamin). Grades descend to Grade 1 for low-absorption forms like oxides (e.g., Magnesium Oxide), which have documented bioavailability as low as 4%."
+            description="Grades compound absorption based on chemical form. Grade 5 is awarded for chelated or methylated forms (e.g., Magnesium Glycinate, Methylcobalamin). Grades descend to Grade 1 for low-absorption forms like oxides."
           />
         </div>
 
@@ -121,11 +137,11 @@ export default function ResearchMethodologyPage() {
         </div>
       </section>
 
-      {/* Cost Calculation Section */}
+      {/* Cost Calculation Section (Purged House-Brand Example) */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold tracking-tight">Cost Calculation Transparency</h2>
         <p className="mt-2 text-muted-foreground">
-          Price-per-serving is the single most important metric for true cost comparison. We calculate it using a straightforward, auditable formula.
+          Price-per-serving is calculated using a straightforward, auditable formula across real third-party market alternatives.
         </p>
 
         {/* Cost Formula Card */}
@@ -144,29 +160,40 @@ export default function ResearchMethodologyPage() {
           </div>
         </div>
 
-        {/* Example Calculation */}
+        {/* Example Calculation using a Real Third-Party Product */}
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           <CostExample
-            label="Benchmark: AG1"
-            price="$79.00"
+            label="Benchmark Spec: AG1 Target"
+            price="Spec Target"
             servings="30"
-            perServing="$2.63"
+            perServing="&le; $1.00/serv"
           />
           <CostExample
-            label="Dupe: NutriDupe Greens"
-            price="$39.99"
+            label="Real Dupe: Live it Up Greens"
+            price="$29.99"
             servings="30"
-            perServing="$1.33"
+            perServing="$1.00"
             highlight
           />
           <CostExample
-            label="Your Savings"
+            label="Your Savings vs AG1 ($2.63)"
             price="—"
             servings="—"
-            perServing="$1.30/serving"
+            perServing="$1.63/serving"
             savings
           />
         </div>
+      </section>
+
+      {/* References Block */}
+      <section className="mb-12 rounded-xl border border-border bg-card p-6 sm:p-8">
+        <h3 className="text-lg font-bold tracking-tight mb-3">References &amp; Standards</h3>
+        <ul className="list-disc list-inside space-y-1.5 text-sm text-muted-foreground">
+          <li>NIH Office of Dietary Supplements - Dietary Supplement Fact Sheets.</li>
+          <li>NSF Certified for Sport &amp; USP Verified program criteria.</li>
+          <li>Peer-reviewed bioavailability literature supporting chelated vs. oxide absorption.</li>
+          <li>FDA cGMP Regulations (21 CFR Part 111).</li>
+        </ul>
       </section>
 
       {/* Compliance Note */}
