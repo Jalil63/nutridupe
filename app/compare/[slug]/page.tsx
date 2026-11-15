@@ -4,12 +4,9 @@ import { notFound } from 'next/navigation';
 import { DupeCard } from '@/components/compare/dupe-card';
 
 interface PageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }> | { slug: string };
 }
 
-// Generate static paths at build time to prevent prerender errors
 export async function generateStaticParams() {
   try {
     const benchmarks = await getAllBenchmarks();
@@ -22,8 +19,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = params;
-  const benchmark = await getBenchmarkBySlug(slug);
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug;
+  const benchmark = slug ? await getBenchmarkBySlug(slug) : null;
 
   if (!benchmark) {
     return {
@@ -33,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const topDupe = benchmark.dupes?.[0];
-  const title = `${benchmark.name} Alternatives & Formulation-Matched Dupes (Up to ${topDupe ? topDupe.match_percentage : '90'}% Match)`;
+  const title = `${benchmark.name} Alternatives & Formulation-Matched Dupes (Up to ${topDupe?.match_percentage || '90'}% Match)`;
   const description = `Compare active ingredient alignment, dosage thresholds, and cost per serving for ${benchmark.name}.`;
 
   return {
@@ -49,8 +47,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ComparisonPage({ params }: PageProps) {
-  const { slug } = params;
-  const benchmark = await getBenchmarkBySlug(slug);
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug;
+  const benchmark = slug ? await getBenchmarkBySlug(slug) : null;
 
   if (!benchmark) {
     notFound();
@@ -76,7 +75,7 @@ export default async function ComparisonPage({ params }: PageProps) {
         </p>
       </div>
 
-      {/* Reference Benchmark Baseline Card (Using our updated component) */}
+      {/* Reference Benchmark Baseline Card */}
       <div className="mb-8">
         <DupeCard 
           type="benchmark" 
@@ -90,38 +89,41 @@ export default async function ComparisonPage({ params }: PageProps) {
 
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Top Formulation Dupes</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {benchmark.dupes?.map((dupe) => (
-          <div key={dupe.id} className="flex flex-col justify-between bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <DupeCard 
-              type="dupe"
-              data={{
-                brandName: dupe.brand_name || 'Third-Party Brand',
-                productName: dupe.name,
-                activeMatchPercentage: dupe.match_percentage,
-                subScores: dupe.sub_scores || {
-                  overlap: dupe.match_percentage,
-                  dosageVariance: 0,
-                  bioavailabilityGrade: 5
-                },
-                costPerServing: dupe.price_per_serving ? Number(dupe.price_per_serving).toFixed(2) : '0.00',
-                retailPrice: dupe.retail_price || '29.99',
-                servings: dupe.servings || 30,
-                savingsVsBenchmark: dupe.savings_percentage || '25'
-              }}
-            />
+        {(benchmark.dupes || []).map((dupe) => {
+          const matchPct = dupe.match_percentage || 90;
+          return (
+            <div key={dupe.id || dupe.slug} className="flex flex-col justify-between bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <DupeCard 
+                type="dupe"
+                data={{
+                  brandName: dupe.brand_name || 'Third-Party Brand',
+                  productName: dupe.name || 'Alternative Formula',
+                  activeMatchPercentage: matchPct,
+                  subScores: dupe.sub_scores || {
+                    overlap: matchPct,
+                    dosageVariance: 0,
+                    bioavailabilityGrade: 5
+                  },
+                  costPerServing: dupe.price_per_serving ? Number(dupe.price_per_serving).toFixed(2) : '0.00',
+                  retailPrice: dupe.retail_price || '29.99',
+                  servings: dupe.servings || 30,
+                  savingsVsBenchmark: dupe.savings_percentage || '25'
+                }}
+              />
 
-            <div className="mt-6 pt-4 border-t border-gray-100">
-              <a
-                href={`/go/${dupe.slug}`}
-                target="_blank"
-                rel="sponsored nofollow"
-                className="w-full inline-block text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm py-2 px-4 rounded-lg transition"
-              >
-                View Deal & Details →
-              </a>
+              <div className="mt-6 pt-4 border-t border-gray-100">
+                <a
+                  href={`/go/${dupe.slug}`}
+                  target="_blank"
+                  rel="sponsored nofollow"
+                  className="w-full inline-block text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm py-2 px-4 rounded-lg transition"
+                >
+                  View Deal & Details →
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </main>
   );
