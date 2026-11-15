@@ -3,10 +3,6 @@ import { getBenchmarkBySlug, getAllBenchmarks } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { DupeCard } from '@/components/compare/dupe-card';
 
-interface PageProps {
-  params: Promise<{ slug: string }> | { slug: string };
-}
-
 export async function generateStaticParams() {
   try {
     const benchmarks = await getAllBenchmarks();
@@ -18,8 +14,8 @@ export async function generateStaticParams() {
   }
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const resolvedParams = await params;
+export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
+  const resolvedParams = params instanceof Promise ? await params : params;
   const slug = resolvedParams?.slug;
   const benchmark = slug ? await getBenchmarkBySlug(slug) : null;
 
@@ -47,8 +43,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function ComparisonPage({ params }: PageProps) {
-  const resolvedParams = await params;
+export default async function ComparisonPage({ params }: { params: any }) {
+  const resolvedParams = params instanceof Promise ? await params : params;
   const slug = resolvedParams?.slug;
   const benchmark = slug ? await getBenchmarkBySlug(slug) : null;
 
@@ -131,6 +127,3 @@ export default async function ComparisonPage({ params }: PageProps) {
     </main>
   );
 }
-
-
-
