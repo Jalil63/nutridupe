@@ -54,7 +54,6 @@ export default function RootLayout({
             {/* Desktop Navigation Links */}
             <nav className="hidden items-center gap-6 md:flex">
               <Link href="/" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Home</Link>
-              <Link href="/compare" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Compare</Link>
               <Link href="/categories" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Categories</Link>
               <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">About</Link>
               <Link href="/research-guides" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Research Guides</Link>
