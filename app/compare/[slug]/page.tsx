@@ -31,7 +31,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const topDupe = benchmark.dupes?.[0];
-  const title = `${benchmark.name} Alternatives & Formulation-Matched Dupes (Up to ${topDupe?.match_percentage || '90'}% Match)`;
+  const matchVal = (topDupe as any)?.match_percentage || '90';
+  const title = `${benchmark.name} Alternatives & Formulation-Matched Dupes (Up to ${matchVal}% Match)`;
   const description = `Compare active ingredient alignment, dosage thresholds, and cost per serving for ${benchmark.name}.`;
 
   return {
@@ -89,8 +90,10 @@ export default async function ComparisonPage({ params }: PageProps) {
 
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Top Formulation Dupes</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {(benchmark.dupes || []).map((dupe) => {
+        {(benchmark.dupes || []).map((dupe: any) => {
           const matchPct = dupe.match_percentage || 90;
+          const costServ = dupe.price_per_serving ? Number(dupe.price_per_serving).toFixed(2) : '0.00';
+          
           return (
             <div key={dupe.id || dupe.slug} className="flex flex-col justify-between bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <DupeCard 
@@ -104,7 +107,7 @@ export default async function ComparisonPage({ params }: PageProps) {
                     dosageVariance: 0,
                     bioavailabilityGrade: 5
                   },
-                  costPerServing: dupe.price_per_serving ? Number(dupe.price_per_serving).toFixed(2) : '0.00',
+                  costPerServing: costServ,
                   retailPrice: dupe.retail_price || '29.99',
                   servings: dupe.servings || 30,
                   savingsVsBenchmark: dupe.savings_percentage || '25'
