@@ -41,9 +41,9 @@ export default function RootLayout({
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             {/* Logo */}
             <Link href="/" className="flex items-center transition-opacity hover:opacity-85 py-1">
-              <Image 
-                src="/nutridupe-logo.svg" 
-                alt="NutriDupe Research Platform" 
+              <Image
+                src="/nutridupe-logo.svg"
+                alt="NutriDupe Research Platform"
                 width={160}
                 height={36}
                 priority
@@ -54,6 +54,7 @@ export default function RootLayout({
             {/* Desktop Navigation Links */}
             <nav className="hidden items-center gap-6 md:flex">
               <Link href="/" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Home</Link>
+              <Link href="/compare" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Compare</Link>
               <Link href="/categories" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Categories</Link>
               <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">About</Link>
               <Link href="/research-guides" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Research Guides</Link>
@@ -85,7 +86,7 @@ export default function RootLayout({
                 <Link href="/research-guides" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2 border-b border-gray-100">Research Guides</Link>
                 <Link href="/research-methodology" className="text-sm font-semibold text-gray-800 hover:text-emerald-600 py-2">Methodology</Link>
                 <div className="pt-3 flex flex-col gap-2">
-                  <Link href="/compare-formulas" className="text-xs font-semibold text-center py-2.5 bg-emerald-600 text-white rounded-lg shadow-sm">🔍 Compare Formulas</Link>
+                  <Link href="/compare" className="text-xs font-semibold text-center py-2.5 bg-emerald-600 text-white rounded-lg shadow-sm">🔍 Find Dupes</Link>
                 </div>
               </div>
             </details>
@@ -102,9 +103,9 @@ export default function RootLayout({
               {/* Brand Summary */}
               <div className="space-y-3">
                 <Link href="/" className="inline-block py-1">
-                  <Image 
-                    src="/nutridupe-logo.svg" 
-                    alt="NutriDupe" 
+                  <Image
+                    src="/nutridupe-logo.svg"
+                    alt="NutriDupe"
                     width={140}
                     height={32}
                     className="h-8 w-auto object-contain"
