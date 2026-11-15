@@ -5,11 +5,11 @@ import { Search } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-interface ComparePageProps {
+export default async function ComparePage({
+  searchParams,
+}: {
   searchParams: Promise<{ q?: string }> | { q?: string };
-}
-
-export default async function ComparePage({ searchParams }: ComparePageProps) {
+}) {
   const resolvedSearchParams = searchParams instanceof Promise ? await searchParams : searchParams;
   const query = resolvedSearchParams?.q?.trim() || '';
   
@@ -19,7 +19,7 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
     ? (benchmarks || []).filter(
         (b) =>
           b.name.toLowerCase().includes(query.toLowerCase()) ||
-          b.brand.toLowerCase().includes(query.toLowerCase()) ||
+          (b.brand || '').toLowerCase().includes(query.toLowerCase()) ||
           (b.description || '').toLowerCase().includes(query.toLowerCase()) ||
           (b.category?.name || '').toLowerCase().includes(query.toLowerCase())
       )
