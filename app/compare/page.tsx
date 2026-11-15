@@ -31,17 +31,6 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* Editorial & Affiliate Disclosure */}
-      <div className="mb-6 rounded-lg bg-slate-50 border border-slate-200 p-4 text-xs text-slate-600 leading-relaxed">
-        <span className="font-semibold text-slate-900 uppercase tracking-wide block mb-1">
-          Editorial & Affiliate Disclosure
-        </span>
-        NutriDupe earns commissions from retailers when you purchase through our links. Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates.{' '}
-        <a href="/research-methodology" className="text-emerald-700 underline font-medium hover:text-emerald-800">
-          Read our methodology
-        </a>.
-      </div>
-
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl text-slate-900">
           Compare Supplements & Formulas
@@ -49,6 +38,17 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
         <p className="mt-2 text-slate-600">
           Search for a premium product or browse all available comparisons to find cGMP-certified alternatives.
         </p>
+      </div>
+
+      {/* Prominent Editorial & Affiliate Disclosure Box */}
+      <div className="mb-8 rounded-lg bg-slate-50 border border-slate-200 p-4 text-xs text-slate-600 leading-relaxed">
+        <span className="font-semibold text-slate-900 uppercase tracking-wide block mb-1">
+          Editorial & Affiliate Disclosure
+        </span>
+        NutriDupe earns commissions from retailers when you purchase through our links. Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates.{' '}
+        <a href="/research-methodology" className="text-emerald-700 underline font-medium hover:text-emerald-800">
+          Read our methodology
+        </a>.
       </div>
 
       {/* Direct Search Bar Form */}
@@ -85,7 +85,6 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((benchmark) => {
             const dupeCount = benchmark.dupes?.length || 0;
-            const topDupe = benchmark.dupes?.[0];
 
             return (
               <div
