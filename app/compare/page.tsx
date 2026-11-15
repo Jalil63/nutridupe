@@ -5,23 +5,25 @@ import { Search } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-export default async function ComparePage({
-  searchParams,
-}: {
-  searchParams: { q?: string };
-}) {
-  const query = searchParams.q?.trim() || '';
+interface ComparePageProps {
+  searchParams: Promise<{ q?: string }> | { q?: string };
+}
+
+export default async function ComparePage({ searchParams }: ComparePageProps) {
+  const resolvedSearchParams = searchParams instanceof Promise ? await searchParams : searchParams;
+  const query = resolvedSearchParams?.q?.trim() || '';
+  
   const benchmarks = await getAllBenchmarks();
 
   const filtered = query
-    ? benchmarks.filter(
+    ? (benchmarks || []).filter(
         (b) =>
           b.name.toLowerCase().includes(query.toLowerCase()) ||
           b.brand.toLowerCase().includes(query.toLowerCase()) ||
           (b.description || '').toLowerCase().includes(query.toLowerCase()) ||
           (b.category?.name || '').toLowerCase().includes(query.toLowerCase())
       )
-    : benchmarks;
+    : (benchmarks || []);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -43,7 +45,7 @@ export default async function ComparePage({
           <Search className="mb-4 h-12 w-12 text-muted-foreground" />
           <h3 className="text-lg font-semibold">No results found</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Try searching for "AG1", "Creatine", "Seed", or "probiotic"
+            Try searching for &quot;AG1&quot;, &quot;Creatine&quot;, &quot;Seed&quot;, or &quot;probiotic&quot;
           </p>
         </div>
       ) : (
