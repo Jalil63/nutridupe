@@ -1,152 +1,95 @@
-"use client";
+import React from 'react';
 
-import { useState } from 'react';
-import { Star, ShieldCheck, FlaskConical, Building2, ShoppingBag, TrendingDown, ChevronRight, Info } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { IngredientModal } from '@/components/compare/ingredient-modal';
-import { formatCurrency, calculateSavings, getProductIngredients } from '@/lib/data';
-import type { Product, ProductIngredientWithIngredient } from '@/lib/types';
+interface SubScores {
+  overlap: number;
+  dosageVariance: number;
+  bioavailabilityGrade: number;
+}
 
-export function DupeCard({
-  dupe,
-  benchmark,
-  index,
-}: {
-  dupe: Product;
-  benchmark: Product;
-  index: number;
-}) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [ingredients, setIngredients] = useState<ProductIngredientWithIngredient[]>([]);
-  const [loadingIngs, setLoadingIngs] = useState(false);
-
-  const savings = calculateSavings(benchmark.price_per_serving, dupe.price_per_serving);
-
-  const handleViewIngredients = async () => {
-    if (ingredients.length > 0) {
-      setModalOpen(true);
-      return;
-    }
-    setLoadingIngs(true);
-    try {
-      const data = await getProductIngredients(dupe.id);
-      setIngredients(data);
-    } catch (e) {
-      console.error('Failed to load ingredients', e);
-    } finally {
-      setLoadingIngs(false);
-    }
-    setModalOpen(true);
+interface ProductCardProps {
+  type: 'benchmark' | 'dupe';
+  data: {
+    name?: string;
+    brandName?: string;
+    productName?: string;
+    targetCostPerServing?: string;
+    clinicalDoseBaseline?: string;
+    activeMatchPercentage?: number;
+    subScores?: SubScores;
+    costPerServing?: string;
+    retailPrice?: string;
+    servings?: number;
+    savingsVsBenchmark?: string;
   };
+}
 
-  return (
-    <>
-      <div
-        className="flex h-full flex-col rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-lg animate-slide-up"
-        style={{ animationDelay: `${index * 100}ms` }}
-      >
-        {/* Match badge */}
-        {dupe.match_percentage !== null && (
-          <div className="mb-3 flex items-center justify-between">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              {dupe.match_percentage.toFixed(0)}% Active Match
-            </span>
-            <span className="text-xs font-medium text-muted-foreground">
-              {savings.percentage > 0 ? `${savings.percentage}% cheaper` : 'Same price'}
-            </span>
-          </div>
-        )}
-
-        {/* Product info */}
-        <div className="mb-3">
-          <h3 className="text-lg font-bold leading-tight">{dupe.name}</h3>
-          <p className="text-sm text-muted-foreground">by {dupe.brand}</p>
+export function DupeCard({ type, data }: ProductCardProps) {
+  // 1. Reference Benchmark Card (Non-purchasable target specification)
+  if (type === 'benchmark') {
+    return (
+      <div className="rounded-xl border-2 border-dashed border-slate-300 bg-slate-50/80 p-6 shadow-sm">
+        <div className="flex items-center justify-between mb-3">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-200 text-slate-700">
+            Reference Benchmark Spec
+          </span>
+          <span className="text-xs text-slate-500 font-medium">Non-purchasable baseline</span>
         </div>
-
-        <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{dupe.description}</p>
-
-        {/* Certifications */}
-        <div className="mb-4 flex flex-wrap gap-1.5">
-          {dupe.cgmp_certified && (
-            <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-              <ShieldCheck className="h-3 w-3" /> cGMP
-            </span>
-          )}
-          {dupe.fda_registered && (
-            <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-              <Building2 className="h-3 w-3" /> FDA-Reg
-            </span>
-          )}
-          {dupe.third_party_tested && (
-            <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-              <FlaskConical className="h-3 w-3" /> 3rd-Party
-            </span>
-          )}
-          {dupe.certifications.slice(0, 2).map((cert) => (
-            <span key={cert} className="inline-flex items-center rounded-md bg-secondary px-2 py-1 text-xs font-medium text-muted-foreground">
-              {cert}
-            </span>
-          ))}
-        </div>
-
-        {/* Price comparison */}
-        <div className="mb-4 grid grid-cols-2 gap-3 rounded-lg bg-secondary/60 p-3">
+        
+        <h3 className="text-xl font-bold text-slate-900 mb-2">{data.name}</h3>
+        <p className="text-sm text-slate-600 mb-4">Target active formulation established from clinical literature.</p>
+        
+        <div className="grid grid-cols-2 gap-4 pt-3 border-t border-slate-200 text-sm">
           <div>
-            <div className="text-xs text-muted-foreground">Price / serving</div>
-            <div className="text-xl font-bold">{formatCurrency(dupe.price_per_serving)}</div>
-            <div className="text-xs text-muted-foreground">
-              {formatCurrency(dupe.price)} / {dupe.servings_per_container} servings
-            </div>
+            <span className="block text-xs text-slate-500">Target Cost Ceiling</span>
+            <span className="font-semibold text-slate-800">{data.targetCostPerServing} / serving</span>
           </div>
           <div>
-            <div className="text-xs text-muted-foreground">vs. benchmark</div>
-            <div className="flex items-center gap-1 text-xl font-bold text-primary">
-              <TrendingDown className="h-4 w-4" />
-              {formatCurrency(savings.amount)}
-            </div>
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-              {dupe.rating.toFixed(1)} rating
-            </div>
-          </div>
-        </div>
-
-        {/* Actions */}
-        <div className="mt-auto space-y-2">
-          <Button
-            variant="outline"
-            className="w-full justify-between"
-            onClick={handleViewIngredients}
-            disabled={loadingIngs}
-          >
-            <span className="flex items-center gap-1.5">
-              <Info className="h-4 w-4" />
-              {loadingIngs ? 'Loading...' : 'View Active Ingredients'}
-            </span>
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-
-          <div>
-            <Button asChild className="w-full gap-2">
-              <a href={`/go/${dupe.slug}`} target="_blank" rel="noopener noreferrer">
-                <ShoppingBag className="h-4 w-4" />
-                Shop Now & Save
-              </a>
-            </Button>
-            <p className="mt-1.5 text-center text-[11px] leading-tight text-muted-foreground">
-              *Verified alternative match.
-            </p>
+            <span className="block text-xs text-slate-500">Clinical Baseline</span>
+            <span className="font-semibold text-slate-800">{data.clinicalDoseBaseline}</span>
           </div>
         </div>
       </div>
+    );
+  }
 
-      <IngredientModal
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-        product={dupe}
-        ingredients={ingredients}
-      />
-    </>
+  // 2. Third-Party Dupe Card (With 50/30/20 Sub-Score Transparency Bar)
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex justify-between items-start mb-2">
+        <div>
+          <span className="text-xs font-semibold text-emerald-700 uppercase tracking-wider">{data.brandName}</span>
+          <h4 className="text-lg font-bold text-slate-900">{data.productName}</h4>
+        </div>
+        <div className="text-right">
+          <div className="text-2xl font-extrabold text-emerald-600">{data.activeMatchPercentage}%</div>
+          <div className="text-xs text-slate-500">Active Match</div>
+        </div>
+      </div>
+
+      {/* Sub-Score Transparency Bar (Auditable Math) */}
+      {data.subScores && (
+        <div className="bg-slate-50 rounded-lg p-2.5 my-3 text-xs font-medium text-slate-700 flex flex-wrap gap-x-4 gap-y-1 border border-slate-100">
+          <span>Overlap: <strong className="text-slate-900">{data.subScores.overlap}%</strong></span>
+          <span>
+            Dosage:{' '}
+            <strong className="text-slate-900">
+              {data.subScores.dosageVariance >= 0 ? `+${data.subScores.dosageVariance}%` : `${data.subScores.dosageVariance}%`}
+            </strong>
+          </span>
+          <span>Bioavailability: <strong className="text-slate-900">Grade {data.subScores.bioavailabilityGrade}</strong></span>
+        </div>
+      )}
+
+      {/* Pricing & Savings */}
+      <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-sm">
+        <div>
+          <span className="text-slate-900 font-bold">${data.costPerServing}</span>
+          <span className="text-slate-500 text-xs"> / serving (${data.retailPrice} / {data.servings} servings)</span>
+        </div>
+        <div className="text-emerald-700 font-semibold text-xs bg-emerald-50 px-2.5 py-1 rounded-md">
+          Save {data.savingsVsBenchmark}% vs Benchmark
+        </div>
+      </div>
+    </div>
   );
 }
