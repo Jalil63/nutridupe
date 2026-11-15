@@ -64,9 +64,9 @@ export default function RootLayout({
             {/* Desktop Right Action */}
             <div className="hidden items-center md:flex">
               <Link
-                href="/compare-formulas"
+                href="/compare"
                 className="px-4 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-md shadow-sm transition"
-             >
+              >
                 🔍 Compare Formulas
               </Link>
             </div>
