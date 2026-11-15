@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { ShieldCheck, FlaskConical, Building2, Eye, Search, BarChart3, CheckCircle2 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'About NutriDupe — Independent Supplement Research & Benchmarking',
+  description: 'Learn how NutriDupe evaluates cGMP-certified wellness products through transparent active-ingredient comparisons and cost-per-serving analytics.',
+};
 
 export default function AboutPage() {
   return (
@@ -16,9 +22,9 @@ export default function AboutPage() {
 
       <div className="mt-12 space-y-8">
         <section>
-          <h2 className="text-xl font-bold">What is a "NutriDupe"?</h2>
+          <h2 className="text-xl font-bold">What is a &quot;NutriDupe&quot; Benchmark?</h2>
           <p className="mt-2 text-muted-foreground">
-            A NutriDupe benchmark represents a cGMP-certified, bioequivalent active-ingredient match manufactured in FDA-registered facilities with independent third-party testing (NSF, USP). Rather than unverified marketplace products, every benchmark we feature is evaluated against rigorous clinical dosing, purity, and formulation standards alongside leading wellness brands.
+            A NutriDupe reference benchmark represents a formulation-matched active-ingredient specification manufactured in FDA-registered facilities with independent third-party testing (NSF, USP). Rather than unverified marketplace products, every benchmark we feature is evaluated against rigorous clinical dosing, purity, and formulation standards alongside leading wellness brands.
           </p>
         </section>
 
@@ -32,8 +38,8 @@ export default function AboutPage() {
             />
             <StandardCard
               icon={ShieldCheck}
-              title="cGMP Certified"
-              description="Current Good Manufacturing Practice certification ensures consistent quality."
+              title="cGMP Compliant"
+              description="Current Good Manufacturing Practice compliance ensures consistent quality."
             />
             <StandardCard
               icon={FlaskConical}
@@ -49,17 +55,17 @@ export default function AboutPage() {
             <Step
               icon={Search}
               title="Identify Premium Benchmarks"
-              description="We analyze the market's most popular and expensive supplement brands to understand their active ingredients, dosages, and bioavailability."
+              description="We analyze the market's most popular and expensive supplement brands to establish clinical active-ingredient baselines."
             />
             <Step
               icon={BarChart3}
               title="Compare Active Ingredients"
-              description="We match each benchmark's active ingredients with cGMP-certified alternatives, calculating exact match percentages and price-per-serving savings."
+              description="We evaluate each alternative using our 50/30/20 formula, calculating exact match scores and price-per-serving savings."
             />
             <Step
               icon={Eye}
               title="Verify Quality Standards"
-              description="Every dupe must be cGMP-certified, FDA-registered, and third-party tested. We verify certifications and reject any product that doesn't meet our standards."
+              description="Every listed alternative must meet strict cGMP and third-party verification standards."
             />
             <Step
               icon={CheckCircle2}
@@ -70,20 +76,16 @@ export default function AboutPage() {
         </section>
 
         <section className="rounded-xl bg-secondary/50 p-6">
-          <h2 className="text-lg font-bold">FTC Disclosure</h2>
+          <h2 className="text-lg font-bold">FTC Affiliate Disclosure</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            NutriDupe is reader-supported. When you purchase through links on our site, we may earn an affiliate commission
-            at no additional cost to you. This does not influence our independent research or product recommendations.
-            All products are evaluated solely on their merits — active ingredient equivalence, manufacturing quality, and value.
+            NutriDupe earns commissions from retailers when you purchase through our links. Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates. All products are evaluated solely on their merits — active ingredient equivalence, manufacturing quality, and value.
           </p>
         </section>
 
         <section className="rounded-xl bg-muted/60 p-6">
           <h2 className="text-sm font-bold">FDA Disclaimer</h2>
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-            These statements have not been evaluated by the Food and Drug Administration. These products are not intended to
-            diagnose, treat, cure, or prevent any disease. NutriDupe is an independent research and comparison platform and
-            does not provide medical advice. Always consult a qualified healthcare professional before starting any supplement regimen.
+            These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. NutriDupe is an independent research and comparison platform and does not provide medical advice. Always consult a qualified healthcare professional before starting any supplement regimen.
           </p>
         </section>
       </div>
