@@ -74,10 +74,14 @@ export default async function CompareFormulasPage({ searchParams }: CompareFormu
         <span className="font-semibold text-slate-900 uppercase tracking-wide block mb-1">
           Editorial & Affiliate Disclosure
         </span>
-        NutriDupe earns commissions from retailers when you purchase through our links. Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates.{' '}
-        <Link href="/research-methodology" className="text-emerald-700 underline font-medium hover:text-emerald-800">
-          Read our methodology
-        </Link>.
+        NutriDupe earns commissions from retailers when you purchase through our links.{" "}
+   <strong className="font-semibold text-slate-800">
+   As an Amazon Associate I earn from qualifying purchases.
+   </strong>{" "}
+  Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates.{" "}
+  <Link href="/research-methodology" className="text-emerald-700 underline font-medium hover:text-emerald-800">
+  Read our methodology
+  </Link>
       </div>
 
       {/* Header */}
