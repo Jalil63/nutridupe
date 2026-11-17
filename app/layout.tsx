@@ -161,7 +161,7 @@ export default function RootLayout({
                 <strong>FDA Disclaimer:</strong> Statements made on this website have not been evaluated by the Food and Drug Administration. Products discussed are not intended to diagnose, treat, cure, or prevent any disease. Always consult with a qualified healthcare professional before starting any supplement regimen.
               </p>
               <p>
-                <strong>Affiliate Disclosure:</strong> NutriDupe is an independent research platform. We may earn a commission from purchases made through links on this site at no additional cost to you.
+              <strong>Affiliate Disclosure:</strong> NutriDupe is an independent research platform. We may earn a commission from purchases made through our links, at no extra cost to you. As an Amazon Associate I earn from qualifying purchases.
               </p>
               <p>© {new Date().getFullYear()} NutriDupe. All rights reserved.</p>
             </div>
