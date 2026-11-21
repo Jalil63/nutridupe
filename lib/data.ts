@@ -159,7 +159,7 @@ export async function getIngredientBySlug(slug: string) {
 
 export function formatCurrency(value: number): string {
   const formatted = Number(value || 0).toFixed(2);
-  return `${formatted}`;
+  return `$${formatted}`;
 }
 
 export function calculateSavings(benchmarkPrice: number, dupePrice: number): { amount: number; percentage: number } {
