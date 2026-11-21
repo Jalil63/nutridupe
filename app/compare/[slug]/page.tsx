@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getBenchmarkBySlug, getAllBenchmarks } from '@/lib/data';
+import { getBenchmarkBySlug, getAllBenchmarks, calculateSavings } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { DupeCard } from '@/components/compare/dupe-card';
 
@@ -52,6 +52,8 @@ export default async function ComparisonPage({ params }: { params: any }) {
     notFound();
   }
 
+  const benchmarkServingCost = Number(benchmark.price_per_serving || 0);
+
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Above-the-Fold FTC & Methodology Disclosure */}
@@ -78,7 +80,7 @@ export default async function ComparisonPage({ params }: { params: any }) {
           type="benchmark" 
           data={{
             name: `${benchmark.name} Benchmark Baseline`,
-            targetCostPerServing: benchmark.price_per_serving ? `$${Number(benchmark.price_per_serving).toFixed(2)}` : 'N/A',
+            targetCostPerServing: benchmarkServingCost > 0 ? `$${benchmarkServingCost.toFixed(2)}` : 'N/A',
             clinicalDoseBaseline: 'Matched to peer-reviewed literature & label thresholds'
           }} 
         />
@@ -88,8 +90,33 @@ export default async function ComparisonPage({ params }: { params: any }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {(benchmark.dupes || []).map((dupe: any) => {
           const matchPct = dupe.match_percentage || 90;
-          const costServ = dupe.price_per_serving ? Number(dupe.price_per_serving).toFixed(2) : '0.00';
-          
+          const dupeServingCost = Number(dupe.price_per_serving || 0);
+          const costServ = dupeServingCost.toFixed(2);
+
+          const rawBottlePrice = dupe.price ?? dupe.retail_price;
+          const bottlePrice =
+            rawBottlePrice !== undefined && rawBottlePrice !== null && rawBottlePrice !== ''
+              ? Number(rawBottlePrice).toFixed(2)
+              : '29.99';
+
+          const rawServings = dupe.servings_per_container ?? dupe.servings;
+          const servingsCount =
+            rawServings !== undefined && rawServings !== null && Number(rawServings) > 0
+              ? Number(rawServings)
+              : 30;
+
+          const computedSavings =
+            benchmarkServingCost > 0 && dupeServingCost > 0
+              ? calculateSavings(benchmarkServingCost, dupeServingCost).percentage
+              : null;
+
+          const savingsVal =
+            computedSavings !== null
+              ? String(computedSavings)
+              : dupe.savings_percentage !== undefined && dupe.savings_percentage !== null
+                ? String(dupe.savings_percentage)
+                : '0';
+
           return (
             <div key={dupe.id || dupe.slug} className="flex flex-col justify-between bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <DupeCard 
@@ -104,9 +131,9 @@ export default async function ComparisonPage({ params }: { params: any }) {
                     bioavailabilityGrade: 5
                   },
                   costPerServing: costServ,
-                  retailPrice: dupe.retail_price || '29.99',
-                  servings: dupe.servings || 30,
-                  savingsVsBenchmark: dupe.savings_percentage || '25'
+                  retailPrice: bottlePrice,
+                  servings: servingsCount,
+                  savingsVsBenchmark: savingsVal
                 }}
               />
 
