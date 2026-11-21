@@ -22,7 +22,7 @@ interface ProductCardProps {
     savingsVsBenchmark?: string;
   };
 }
-
+const cleanPrice = (val?: string) => (val ? val.replace(/^\$/, '') : '');
 export function DupeCard({ type, data }: ProductCardProps) {
   // 1. Reference Benchmark Card (Non-purchasable target specification)
   if (type === 'benchmark') {
@@ -83,9 +83,12 @@ export function DupeCard({ type, data }: ProductCardProps) {
       {/* Pricing & Savings */}
       <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-sm">
         <div>
-          <span className="text-slate-900 font-bold">${data.costPerServing}</span>
-          <span className="text-slate-500 text-xs"> / serving (${data.retailPrice} / {data.servings} servings)</span>
-        </div>
+  <span className="text-slate-900 font-bold">${cleanPrice(data.costPerServing)}</span>
+  <span className="text-slate-500 text-xs">
+    {' '}
+    / serving (${cleanPrice(data.retailPrice)} / {data.servings} servings)
+  </span>
+  </div>
         <div className="text-emerald-700 font-semibold text-xs bg-emerald-50 px-2.5 py-1 rounded-md">
           Save {data.savingsVsBenchmark}% vs Benchmark
         </div>
