@@ -16,6 +16,7 @@ export async function getBenchmarks(): Promise<Product[]> {
     .from('products')
     .select('*')
     .eq('type', 'benchmark')
+    .eq('is_active', true)
     .order('created_at', { ascending: true });
 
   if (error || !data) return [];
@@ -35,6 +36,7 @@ export async function getBenchmarkBySlug(slug: string): Promise<BenchmarkWithDup
     .select('*')
     .eq('slug', slug)
     .eq('type', 'benchmark')
+    .eq('is_active', true)
     .maybeSingle();
 
   if (error || !benchmark) return null;
@@ -47,15 +49,20 @@ export async function getBenchmarkBySlug(slug: string): Promise<BenchmarkWithDup
     .select('*')
     .eq('benchmark_id', benchmark.id)
     .eq('type', 'dupe')
+    .eq('is_active', true)
     .order('match_percentage', { ascending: false });
+
+  const mappedDupes = (dupes || []).map((d) => ({
+    ...d,
+    category: catMap.get(d.category_id) || null,
+  }));
+
+  if (mappedDupes.length === 0) return null;
 
   return {
     ...benchmark,
     category: catMap.get(benchmark.category_id) || null,
-    dupes: (dupes || []).map((d) => ({
-      ...d,
-      category: catMap.get(d.category_id) || null,
-    })),
+    dupes: mappedDupes,
   };
 }
 
@@ -64,6 +71,7 @@ export async function getAllBenchmarks(): Promise<BenchmarkWithDupes[]> {
     .from('products')
     .select('*')
     .eq('type', 'benchmark')
+    .eq('is_active', true)
     .order('name', { ascending: true });
 
   if (error || !benchmarks) return [];
@@ -78,16 +86,22 @@ export async function getAllBenchmarks(): Promise<BenchmarkWithDupes[]> {
       .select('*')
       .eq('benchmark_id', b.id)
       .eq('type', 'dupe')
+      .eq('is_active', true)
       .order('match_percentage', { ascending: false });
 
-    result.push({
-      ...b,
-      category: catMap.get(b.category_id) || null,
-      dupes: (dupes || []).map((d) => ({
-        ...d,
-        category: catMap.get(d.category_id) || null,
-      })),
-    });
+    const mappedDupes = (dupes || []).map((d) => ({
+      ...d,
+      category: catMap.get(d.category_id) || null,
+    }));
+
+    // Only include benchmarks that have at least one active dupe
+    if (mappedDupes.length > 0) {
+      result.push({
+        ...b,
+        category: catMap.get(b.category_id) || null,
+        dupes: mappedDupes,
+      });
+    }
   }
 
   return result;
@@ -107,6 +121,7 @@ export async function getAllProductsWithIngredients(): Promise<Product[]> {
   const { data: products, error } = await supabase
     .from('products')
     .select('*')
+    .eq('is_active', true)
     .order('created_at', { ascending: false });
 
   if (error || !products) return [];
@@ -133,6 +148,7 @@ export async function getProductsByCategory(categorySlug: string): Promise<Produ
     .from('products')
     .select('*')
     .eq('category_id', category.id)
+    .eq('is_active', true)
     .order('type', { ascending: true });
 
   if (error || !data) return [];
