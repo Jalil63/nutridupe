@@ -1,38 +1,52 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
+function isDirectAmazonProductUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    const isAmazonHost =
+      parsed.hostname === 'www.amazon.com' ||
+      parsed.hostname === 'amazon.com';
+    const isProductPath =
+      parsed.pathname.includes('/dp/') ||
+      parsed.pathname.includes('/gp/product/');
+
+    return (
+      (parsed.protocol === 'https:' || parsed.protocol === 'http:') &&
+      isAmazonHost &&
+      isProductPath
+    );
+  } catch {
+    return false;
+  }
+}
+
 export async function GET(
-  request: Request,
+  _request: Request,
   props: { params: Promise<{ slug: string }> }
 ) {
-  const params = await props.params;
-  const slug = params.slug;
+  const { slug } = await props.params;
 
-  // Fetch product from Supabase
   const { data: product, error } = await supabase
     .from('products')
-    .select('name, affiliate_url')
+    .select('affiliate_url, is_active')
     .eq('slug', slug)
+    .eq('is_active', true)
     .maybeSingle();
 
-  if (error || !product) {
-    return NextResponse.redirect('https://www.nutridupe.com', { status: 307 });
+  if (error || !product || !product.affiliate_url) {
+    return NextResponse.redirect('https://www.nutridupe.com/compare', {
+      status: 307,
+    });
   }
 
-  const rawUrl = product.affiliate_url ? product.affiliate_url.trim() : '';
+  const targetUrl = product.affiliate_url.trim();
 
-  // 1. If there's a real, specific product URL in the DB (like an actual Amazon product /dp/ ASIN link), use it
-  if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
-    // Make sure it's not a generic root domain placeholder
-    if (!rawUrl.endsWith('amazon.com') && !rawUrl.endsWith('amazon.com/')) {
-      return NextResponse.redirect(rawUrl, { status: 307 });
-    }
+  if (!isDirectAmazonProductUrl(targetUrl)) {
+    return NextResponse.redirect('https://www.nutridupe.com/compare', {
+      status: 307,
+    });
   }
 
-  // 2. DIAGNOSTIC FALLBACK: Redirect to Google Search instead of Amazon search
-  // This bypasses Amazon's bot block entirely so we can see if the route itself works.
-  const query = encodeURIComponent(product.name || slug.replace(/-/g, ' '));
-  const safeSearchUrl = `https://www.google.com/search?q=${query}+supplement`;
-
-  return NextResponse.redirect(safeSearchUrl, { status: 307 });
+  return NextResponse.redirect(targetUrl, { status: 307 });
 }
