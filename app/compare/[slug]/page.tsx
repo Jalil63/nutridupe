@@ -3,6 +3,8 @@ import { getBenchmarkBySlug, getAllBenchmarks, calculateSavings } from '@/lib/da
 import { notFound } from 'next/navigation';
 import { DupeCard } from '@/components/compare/dupe-card';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
   try {
     const benchmarks = await getAllBenchmarks();
