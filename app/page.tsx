@@ -31,13 +31,13 @@ export default async function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
               <ShieldCheck className="h-4 w-4" />
-              cGMP-Certified & Third-Party Tested Benchmarks
+              Label-Audited Benchmarks & Testing Claims Review
             </div>
             <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
               Evaluate <span className="text-primary">formula transparency</span> & active ingredient equivalence
             </h1>
             <p className="mt-6 text-balance text-lg text-muted-foreground">
-              Compare premium brand-name wellness products with cGMP-certified, FDA-registered, third-party tested benchmarks — focusing on active dosages, purity standards, and cost-per-serving efficiency.
+              Compare premium brand-name wellness products with label-audited alternatives by reviewing active dosages, brand testing claims, and cost-per-serving efficiency.
             </p>
             <div className="mt-8">
               <HomeSearch />
@@ -61,10 +61,10 @@ export default async function HomePage() {
       {/* Stats Bar */}
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-8 sm:px-6 lg:grid-cols-4 lg:px-8">
-          <StatCard icon={ShieldCheck} label="cGMP Certified" value="100%" />
-          <StatCard icon={FlaskConical} label="Third-Party Tested" value="NSF / USP" />
-          <StatCard icon={TrendingDown} label="Active Dosing Match" value="Verified" />
-          <StatCard icon={DollarSign} label="Cost per Serving" value="From $0.18" />
+          <StatCard icon={ShieldCheck} label="cGMP Claims" value="Reviewed" />
+          <StatCard icon={FlaskConical} label="Testing Claims" value="Reviewed" />
+          <StatCard icon={TrendingDown} label="Active Match" value="78%–100%" />
+          <StatCard icon={DollarSign} label="Cost per Serving" value="From $0.17" />
         </div>
       </section>
 
@@ -77,7 +77,7 @@ export default async function HomePage() {
                 Featured Comparisons
               </h2>
               <p className="mt-2 text-muted-foreground">
-                Click a premium product below to see its cGMP-certified dupes side-by-side.
+                Click a premium product below to see its label-audited alternatives side-by-side.
               </p>
             </div>
           </div>
