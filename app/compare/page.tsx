@@ -31,19 +31,19 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* Editorial & Affiliate Disclosure */}
+     {/* Editorial & Affiliate Disclosure */}
       <div className="mb-6 rounded-lg bg-slate-50 border border-slate-200 p-4 text-xs text-slate-600 leading-relaxed">
         <span className="font-semibold text-slate-900 uppercase tracking-wide block mb-1">
           Editorial & Affiliate Disclosure
         </span>
-        NutriDupe earns commissions from retailers when you purchase through our links.{" "}
-   <strong className="font-semibold text-slate-800">
-   As an Amazon Associate, I earn from qualifying purchases.
-   </strong>{" "}
-   Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates.{" "}
-    <a href="/research-methodology" className="text-emerald-700 underline font-medium hover:text-emerald-800">
-    Read our methodology
-    </a>
+        <strong className="font-semibold text-slate-800">
+          As an Amazon Associate, I earn from qualifying purchases.
+        </strong>{" "}
+        NutriDupe earns commissions on qualifying purchases made through product links at no extra cost to you.{" "}
+        Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates.{" "}
+        <a href="/research-methodology" className="text-emerald-700 underline font-medium hover:text-emerald-800">
+          Read our methodology
+        </a>
       </div>
 
       <div className="mb-8">
