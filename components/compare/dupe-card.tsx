@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface SubScores {
-  overlap: number;
-  dosageVariance: number;
-  bioavailabilityGrade: number;
+  overlap?: number | null;
+  dosageVariance?: number | null;
+  bioavailabilityGrade?: number | null;
 }
 
 interface ProductCardProps {
@@ -14,15 +14,18 @@ interface ProductCardProps {
     productName?: string;
     targetCostPerServing?: string;
     clinicalDoseBaseline?: string;
-    activeMatchPercentage?: number;
-    subScores?: SubScores;
+    activeMatchPercentage?: number | null;
+    isCategoryPair?: boolean;
+    subScores?: SubScores | null;
     costPerServing?: string;
     retailPrice?: string;
     servings?: number;
     savingsVsBenchmark?: string;
   };
 }
+
 const cleanPrice = (val?: string) => (val ? val.replace(/^\$/, '') : '');
+
 export function DupeCard({ type, data }: ProductCardProps) {
   // 1. Reference Benchmark Card (Non-purchasable target specification)
   if (type === 'benchmark') {
@@ -34,10 +37,10 @@ export function DupeCard({ type, data }: ProductCardProps) {
           </span>
           <span className="text-xs text-slate-500 font-medium">Non-purchasable baseline</span>
         </div>
-        
+
         <h3 className="text-xl font-bold text-slate-900 mb-2">{data.name}</h3>
         <p className="text-sm text-slate-600 mb-4">Target active formulation established from clinical literature.</p>
-        
+
         <div className="grid grid-cols-2 gap-4 pt-3 border-t border-slate-200 text-sm">
           <div>
             <span className="block text-xs text-slate-500">Target Cost Ceiling</span>
@@ -52,43 +55,74 @@ export function DupeCard({ type, data }: ProductCardProps) {
     );
   }
 
-  // 2. Third-Party Dupe Card (With 50/30/20 Sub-Score Transparency Bar)
+  const hasMatchScore =
+    !data.isCategoryPair &&
+    data.activeMatchPercentage !== null &&
+    data.activeMatchPercentage !== undefined;
+
+  const hasSubScores =
+    hasMatchScore &&
+    data.subScores &&
+    data.subScores.overlap !== null &&
+    data.subScores.overlap !== undefined;
+
+  // 2. Third-Party Dupe Card
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-      <div className="flex justify-between items-start mb-2">
+      <div className="flex justify-between items-start gap-3 mb-2">
         <div>
           <span className="text-xs font-semibold text-emerald-700 uppercase tracking-wider">{data.brandName}</span>
           <h4 className="text-lg font-bold text-slate-900">{data.productName}</h4>
         </div>
-        <div className="text-right">
-          <div className="text-2xl font-extrabold text-emerald-600">{data.activeMatchPercentage}%</div>
-          <div className="text-xs text-slate-500">Active Match</div>
-        </div>
+        {hasMatchScore ? (
+          <div className="text-right shrink-0">
+            <div className="text-2xl font-extrabold text-emerald-600">{data.activeMatchPercentage}%</div>
+            <div className="text-xs text-slate-500">Active Match</div>
+          </div>
+        ) : (
+          <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 shrink-0">
+            Category Pair
+          </span>
+        )}
       </div>
 
-      {/* Sub-Score Transparency Bar (Auditable Math) */}
-      {data.subScores && (
+      {/* Sub-Score Transparency Bar (for formula matches) or Category Pair Note */}
+      {hasSubScores && data.subScores ? (
         <div className="bg-slate-50 rounded-lg p-2.5 my-3 text-xs font-medium text-slate-700 flex flex-wrap gap-x-4 gap-y-1 border border-slate-100">
-          <span>Overlap: <strong className="text-slate-900">{data.subScores.overlap}%</strong></span>
           <span>
-            Dosage:{' '}
-            <strong className="text-slate-900">
-              {data.subScores.dosageVariance >= 0 ? `+${data.subScores.dosageVariance}%` : `${data.subScores.dosageVariance}%`}
-            </strong>
+            Overlap: <strong className="text-slate-900">{data.subScores.overlap}%</strong>
           </span>
-          <span>Bioavailability: <strong className="text-slate-900">Grade {data.subScores.bioavailabilityGrade}</strong></span>
+          {data.subScores.dosageVariance !== null && data.subScores.dosageVariance !== undefined && (
+            <span>
+              Dosage:{' '}
+              <strong className="text-slate-900">
+                {data.subScores.dosageVariance >= 0
+                  ? `+${data.subScores.dosageVariance}%`
+                  : `${data.subScores.dosageVariance}%`}
+              </strong>
+            </span>
+          )}
+          {data.subScores.bioavailabilityGrade !== null && data.subScores.bioavailabilityGrade !== undefined && (
+            <span>
+              Bioavailability: <strong className="text-slate-900">Grade {data.subScores.bioavailabilityGrade}</strong>
+            </span>
+          )}
+        </div>
+      ) : (
+        <div className="bg-amber-50/50 rounded-lg p-2.5 my-3 text-xs text-slate-700 border border-amber-100">
+          <strong className="text-slate-900">Category alternative:</strong> Different active ingredients or format than the benchmark—compare Supplement Facts labels before switching.
         </div>
       )}
 
       {/* Pricing & Savings */}
       <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-sm">
         <div>
-  <span className="text-slate-900 font-bold">${cleanPrice(data.costPerServing)}</span>
-  <span className="text-slate-500 text-xs">
-    {' '}
-    / serving (${cleanPrice(data.retailPrice)} / {data.servings} servings)
-  </span>
-  </div>
+          <span className="text-slate-900 font-bold">${cleanPrice(data.costPerServing)}</span>
+          <span className="text-slate-500 text-xs">
+            {' '}
+            / serving (${cleanPrice(data.retailPrice)} / {data.servings} servings)
+          </span>
+        </div>
         <div className="text-emerald-700 font-semibold text-xs bg-emerald-50 px-2.5 py-1 rounded-md">
           Save {data.savingsVsBenchmark}% vs Benchmark
         </div>
