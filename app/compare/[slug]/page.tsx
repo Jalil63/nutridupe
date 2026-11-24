@@ -29,8 +29,11 @@ export async function generateMetadata({ params }: { params: any }): Promise<Met
   }
 
   const topDupe = benchmark.dupes?.[0];
-  const matchVal = (topDupe as any)?.match_percentage || '90';
-  const title = `${benchmark.name} Alternatives & Formulation-Matched Dupes (Up to ${matchVal}% Match)`;
+  const rawMatch = (topDupe as any)?.match_percentage;
+  const hasMatchScore = rawMatch !== null && rawMatch !== undefined && rawMatch !== '';
+  const title = hasMatchScore
+    ? `${benchmark.name} Alternatives & Formulation-Matched Dupes (Up to ${Number(rawMatch)}% Match)`
+    : `${benchmark.name} Category Alternatives & Cost Comparison | NutriDupe`;
   const description = `Compare active ingredient alignment, dosage thresholds, and cost per serving for ${benchmark.name}.`;
 
   return {
@@ -63,10 +66,14 @@ export default async function ComparisonPage({ params }: { params: any }) {
         <span className="font-semibold text-slate-900 uppercase tracking-wide block mb-1">
           Editorial & Affiliate Disclosure
         </span>
-        NutriDupe earns commissions from retailers when you purchase through our links. Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates.{' '}
+        <strong className="font-semibold text-slate-800">
+          As an Amazon Associate I earn from qualifying purchases.
+        </strong>{' '}
+        NutriDupe earns commissions from retailers when you purchase through our links at no extra cost to you. Our benchmark criteria and scoring models are defined and published in advance and do not change based on commission rates.{' '}
         <a href="/research-methodology" className="text-emerald-700 underline font-medium hover:text-emerald-800">
           Read our methodology
-        </a>.
+        </a>
+        .
       </div>
 
       <div className="mb-8">
@@ -78,20 +85,25 @@ export default async function ComparisonPage({ params }: { params: any }) {
 
       {/* Reference Benchmark Baseline Card */}
       <div className="mb-8">
-        <DupeCard 
-          type="benchmark" 
+        <DupeCard
+          type="benchmark"
           data={{
             name: `${benchmark.name} Benchmark Baseline`,
             targetCostPerServing: benchmarkServingCost > 0 ? `$${benchmarkServingCost.toFixed(2)}` : 'N/A',
-            clinicalDoseBaseline: 'Matched to peer-reviewed literature & label thresholds'
-          }} 
+            clinicalDoseBaseline: 'Matched to peer-reviewed literature & label thresholds',
+          }}
         />
       </div>
 
       <h2 className="text-2xl font-bold text-gray-900 mb-4">Top Formulation Dupes</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {(benchmark.dupes || []).map((dupe: any) => {
-          const matchPct = dupe.match_percentage || 90;
+          const hasMatchScore =
+            dupe.match_percentage !== null &&
+            dupe.match_percentage !== undefined &&
+            dupe.match_percentage !== '';
+          const matchPct: number | null = hasMatchScore ? Number(dupe.match_percentage) : null;
+
           const dupeServingCost = Number(dupe.price_per_serving || 0);
           const costServ = dupeServingCost.toFixed(2);
 
@@ -120,22 +132,30 @@ export default async function ComparisonPage({ params }: { params: any }) {
                 : '0';
 
           return (
-            <div key={dupe.id || dupe.slug} className="flex flex-col justify-between bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <DupeCard 
+            <div
+              key={dupe.id || dupe.slug}
+              className="flex flex-col justify-between bg-white rounded-xl shadow-sm border border-gray-200 p-6"
+            >
+              <DupeCard
                 type="dupe"
                 data={{
-                  brandName: dupe.brand_name || 'Third-Party Brand',
+                  brandName: dupe.brand_name || dupe.brand || 'Third-Party Brand',
                   productName: dupe.name || 'Alternative Formula',
                   activeMatchPercentage: matchPct,
-                  subScores: dupe.sub_scores || {
-                    overlap: matchPct,
-                    dosageVariance: 0,
-                    bioavailabilityGrade: 5
-                  },
+                  isCategoryPair: matchPct === null,
+                  subScores: dupe.sub_scores ?? (
+                    matchPct !== null
+                      ? {
+                          overlap: matchPct,
+                          dosageVariance: 0,
+                          bioavailabilityGrade: 5,
+                        }
+                      : null
+                  ),
                   costPerServing: costServ,
                   retailPrice: bottlePrice,
                   servings: servingsCount,
-                  savingsVsBenchmark: savingsVal
+                  savingsVsBenchmark: savingsVal,
                 }}
               />
 
