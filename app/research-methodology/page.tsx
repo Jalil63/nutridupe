@@ -1,8 +1,8 @@
-import { ShieldCheck, Building2, FlaskConical, Scale, Beaker, Microscope, DollarSign, Percent, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Building2, FlaskConical, Scale, Beaker, Microscope, DollarSign, Percent, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
   title: 'Research & Scoring Methodology | NutriDupe',
-  description: 'How NutriDupe calculates active-ingredient equivalence, bioavailability ratings, and price-per-serving transparency.',
+  description: 'How NutriDupe evaluates label-based formula match, bioavailability forms, brand quality claims, and price per serving.',
 };
 
 export default function ResearchMethodologyPage() {
@@ -18,61 +18,61 @@ export default function ResearchMethodologyPage() {
           Our Research &amp; Scoring Methodology
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          How NutriDupe calculates active-ingredient equivalence, bioavailability ratings, and price-per-serving transparency.
+          How NutriDupe compares Supplement Facts labels, reviews brand quality and testing claims, and calculates cost per serving.
         </p>
       </div>
 
-      {/* Quality Baseline Callout */}
+      {/* Quality Baseline & Testing Claims Review Callout */}
       <div className="mb-12 rounded-xl border-2 border-primary/20 bg-gradient-sage p-6 sm:p-8">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <ShieldCheck className="h-5 w-5" />
           </div>
-          <h2 className="text-xl font-bold">What Defines a NutriDupe Benchmark?</h2>
+          <h2 className="text-xl font-bold">Benchmark Role &amp; Testing Claims Review</h2>
         </div>
         <p className="mt-4 text-muted-foreground">
-          A Reference Benchmark is <strong className="text-foreground">NOT</strong> a product for sale by NutriDupe. It is a non-purchasable target formulation specification established from clinical literature. Every alternative evaluated against it must meet rigorous quality baselines:
+          A Reference Benchmark is <strong className="text-foreground">NOT</strong> a product sold by NutriDupe. It is a non-purchasable reference point established from clinical literature or product specifications. NutriDupe does not buy or independently lab-test every supplement; instead, we review labels, listed prices, and brand manufacturing and testing claims:
         </p>
         <div className="mt-5 space-y-3">
           <BaselineItem
             icon={ShieldCheck}
-            title="cGMP-Compliant Facility"
-            description="Manufactured under current Good Manufacturing Practice regulations."
+            title="cGMP Claims Review"
+            description="We check whether brands state manufacturing under current Good Manufacturing Practice (cGMP) standards."
           />
           <BaselineItem
             icon={Building2}
-            title="FDA-Registered Facility"
-            description="Produced in a facility registered with the U.S. Food and Drug Administration."
+            title="Facility & Label Disclosures"
+            description="We review publicly available facility registration statements, ingredient forms, and Supplement Facts labels."
           />
           <BaselineItem
             icon={FlaskConical}
-            title="Third-Party Purity Verification"
-            description="Verified by NSF, USP, Informed-Sport, or accompanied by a verifiable Certificate of Analysis (CoA)."
+            title="Third-Party Testing Claims Review"
+            description="We note brand references to third-party programs (such as NSF, USP, Informed-Sport, or Certificates of Analysis) without claiming independent lab verification by NutriDupe."
           />
         </div>
       </div>
 
-      {/* NEW: How We Set Benchmark Target Values (P0 Fix) */}
+      {/* How We Set Benchmark Target Values */}
       <section className="mb-12 rounded-xl border border-border bg-card p-6 sm:p-8">
-        <h2 className="text-xl font-bold tracking-tight mb-3">How We Set Benchmark Target Values</h2>
+        <h2 className="text-xl font-bold tracking-tight mb-3">How We Set Benchmark Reference Values</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          A benchmark&apos;s target values are not arbitrary. For each active ingredient, the benchmark target is drawn from one of three published sources, in order of preference:
+          Reference values are not arbitrary. For each active ingredient, we look to one of three sources in order of preference:
         </p>
         <ol className="mt-3 list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-          <li><strong>Labeled clinical dosing</strong> from peer-reviewed trials of the ingredient (e.g., 5 g/day creatine monohydrate; 300–600 mg/day KSM-66 ashwagandha).</li>
+          <li><strong>Published clinical dosing</strong> from human trials of the ingredient (for example, 5 g/day creatine monohydrate; 300 to 600 mg/day ashwagandha).</li>
           <li><strong>Established reference intake</strong> or upper-limit guidance from the NIH Office of Dietary Supplements or equivalent bodies.</li>
-          <li><strong>The premium product&apos;s own label claim</strong>, where no independent clinical threshold exists.</li>
+          <li><strong>The benchmark product&apos;s own label claim</strong>, where no independent clinical threshold applies.</li>
         </ol>
         <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-          Where a premium product doses below the clinical threshold, the benchmark still targets the clinical threshold, and our analysis will show that the premium product falls short. Benchmark targets are fixed in advance and do not change based on commission rates.
+          Where a benchmark product doses below a clinical reference level, our comparison still notes the clinical threshold. Benchmark criteria are set in advance and do not change based on affiliate commission rates.
         </p>
       </section>
 
       {/* 50/30/20 Formula Section */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold tracking-tight">The 50/30/20 Equivalence Formula</h2>
+        <h2 className="text-2xl font-bold tracking-tight">The 50/30/20 Formula Match Score</h2>
         <p className="mt-2 text-muted-foreground">
-          Every product card displays an &quot;Active Match %&quot; (our user-facing label for the composite Equivalence Score), calculated using this transparent, weighted formula:
+          Formula-matched alternatives show an &quot;Active Match %&quot; based on label comparison. Where a product is paired as a functional category alternative rather than a formula match, we label it as a <strong>Category Pair</strong> instead of displaying a match score.
         </p>
 
         {/* Formula Card */}
@@ -99,19 +99,19 @@ export default function ResearchMethodologyPage() {
             weight="50%"
             icon={Beaker}
             title="Active Ingredient Overlap"
-            description="Evaluates raw active compound presence while excluding fillers, synthetic binders, and inactive excipients. We compare the complete list of active ingredients against the benchmark spec, calculating the percentage of shared actives by count and clinical relevance."
+            description="Compares active ingredients listed on the Supplement Facts label against the benchmark formula, focusing on shared active compounds rather than inactive fillers or binders."
           />
           <FormulaBreakdown
             weight="30%"
             icon={Scale}
             title="Dosage Precision"
-            description="Compares active milligrams per serving against clinical study thresholds. Formulations within 10% of the target receive full credit; wider deviations are penalized proportionally."
+            description="Compares active amounts per serving on the label against reference targets. Formulations within 10% of the target receive full credit; larger gaps are scored lower."
           />
           <FormulaBreakdown
             weight="20%"
             icon={FlaskConical}
-            title="Bioavailability & Chemical Quality"
-            description="Grades compound absorption based on chemical form. Grade 5 is awarded for chelated or methylated forms (e.g., Magnesium Glycinate, Methylcobalamin). Grades descend to Grade 1 for low-absorption forms like oxides."
+            title="Bioavailability & Chemical Form"
+            description="Scores chemical forms listed on the label (such as chelated or methylated forms versus lower-absorption oxides). Match scores reflect label data, not physical lab testing."
           />
         </div>
 
@@ -123,25 +123,25 @@ export default function ResearchMethodologyPage() {
                 <th className="px-4 py-3 font-semibold">Grade</th>
                 <th className="px-4 py-3 font-semibold">Form Quality</th>
                 <th className="px-4 py-3 font-semibold">Examples</th>
-                <th className="px-4 py-3 font-semibold">Absorption</th>
+                <th className="px-4 py-3 font-semibold">Typical Profile</th>
               </tr>
             </thead>
             <tbody>
-              <GradeRow grade="5" form="Chelated / Methylated" examples="Magnesium Glycinate, Methylcobalamin, P5P" absorption="Excellent" />
+              <GradeRow grade="5" form="Chelated / Methylated" examples="Magnesium Glycinate, Methylcobalamin, P5P" absorption="High" />
               <GradeRow grade="4" form="Coenzymated / Active" examples="5-MTHF Folate, CoQ10 Ubiquinol" absorption="Very Good" />
               <GradeRow grade="3" form="Standard / Citrate" examples="Creatine Monohydrate, Calcium Citrate" absorption="Good" />
               <GradeRow grade="2" form="Bound / Complex" examples="Zinc Gluconate, Magnesium Citrate" absorption="Moderate" />
-              <GradeRow grade="1" form="Oxide / Low-grade" examples="Magnesium Oxide, Zinc Oxide" absorption="Poor (as low as 4%)" />
+              <GradeRow grade="1" form="Oxide / Low-grade" examples="Magnesium Oxide, Zinc Oxide" absorption="Lower" />
             </tbody>
           </table>
         </div>
       </section>
 
-      {/* Cost Calculation Section (Purged House-Brand Example) */}
+      {/* Cost Calculation Section */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold tracking-tight">Cost Calculation Transparency</h2>
         <p className="mt-2 text-muted-foreground">
-          Price-per-serving is calculated using a straightforward, auditable formula across real third-party market alternatives.
+          Price per serving is calculated from listed retail prices and serving counts on the label. Prices are point-in-time snapshots and can change on Amazon.
         </p>
 
         {/* Cost Formula Card */}
@@ -153,33 +153,33 @@ export default function ResearchMethodologyPage() {
           <div className="mt-4 rounded-lg bg-secondary/60 p-5 text-center">
             <p className="text-lg font-bold tracking-tight sm:text-xl">
               Cost Per Serving ={' '}
-              <span className="text-primary">Retail Package Price</span>
+              <span className="text-primary">Listed Package Price</span>
               {' / '}
               <span className="text-primary">Servings Per Container</span>
             </p>
           </div>
         </div>
 
-        {/* Example Calculation using a Real Third-Party Product */}
+        {/* Example Calculation aligned with current catalog */}
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           <CostExample
-            label="Benchmark Spec: AG1 Target"
-            price="Spec Target"
-            servings="30"
-            perServing="&le; $1.00/serv"
+            label="Benchmark: Thorne Creatine"
+            price="Reference"
+            servings="Per label"
+            perServing="$0.49/serv"
           />
           <CostExample
-            label="Real Dupe: Live it Up Greens"
-            price="$29.99"
-            servings="30"
-            perServing="$1.00"
+            label="Alternative: BulkSupplements"
+            price="Listed price"
+            servings="Per label"
+            perServing="$0.17/serv"
             highlight
           />
           <CostExample
-            label="Your Savings vs AG1 ($2.63)"
-            price="—"
-            servings="—"
-            perServing="$1.63/serving"
+            label="Savings vs. Benchmark"
+            price="65% lower"
+            servings="100% match"
+            perServing="$0.32/serv"
             savings
           />
         </div>
@@ -189,10 +189,10 @@ export default function ResearchMethodologyPage() {
       <section className="mb-12 rounded-xl border border-border bg-card p-6 sm:p-8">
         <h3 className="text-lg font-bold tracking-tight mb-3">References &amp; Standards</h3>
         <ul className="list-disc list-inside space-y-1.5 text-sm text-muted-foreground">
-          <li>NIH Office of Dietary Supplements - Dietary Supplement Fact Sheets.</li>
-          <li>NSF Certified for Sport &amp; USP Verified program criteria.</li>
-          <li>Peer-reviewed bioavailability literature supporting chelated vs. oxide absorption.</li>
-          <li>FDA cGMP Regulations (21 CFR Part 111).</li>
+          <li>NIH Office of Dietary Supplements: Dietary Supplement Fact Sheets.</li>
+          <li>NSF Certified for Sport and USP Verified program criteria.</li>
+          <li>Peer-reviewed literature on ingredient forms and bioavailability.</li>
+          <li>FDA cGMP regulations (21 CFR Part 111).</li>
         </ul>
       </section>
 
@@ -201,9 +201,9 @@ export default function ResearchMethodologyPage() {
         <div className="flex items-start gap-3">
           <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
           <div>
-            <h3 className="font-semibold">Editorial Independence</h3>
+            <h3 className="font-semibold">Editorial Independence &amp; Affiliate Disclosure</h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              Our scoring formula is applied identically to every product, regardless of affiliate status. Affiliate partnerships do not influence equivalence scores, bioavailability grades, or cost calculations. All scores are derived from publicly available label data and peer-reviewed clinical literature.
+              As an Amazon Associate I earn from qualifying purchases. Our comparison criteria are applied consistently regardless of affiliate status. Scores and comparisons are based on publicly available label data, listed prices, and brand quality and testing claims rather than independent lab testing by NutriDupe.
             </p>
           </div>
         </div>
@@ -311,11 +311,11 @@ function CostExample({
       <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</div>
       <div className="mt-2 space-y-1 text-sm">
         <div className="flex justify-between">
-          <span className="text-muted-foreground">Retail Price</span>
+          <span className="text-muted-foreground">Detail</span>
           <span className="font-medium">{price}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-muted-foreground">Servings</span>
+          <span className="text-muted-foreground">Basis</span>
           <span className="font-medium">{servings}</span>
         </div>
         <div className="mt-2 border-t border-border pt-2">
