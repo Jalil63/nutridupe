@@ -9,7 +9,7 @@ export default function ResearchGuidesIndex() {
           Research Guides
         </span>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-          NutriDupe Research Guides & Scientific Audits
+          NutriDupe Research Guides &amp; Scientific Audits
         </h1>
         <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg">
           Evidence-based breakdowns, active-ingredient audits, and price-per-serving analyses.
@@ -18,7 +18,7 @@ export default function ResearchGuidesIndex() {
 
       {/* Featured Article */}
       <div className="mb-12">
-        <Link 
+        <Link
           href="/research-guides/science-of-supplement-duping"
           className="block bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 hover:border-emerald-500 hover:shadow-lg transition-all group"
         >
@@ -28,7 +28,7 @@ export default function ResearchGuidesIndex() {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 text-xs text-slate-500 mb-2">
-                <span>Methodology & Science</span>
+                <span>Methodology &amp; Science</span>
                 <span>•</span>
                 <span>6 Min Read</span>
                 <span>•</span>
@@ -50,10 +50,33 @@ export default function ResearchGuidesIndex() {
 
       {/* Grid of Secondary Articles */}
       <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 text-center">
-        More Research Guides & Audits
+        More Research Guides &amp; Audits
       </h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
+
+        {/* Latest Guide: 9 Supplement Pairs Compared */}
+        <Link
+          href="/research-guides/9-supplement-pairs-compared"
+          className="bg-white border border-slate-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-md transition-all group flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+              <span className="font-semibold text-emerald-700">Price &amp; Label Audit</span>
+              <span>•</span>
+              <span>Nov 25, 2026</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
+              9 Supplement Pairs Compared: Up to 88% Cheaper per Serving
+            </h3>
+            <p className="text-slate-600 text-sm mb-4">
+              Side-by-side label match scores, category pair notes, and per-serving pricing across 16 listed products on NutriDupe.
+            </p>
+          </div>
+          <span className="text-emerald-600 font-semibold text-sm inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            Read Guide &rarr;
+          </span>
+        </Link>
+
         {/* Article 1: AG1 Audit */}
         <Link
           href="/research-guides/athletic-greens-ag1-audit"
@@ -66,7 +89,7 @@ export default function ResearchGuidesIndex() {
               <span>7 Min Read</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
-              Athletic Greens AG1: Scientific Analysis & Top cGMP Alternatives
+              Athletic Greens AG1: Scientific Analysis &amp; Top cGMP Alternatives
             </h3>
             <p className="text-slate-600 text-sm mb-4">
               Our active-ingredient audit reveals cGMP alternatives delivering equivalent profiles at half the cost.
@@ -112,7 +135,7 @@ export default function ResearchGuidesIndex() {
               <span>6 Min Read</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
-              KSM-66 Ashwagandha: Sourcing Standards & Equivalents
+              KSM-66 Ashwagandha: Sourcing Standards &amp; Equivalents
             </h3>
             <p className="text-slate-600 text-sm mb-4">
               Comparing KSM-66 root extraction against generic powders to identify verified alternatives.
@@ -158,7 +181,7 @@ export default function ResearchGuidesIndex() {
               <span>7 Min Read</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
-              Omega-3 Fish Oil: Triglyceride vs. Ethyl Ester & IFOS Standards
+              Omega-3 Fish Oil: Triglyceride vs. Ethyl Ester &amp; IFOS Standards
             </h3>
             <p className="text-slate-600 text-sm mb-4">
               Evaluating rTG bioavailability, oxidation TOTOX limits, and active EPA/DHA ratio auditing.
@@ -181,7 +204,7 @@ export default function ResearchGuidesIndex() {
               <span>6 Min Read</span>
             </div>
             <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2">
-              Vitamin D3 + K2: Synergistic Ratios & Fat-Soluble Carriers
+              Vitamin D3 + K2: Synergistic Ratios &amp; Fat-Soluble Carriers
             </h3>
             <p className="text-slate-600 text-sm mb-4">
               Auditing trans-MK-7 isomer ratios, arterial calcification prevention, and MCT carrier oil uptake.
