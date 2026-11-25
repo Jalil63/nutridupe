@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Star, ArrowRight, ShieldCheck, FlaskConical } from 'lucide-react';
+import { Star, ArrowRight, ShieldCheck } from 'lucide-react';
 import { formatCurrency } from '@/lib/data';
 import type { Product } from '@/lib/types';
 
@@ -24,8 +24,12 @@ export function BenchmarkCard({ product }: { product: Product }) {
         <p className="mb-4 line-clamp-3 text-sm text-muted-foreground">{product.description}</p>
 
         <div className="mb-4 flex flex-wrap gap-1.5">
-          {product.certifications.slice(0, 3).map((cert) => (
-            <span key={cert} className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+          {(product.certifications || []).slice(0, 3).map((cert) => (
+            <span
+              key={cert}
+              title="Brand/label claim reviewed by NutriDupe"
+              className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+            >
               <ShieldCheck className="h-3 w-3" />
               {cert}
             </span>
