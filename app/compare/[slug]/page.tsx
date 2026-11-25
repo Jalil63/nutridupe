@@ -169,7 +169,7 @@ export default async function ComparisonPage({ params }: { params: any }) {
                   View Deal & Details →
                 </a>
                 <p className="mt-2 text-[11px] text-slate-400 text-center">
-                  Affiliate link — NutriDupe earns a commission on qualifying purchases.
+                  Affiliate link: NutriDupe earns a commission on qualifying purchases.
                 </p>
               </div>
             </div>
