@@ -17,43 +17,43 @@ export default function CardLegendModal({ isOpen, onClose }: CardLegendModalProp
       id: 1,
       title: 'Active Match Percentage',
       description:
-        'Algorithmic comparison of active compound profiles and bioavailable dosages against the reference benchmark product.',
+        'Compares active ingredients, label dosages, and ingredient forms against the reference benchmark based on Supplement Facts labels.',
     },
     {
       id: 2,
-      title: 'Savings & Price Comparison',
+      title: 'Savings vs. Benchmark',
       description:
-        'Calculates the direct cost savings percentage compared to purchasing the premium name-brand reference product.',
+        'Shows the percentage saved per serving compared to the reference benchmark using listed retail prices and serving counts.',
     },
     {
       id: 3,
-      title: 'Quality Certifications (cGMP, FDA-Reg, 3rd-Party)',
+      title: 'Quality & Testing Claims (cGMP, FDA-Reg, Testing Claims)',
       description:
-        'Verifies manufacturing standards. cGMP ensures strict quality control, FDA-Reg indicates registered facility status, and 3rd-Party testing confirms purity and potency.',
+        'Reflects brand quality and testing statements reviewed from labels and brand disclosures rather than independent lab testing by NutriDupe.',
     },
     {
       id: 4,
       title: 'Price per Serving',
       description:
-        'Breaks down the exact daily cost per serving based on standard recommended usage sizing to give you true value comparison.',
+        'Calculated by dividing the listed package price by the servings per container shown on the Supplement Facts label.',
     },
     {
       id: 5,
       title: 'Cost Difference vs. Benchmark',
       description:
-        'Shows the absolute dollar amount saved per serving when choosing this alternative over the benchmark brand.',
+        'Shows the per-serving price difference between the alternative and the reference benchmark.',
     },
     {
       id: 6,
       title: 'View Active Ingredients Breakdown',
       description:
-        'Expands the full ingredient matrix to inspect individual active compounds, milligram dosages, and potencies side-by-side.',
+        'Expands ingredient details so you can inspect active compounds and label amounts side-by-side.',
     },
     {
       id: 7,
-      title: 'Verified Retailer Link (Shop Now)',
+      title: 'Retailer Link (View Deal & Details)',
       description:
-        'Directs you securely to the verified manufacturer or trusted retail partner to purchase with affiliate tracking assurance.',
+        'Opens the retailer product page. NutriDupe may earn an affiliate commission on qualifying purchases at no extra cost to you.',
     },
   ];
 
@@ -67,7 +67,7 @@ export default function CardLegendModal({ isOpen, onClose }: CardLegendModalProp
           <div>
             <h2 className="text-xl font-bold text-gray-900">How to Read a NutriDupe Card</h2>
             <p className="mt-1 text-sm text-gray-500">
-              Click any numbered badge to explore how we benchmark, calculate savings, and verify ingredients.
+              Click any numbered badge to see how match scores, reviewed claims, and per-serving costs work.
             </p>
           </div>
           <button
@@ -93,7 +93,7 @@ export default function CardLegendModal({ isOpen, onClose }: CardLegendModalProp
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-emerald-700 text-[11px] font-bold">
                 1
               </span>
-              94% Active Match
+              100% Active Match
             </button>
 
             <button
@@ -107,14 +107,14 @@ export default function CardLegendModal({ isOpen, onClose }: CardLegendModalProp
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-emerald-700 text-[11px] font-bold">
                 2
               </span>
-              50% cheaper
+              65% cheaper
             </button>
           </div>
 
           {/* Product Title */}
           <div>
-            <h3 className="text-base font-bold text-gray-900">NutriDupe Ashwagandha & L-Theanine</h3>
-            <p className="text-xs text-gray-500">by NutriDupe Labs</p>
+            <h3 className="text-base font-bold text-gray-900">BulkSupplements Creatine Monohydrate</h3>
+            <p className="text-xs text-gray-500">by BulkSupplements</p>
           </div>
 
           {/* Badge 3 inside a solid green circle */}
@@ -130,7 +130,7 @@ export default function CardLegendModal({ isOpen, onClose }: CardLegendModalProp
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600 text-white text-[11px] font-bold">
                 3
               </span>
-              <span>cGMP · FDA-Reg · 3rd-Party</span>
+              <span>cGMP · FDA-Reg · Testing Claims Reviewed</span>
             </button>
           </div>
 
@@ -148,7 +148,7 @@ export default function CardLegendModal({ isOpen, onClose }: CardLegendModalProp
                 </span>
                 Price / serving
               </div>
-              <div className="mt-1 text-base font-bold text-gray-900">$0.63</div>
+              <div className="mt-1 text-base font-bold text-gray-900">$0.17</div>
             </button>
 
             <button
@@ -163,7 +163,7 @@ export default function CardLegendModal({ isOpen, onClose }: CardLegendModalProp
                 </span>
                 vs. benchmark
               </div>
-              <div className="mt-1 text-base font-bold text-emerald-600">-$0.64</div>
+              <div className="mt-1 text-base font-bold text-emerald-600">-$0.32</div>
             </button>
           </div>
 
@@ -190,7 +190,7 @@ export default function CardLegendModal({ isOpen, onClose }: CardLegendModalProp
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-emerald-700 text-[11px] font-bold">
               7
             </span>
-            <span>Shop Now</span>
+            <span>View Deal &amp; Details</span>
           </button>
         </div>
 
