@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 const PAGE_URL = 'https://www.nutridupe.com/research-guides/9-supplement-pairs-compared';
+const COVER_IMAGE = '/images/9-supplement-pairs-compared-cover.png';
 const TITLE = '9 Supplement Pairs Compared: Up to 88% Cheaper per Serving';
 const DESCRIPTION =
   'Compare 9 supplement pairs across 16 products on NutriDupe using label match scores, price per serving, and brand quality and testing claims.';
@@ -19,6 +20,20 @@ export const metadata: Metadata = {
     type: 'article',
     publishedTime: '2026-11-25',
     modifiedTime: '2026-11-25',
+    images: [
+      {
+        url: COVER_IMAGE,
+        width: 1920,
+        height: 1080,
+        alt: 'Matched Formulas. Up to 88% Less per Serving.',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [COVER_IMAGE],
   },
 };
 
@@ -34,6 +49,14 @@ export default function SupplementPairsArticlePage() {
           <span>Updated: November 25, 2026</span>
         </div>
       </header>
+
+      <div className="mb-8 overflow-hidden rounded-xl border border-border shadow-sm">
+        <img
+          src={COVER_IMAGE}
+          alt="Matched Formulas. Up to 88% Less per Serving."
+          className="h-auto w-full object-cover"
+        />
+      </div>
 
       <div className="mb-6 rounded-lg border border-border bg-secondary/40 p-4 text-xs leading-relaxed text-muted-foreground">
         NutriDupe earns commissions on qualifying purchases made through links in this article. As an
