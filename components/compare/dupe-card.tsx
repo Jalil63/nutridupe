@@ -66,12 +66,22 @@ export function DupeCard({ type, data }: ProductCardProps) {
     data.subScores.overlap !== null &&
     data.subScores.overlap !== undefined;
 
+  const normalizedBrand = (data.brandName || '').trim();
+  const normalizedProduct = (data.productName || '').trim();
+  const showBrandLabel =
+    normalizedBrand.length > 0 &&
+    !normalizedProduct.toLowerCase().startsWith(normalizedBrand.toLowerCase());
+
   // 2. Third-Party Dupe Card
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start gap-3 mb-2">
         <div>
-          <span className="text-xs font-semibold text-emerald-700 uppercase tracking-wider">{data.brandName}</span>
+          {showBrandLabel && (
+            <span className="block text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+              {normalizedBrand}
+            </span>
+          )}
           <h4 className="text-lg font-bold text-slate-900">{data.productName}</h4>
         </div>
         {hasMatchScore ? (
@@ -110,7 +120,7 @@ export function DupeCard({ type, data }: ProductCardProps) {
         </div>
       ) : (
         <div className="bg-amber-50/50 rounded-lg p-2.5 my-3 text-xs text-slate-700 border border-amber-100">
-          <strong className="text-slate-900">Category alternative:</strong> Different active ingredients or format than the benchmark—compare Supplement Facts labels before switching.
+          <strong className="text-slate-900">Category alternative:</strong> Different active ingredients or format than the benchmark, so compare Supplement Facts labels before switching.
         </div>
       )}
 
