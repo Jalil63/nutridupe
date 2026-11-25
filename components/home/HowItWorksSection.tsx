@@ -16,7 +16,7 @@ export function HowItWorksSection() {
           <p className="mt-2 text-sm text-muted-foreground">
             Understand how we benchmark, score match percentages, and calculate savings.
           </p>
-          
+
           {/* Interactive Modal Trigger Link */}
           <button
             onClick={() => setIsLegendOpen(true)}
@@ -30,17 +30,17 @@ export function HowItWorksSection() {
           <HowItWorksStep
             number="01"
             title="Search a Product or Ingredient"
-            description="Type in a premium supplement name or an active ingredient like 'Creatine Monohydrate' to begin."
+            description="Type in a benchmark supplement name or an active ingredient like 'Creatine Monohydrate' to begin."
           />
           <HowItWorksStep
             number="02"
-            title="Compare cGMP-Certified Dupes"
-            description="View side-by-side comparisons with exact active-ingredient match percentages, bioavailability ratings, and savings."
+            title="Compare Label-Audited Alternatives"
+            description="View side-by-side comparisons with active-ingredient match scores, bioavailability grades, and savings."
           />
           <HowItWorksStep
             number="03"
-            title="Shop with Confidence"
-            description="Every dupe is cGMP-certified, FDA-registered, and third-party tested. Click through to verified retailers."
+            title="Check Labels & Compare Costs"
+            description="We review Supplement Facts labels, listed prices, and brand quality and testing claims so you can compare before buying."
           />
         </div>
       </div>
