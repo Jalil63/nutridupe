@@ -19,15 +19,32 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
     benchmarks = [];
   }
 
-  const filtered = query
-    ? (benchmarks || []).filter(
-        (b) =>
-          (b.name || '').toLowerCase().includes(query.toLowerCase()) ||
-          (b.brand || '').toLowerCase().includes(query.toLowerCase()) ||
-          (b.description || '').toLowerCase().includes(query.toLowerCase()) ||
-          (b.category?.name || '').toLowerCase().includes(query.toLowerCase())
-      )
-    : (benchmarks || []);
+  const queryTokens = query
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const filtered =
+    queryTokens.length > 0
+      ? (benchmarks || []).filter((b) => {
+          const dupesText = (b.dupes || [])
+            .map((d: any) => `${d.name || ''} ${d.brand || ''} ${d.description || ''}`)
+            .join(' ');
+
+          const searchableText = [
+            b.name,
+            b.brand,
+            b.description,
+            b.category?.name,
+            dupesText,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .toLowerCase();
+
+          return queryTokens.every((token) => searchableText.includes(token));
+        })
+      : (benchmarks || []);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -127,7 +144,7 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
                     </Link>
                   </div>
                   <p className="mt-2.5 text-[10px] text-slate-400 text-right">
-                    Affiliate link — NutriDupe may earn a commission at no extra cost.
+                    Affiliate link. NutriDupe may earn a commission at no extra cost.
                   </p>
                 </div>
               </div>
