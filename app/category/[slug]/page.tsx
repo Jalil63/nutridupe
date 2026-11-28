@@ -1,35 +1,3 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
-import { calculateSavings } from '@/lib/data';
-import { DupeCard } from '@/components/compare/dupe-card';
-
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-
-  const { data: category } = await supabase
-    .from('categories')
-    .select('name, description')
-    .eq('slug', slug)
-    .single();
-
-  const categoryName =
-    category?.name ||
-    slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
-
-  return {
-    title: `${categoryName} Supplement Alternatives & Dupes | NutriDupe`,
-    description:
-      category?.description ||
-      `Compare clinically equivalent, cGMP-certified alternatives in ${categoryName}. View ingredient matches, bioavailability scores, and price savings.`,
-  };
-}
-
 export default async function CategoryPage({ params }: PageProps) {
   const { slug } = await params;
 
@@ -56,9 +24,28 @@ export default async function CategoryPage({ params }: PageProps) {
     console.error('Error fetching category products:', productsError);
   }
 
-  const allProducts = products || [];
-  const benchmarks = allProducts.filter((p: any) => p.type === 'benchmark');
-  const dupes = allProducts.filter((p: any) => p.type === 'dupe');
+  const rawProducts = products || [];
+
+  // Only keep dupes that have a valid external product/affiliate URL (not empty and not '/compare')
+  const hasValidProductLink = (p: any) => {
+    const url = (p.affiliate_url || p.url || '').trim();
+    return Boolean(url) && !url.startsWith('/compare') && url !== '#';
+  };
+
+  const dupes = rawProducts.filter(
+    (p: any) => p.type === 'dupe' && hasValidProductLink(p)
+  );
+
+  // Only show benchmarks that have at least 1 valid dupe in this category
+  const validBenchmarkIds = new Set(
+    dupes.map((d: any) => d.benchmark_id).filter(Boolean)
+  );
+
+  const benchmarks = rawProducts.filter(
+    (p: any) => p.type === 'benchmark' && validBenchmarkIds.has(p.id)
+  );
+
+  const allProducts = [...benchmarks, ...dupes];
 
   // Map benchmark id -> price_per_serving so each dupe shows accurate savings
   const benchmarkCostMap = new Map<string, number>(
@@ -213,7 +200,7 @@ export default async function CategoryPage({ params }: PageProps) {
                           View Deal & Details →
                         </a>
                         <p className="mt-2 text-[11px] text-slate-400 text-center">
-                          Affiliate link — NutriDupe earns a commission on qualifying purchases.
+                          Affiliate link: NutriDupe earns a commission on qualifying purchases.
                         </p>
                       </div>
                     </div>
