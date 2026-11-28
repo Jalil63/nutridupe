@@ -144,7 +144,7 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
                     </Link>
                   </div>
                   <p className="mt-2.5 text-[10px] text-slate-400 text-right">
-                    Affiliate link. NutriDupe may earn a commission at no extra cost.
+                    Affiliate link: NutriDupe may earn a commission at no extra cost.
                   </p>
                 </div>
               </div>
