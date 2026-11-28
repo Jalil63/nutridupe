@@ -1,3 +1,35 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
+import { calculateSavings } from '@/lib/data';
+import { DupeCard } from '@/components/compare/dupe-card';
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const { data: category } = await supabase
+    .from('categories')
+    .select('name, description')
+    .eq('slug', slug)
+    .single();
+
+  const categoryName =
+    category?.name ||
+    slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
+  return {
+    title: `${categoryName} Supplement Alternatives & Dupes | NutriDupe`,
+    description:
+      category?.description ||
+      `Compare clinically equivalent, cGMP-certified alternatives in ${categoryName}. View ingredient matches, bioavailability scores, and price savings.`,
+  };
+}
+
 export default async function CategoryPage({ params }: PageProps) {
   const { slug } = await params;
 
