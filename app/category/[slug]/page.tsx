@@ -12,11 +12,12 @@ export default async function CategoryPage({ params }: PageProps) {
     notFound();
   }
 
-  // 2. Fetch all products linked to this category_id
+  // 2. Fetch active products linked to this category_id
   const { data: products, error: productsError } = await supabase
     .from('products')
     .select('*')
     .eq('category_id', category.id)
+    .eq('is_active', true)
     .order('type', { ascending: true })
     .order('name', { ascending: true });
 
@@ -24,16 +25,32 @@ export default async function CategoryPage({ params }: PageProps) {
     console.error('Error fetching category products:', productsError);
   }
 
-  const rawProducts = products || [];
+  // Only allow direct Amazon product URLs (/dp/ or /gp/product/) to match /go/[slug]
+  const isDirectAmazonProductUrl = (url?: string | null): boolean => {
+    if (!url) return false;
+    try {
+      const parsed = new URL(url.trim());
+      const isAmazonHost =
+        parsed.hostname === 'www.amazon.com' ||
+        parsed.hostname === 'amazon.com';
+      const isProductPath =
+        parsed.pathname.includes('/dp/') ||
+        parsed.pathname.includes('/gp/product/');
 
-  // Only keep dupes that have a valid external product/affiliate URL (not empty and not '/compare')
-  const hasValidProductLink = (p: any) => {
-    const url = (p.affiliate_url || p.url || '').trim();
-    return Boolean(url) && !url.startsWith('/compare') && url !== '#';
+      return (
+        (parsed.protocol === 'https:' || parsed.protocol === 'http:') &&
+        isAmazonHost &&
+        isProductPath
+      );
+    } catch {
+      return false;
+    }
   };
 
+  const rawProducts = products || [];
+
   const dupes = rawProducts.filter(
-    (p: any) => p.type === 'dupe' && hasValidProductLink(p)
+    (p: any) => p.type === 'dupe' && isDirectAmazonProductUrl(p.affiliate_url)
   );
 
   // Only show benchmarks that have at least 1 valid dupe in this category
